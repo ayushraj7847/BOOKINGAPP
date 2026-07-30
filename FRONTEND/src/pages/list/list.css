@@ -1,0 +1,1308 @@
+/* =====================================================
+          PREMIUM HOTEL LIST - PART 1
+        Layout + Sidebar + Search Form
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+.listContainer{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    padding:70px 30px;
+    background:#090909;
+}
+
+.listWrapper{
+    width:100%;
+    max-width:1500px;
+    display:flex;
+    gap:35px;
+    align-items:flex-start;
+}
+
+/* ===================================
+          PREMIUM SIDEBAR
+=================================== */
+
+.listSearch{
+
+    width:360px;
+    min-width:360px;
+
+    position:sticky;
+    top:25px;
+
+    padding:32px;
+
+    border-radius:24px;
+
+    background:
+    linear-gradient(
+    180deg,
+    rgba(26,26,26,.95),
+    rgba(12,12,12,.96));
+
+    border:1px solid rgba(212,175,55,.25);
+
+    box-shadow:
+    0 25px 70px rgba(0,0,0,.45);
+
+    overflow:visible;
+
+    z-index:20;
+
+}
+
+/* Gold Glow */
+
+.listSearch::before{
+
+content:"";
+
+position:absolute;
+
+top:-130px;
+right:-130px;
+
+width:260px;
+height:260px;
+
+border-radius:50%;
+
+background:
+rgba(212,175,55,.08);
+
+filter:blur(70px);
+
+pointer-events:none;
+
+}
+
+/* ===================================
+            TITLE
+=================================== */
+
+.lsTitle{
+
+font-size:38px;
+
+font-weight:800;
+
+color:#f5d07a;
+
+margin-bottom:35px;
+
+line-height:1;
+
+}
+
+.lsTitle::after{
+
+content:"";
+
+display:block;
+
+margin-top:12px;
+
+width:75px;
+
+height:4px;
+
+border-radius:50px;
+
+background:#d4af37;
+
+}
+
+/* ===================================
+            ITEM
+=================================== */
+
+.lsItem{
+
+display:flex;
+
+flex-direction:column;
+
+gap:12px;
+
+margin-bottom:28px;
+
+position:relative;
+
+}
+
+.lsItem label{
+
+font-size:30px;
+
+font-weight:700;
+
+color:#d4af37;
+
+letter-spacing:.5px;
+
+}
+
+/* ===================================
+          PREMIUM INPUT
+=================================== */
+
+.inputBox{
+
+width:100%;
+
+height:60px;
+
+padding:0 18px;
+
+display:flex;
+
+align-items:center;
+
+gap:14px;
+
+border-radius:14px;
+
+background:#181818;
+
+border:1px solid rgba(255,255,255,.08);
+
+transition:.35s;
+
+cursor:pointer;
+
+}
+
+.inputBox:hover{
+
+border-color:#d4af37;
+
+box-shadow:
+0 0 0 3px rgba(212,175,55,.08);
+
+}
+
+.inputBox svg{
+
+font-size:45px;
+
+color:#d4af37;
+
+}
+
+.inputBox input{
+
+flex:1;
+
+height:100%;
+
+border:none;
+
+outline:none;
+
+background:transparent;
+
+color:white;
+
+font-size:25px;
+
+}
+
+.inputBox input::placeholder{
+
+color:#999;
+
+}
+
+.inputBox span{
+
+color:white;
+
+font-size:25px;
+
+}
+
+/* ===================================
+        DATE PICKER
+=================================== */
+
+.date{
+
+position:absolute;
+
+top:95px;
+
+left:0;
+
+z-index:99999;
+
+background:#fff;
+
+border-radius:18px;
+
+overflow:hidden;
+
+box-shadow:
+0 30px 70px rgba(0,0,0,.55);
+
+border:1px solid rgba(212,175,55,.35);
+
+animation:fadeDate .25s ease;
+
+}
+
+@keyframes fadeDate{
+
+from{
+
+opacity:0;
+
+transform:translateY(-10px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+/* Calendar */
+
+.rdrCalendarWrapper{
+
+font-size:26px;
+
+}
+
+.rdrMonth{
+
+padding:18px;
+
+}
+
+.rdrMonthName{
+
+font-size:25px;
+
+font-weight:700;
+
+}
+
+.rdrWeekDay{
+
+font-size:25px;
+
+font-weight:700;
+
+}
+
+.rdrDayNumber span{
+
+font-size:25px;
+
+}
+
+/* ===================================
+      RIGHT SIDE
+=================================== */
+
+.listResult{
+
+flex:1;
+
+display:flex;
+
+flex-direction:column;
+
+gap:28px;
+
+}
+
+/* ===================================
+      RESULT HEADER
+=================================== */
+
+.listTop{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:8px;
+
+}
+
+.listTop h2{
+
+font-size:35px;
+
+color:white;
+
+font-weight:700;
+
+}
+
+.listTop select{
+
+height:52px;
+
+padding:0 18px;
+
+border-radius:12px;
+
+background:#181818;
+
+border:1px solid rgba(212,175,55,.20);
+
+color:white;
+
+font-size:25px;
+
+outline:none;
+
+cursor:pointer;
+
+}
+
+/* =====================================================
+          PREMIUM HOTEL LIST - PART 2
+      Counter + Slider + Checkbox + Button
+===================================================== */
+
+/* ===================================
+        GUEST COUNTER
+=================================== */
+
+.counterRow{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:14px 0;
+
+border-bottom:1px solid rgba(255,255,255,.06);
+
+}
+
+.counterRow:last-child{
+
+border-bottom:none;
+
+}
+
+.counterRow>span{
+
+color:#f2f2f2;
+
+font-size:26px;
+
+font-weight:600;
+
+}
+
+.counter{
+
+display:flex;
+
+align-items:center;
+
+gap:16px;
+
+}
+
+.counter button{
+
+width:38px;
+
+height:38px;
+
+border:none;
+
+border-radius:12px;
+
+background:#1d1d1d;
+
+border:1px solid rgba(212,175,55,.25);
+
+color:#d4af37;
+
+cursor:pointer;
+
+font-size:25px;
+
+transition:.35s;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+}
+
+.counter button:hover{
+
+background:#d4af37;
+
+color:#111;
+
+transform:scale(1.08);
+
+box-shadow:0 8px 20px rgba(212,175,55,.35);
+
+}
+
+.counter button:disabled{
+
+opacity:.35;
+
+cursor:not-allowed;
+
+transform:none;
+
+box-shadow:none;
+
+}
+
+.counter span{
+
+width:30px;
+
+text-align:center;
+
+font-size:30px;
+
+font-weight:700;
+
+color:white;
+
+}
+
+/* ===================================
+        PRICE RANGE
+=================================== */
+
+.rangeSlider{
+
+width:100%;
+
+margin-top:12px;
+
+appearance:none;
+
+height:7px;
+
+border-radius:20px;
+
+background:#2b2b2b;
+
+outline:none;
+
+cursor:pointer;
+
+}
+
+.rangeSlider::-webkit-slider-thumb{
+
+appearance:none;
+
+width:22px;
+
+height:22px;
+
+border-radius:50%;
+
+background:#d4af37;
+
+border:3px solid #fff;
+
+cursor:pointer;
+
+box-shadow:0 8px 18px rgba(212,175,55,.45);
+
+transition:.3s;
+
+}
+
+.rangeSlider::-webkit-slider-thumb:hover{
+
+transform:scale(1.15);
+
+}
+
+.priceValues{
+
+margin-top:14px;
+
+display:flex;
+
+justify-content:space-between;
+
+color:#d8d8d8;
+
+font-size:35px;
+
+font-weight:600;
+
+}
+
+/* ===================================
+      PROPERTY TYPE
+=================================== */
+
+.checkBox{
+
+display:flex;
+
+flex-direction:column;
+
+gap:14px;
+
+margin-top:8px;
+
+}
+
+.checkBox label{
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+cursor:pointer;
+
+font-size:35px;
+
+font-weight:500;
+
+color:#f5f5f5;
+
+transition:.3s;
+
+}
+
+.checkBox label:hover{
+
+color:#d4af37;
+
+padding-left:6px;
+
+}
+
+.propertyCheck{
+
+appearance:none;
+
+width:20px;
+
+height:20px;
+
+border-radius:6px;
+
+border:2px solid #777;
+
+background:#1d1d1d;
+
+cursor:pointer;
+
+transition:.35s;
+
+position:relative;
+
+}
+
+.propertyCheck:checked{
+
+background:#d4af37;
+
+border-color:#d4af37;
+
+}
+
+.propertyCheck:checked::after{
+
+content:"✓";
+
+position:absolute;
+
+left:50%;
+
+top:50%;
+
+transform:translate(-50%,-55%);
+
+font-size:3px;
+
+font-weight:700;
+
+color:#111;
+
+}
+
+/* ===================================
+      SEARCH BUTTON
+=================================== */
+
+.lsSearchBtn{
+
+width:100%;
+
+height:60px;
+
+margin-top:30px;
+
+border:none;
+
+border-radius:16px;
+
+cursor:pointer;
+
+font-size:30px;
+
+font-weight:700;
+
+background:linear-gradient(
+135deg,
+#d4af37,
+#f7d97c
+);
+
+color:#111;
+
+transition:.35s;
+
+box-shadow:
+0 15px 35px rgba(212,175,55,.35);
+
+}
+
+.lsSearchBtn:hover{
+
+transform:translateY(-4px);
+
+box-shadow:
+0 22px 45px rgba(212,175,55,.45);
+
+}
+
+.lsSearchBtn:active{
+
+transform:scale(.98);
+
+}
+
+/* ===================================
+      CUSTOM SCROLLBAR
+=================================== */
+
+.listSearch::-webkit-scrollbar{
+
+width:8px;
+
+}
+
+.listSearch::-webkit-scrollbar-thumb{
+
+background:#d4af37;
+
+border-radius:20px;
+
+}
+
+.listSearch::-webkit-scrollbar-track{
+
+background:#161616;
+
+}
+
+/* ===================================
+      INPUT ANIMATION
+=================================== */
+
+.inputBox,
+.counter button,
+.propertyCheck,
+.lsSearchBtn{
+
+transition:all .35s ease;
+
+}
+
+.inputBox:focus-within{
+
+border-color:#d4af37;
+
+box-shadow:
+0 0 0 4px rgba(212,175,55,.10);
+
+}
+
+/* =====================================================
+          PREMIUM HOTEL LIST - PART 3
+        Responsive + Final Premium Effects
+===================================================== */
+
+/* ===================================
+        CARD ANIMATION
+=================================== */
+
+.searchItem{
+    animation:fadeUp .5s ease;
+}
+
+@keyframes fadeUp{
+
+from{
+    opacity:0;
+    transform:translateY(35px);
+}
+
+to{
+    opacity:1;
+    transform:translateY(0);
+}
+
+}
+
+/* ===================================
+        RESULT SPACING
+=================================== */
+
+.listResult{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:28px;
+
+}
+
+.listResult>*{
+
+    animation:fadeUp .45s ease;
+
+}
+
+/* ===================================
+        PREMIUM SHADOWS
+=================================== */
+
+.listSearch,
+.searchItem{
+
+transition:.35s ease;
+
+}
+
+.listSearch:hover{
+
+box-shadow:
+0 30px 70px rgba(0,0,0,.55);
+
+}
+
+.searchItem:hover{
+
+transform:translateY(-6px);
+
+}
+
+/* ===================================
+        DATE PICKER
+=================================== */
+
+.date{
+
+position:absolute;
+
+top:95px;
+
+left:0;
+
+z-index:99999;
+
+border-radius:18px;
+
+overflow:hidden;
+
+background:#fff;
+
+box-shadow:
+0 30px 70px rgba(0,0,0,.55);
+
+}
+
+.rdrCalendarWrapper{
+
+font-size:16px;
+
+}
+
+.rdrMonth{
+
+padding:15px;
+
+}
+
+.rdrDayToday .rdrDayNumber span:after{
+
+background:#d4af37;
+
+}
+
+.rdrStartEdge,
+.rdrEndEdge,
+.rdrInRange{
+
+background:#d4af37 !important;
+
+}
+
+/* ===================================
+        DESKTOP
+=================================== */
+
+@media (max-width:1400px){
+
+.listWrapper{
+
+max-width:95%;
+
+}
+
+.listSearch{
+
+width:330px;
+
+min-width:330px;
+
+}
+
+.listTop h2{
+
+font-size:30px;
+
+}
+
+}
+
+/* ===================================
+          LAPTOP
+=================================== */
+
+@media (max-width:1200px){
+
+.listWrapper{
+
+gap:28px;
+
+}
+
+.listSearch{
+
+width:310px;
+
+min-width:310px;
+
+padding:26px;
+
+}
+
+.lsTitle{
+
+font-size:32px;
+
+}
+
+.inputBox{
+
+height:56px;
+
+}
+
+}
+
+/* ===================================
+          TABLET
+=================================== */
+
+@media (max-width:992px){
+
+.listContainer{
+
+padding:25px 18px;
+
+}
+
+.listWrapper{
+
+flex-direction:column;
+
+}
+
+.listSearch{
+
+position:relative;
+
+top:0;
+
+width:100%;
+
+min-width:100%;
+
+}
+
+.listResult{
+
+width:100%;
+
+}
+
+.listTop{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:15px;
+
+}
+
+.listTop select{
+
+width:100%;
+
+}
+
+.date{
+
+position:relative;
+
+top:15px;
+
+left:0;
+
+transform:none;
+
+}
+
+}
+
+/* ===================================
+          MOBILE
+=================================== */
+
+@media (max-width:768px){
+
+.listContainer{
+
+padding:15px;
+
+}
+
+.listSearch{
+
+padding:22px;
+
+border-radius:18px;
+
+}
+
+.lsTitle{
+
+font-size:26px;
+
+text-align:center;
+
+}
+
+.lsTitle::after{
+
+margin:auto;
+
+margin-top:10px;
+
+}
+
+.inputBox{
+
+height:54px;
+
+}
+
+.inputBox input{
+
+font-size:15px;
+
+}
+
+.counterRow{
+
+padding:12px 0;
+
+}
+
+.counter button{
+
+width:34px;
+
+height:34px;
+
+}
+
+.counter span{
+
+font-size:16px;
+
+}
+
+.priceValues{
+
+font-size:13px;
+
+}
+
+.lsSearchBtn{
+
+height:56px;
+
+font-size:16px;
+
+}
+
+.date{
+
+width:100%;
+
+overflow:auto;
+
+}
+
+}
+
+/* ===================================
+      SMALL MOBILE
+=================================== */
+
+@media (max-width:576px){
+
+.listContainer{
+
+padding:10px;
+
+}
+
+.listSearch{
+
+padding:18px;
+
+border-radius:16px;
+
+}
+
+.lsTitle{
+
+font-size:22px;
+
+}
+
+.lsItem label{
+
+font-size:14px;
+
+}
+
+.inputBox{
+
+height:50px;
+
+padding:0 14px;
+
+}
+
+.inputBox input{
+
+font-size:14px;
+
+}
+
+.inputBox span{
+
+font-size:14px;
+
+}
+
+.counterRow span{
+
+font-size:14px;
+
+}
+
+.counter{
+
+gap:10px;
+
+}
+
+.counter button{
+
+width:32px;
+
+height:32px;
+
+}
+
+.counter span{
+
+font-size:15px;
+
+}
+
+.propertyCheck{
+
+width:18px;
+
+height:18px;
+
+}
+
+.checkBox label{
+
+font-size:14px;
+
+}
+
+.lsSearchBtn{
+
+height:52px;
+
+font-size:15px;
+
+}
+
+.listTop h2{
+
+font-size:24px;
+
+}
+
+}
+
+/* ===================================
+      EXTRA SMALL
+=================================== */
+
+@media (max-width:400px){
+
+.listSearch{
+
+padding:15px;
+
+}
+
+.lsTitle{
+
+font-size:20px;
+
+}
+
+.inputBox{
+
+height:46px;
+
+}
+
+.counter button{
+
+width:28px;
+
+height:28px;
+
+}
+
+.counter span{
+
+font-size:14px;
+
+}
+
+.lsSearchBtn{
+
+height:48px;
+
+font-size:14px;
+
+}
+
+}
+
+/* ===================================
+      SMOOTH TRANSITIONS
+=================================== */
+
+button,
+input,
+select,
+.searchItem,
+.listSearch,
+.inputBox{
+
+transition:all .35s ease;
+
+}
+
+/* ===================================
+      PREMIUM SELECTION
+=================================== */
+
+::selection{
+
+background:#d4af37;
+
+color:#111;
+
+}
+
+/* ===================================
+      PREMIUM SCROLLBAR
+=================================== */
+
+::-webkit-scrollbar{
+
+width:8px;
+
+height:8px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:#d4af37;
+
+border-radius:20px;
+
+}
+
+::-webkit-scrollbar-track{
+
+background:#151515;
+
+}

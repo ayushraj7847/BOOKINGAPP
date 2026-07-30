@@ -1,0 +1,1232 @@
+/* =====================================================
+              PREMIUM HOTEL PAGE - PART 1
+===================================================== */
+
+.hotelContainer{
+    width:100%;
+    background:#080808;
+    color:#fff;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+
+    padding:60px 0;
+}
+
+.hotelWrapper{
+ width:95%;
+    max-width:1850px;
+
+    margin:0 auto;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:35px;
+
+    padding:40px;
+
+    position:relative;
+   
+}
+
+/* =====================================================
+                    HEADER
+===================================================== */
+
+.hotelTop{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+
+    gap:30px;
+
+}
+
+.hotelBadge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:10px 18px;
+
+    border-radius:30px;
+
+    border:1px solid #d4af37;
+
+    background:rgba(212,175,55,.08);
+
+    color:#f5d07a;
+
+    font-size:35px;
+
+    font-weight:600;
+
+    margin-bottom:20px;
+
+}
+
+.hotelTitle{
+
+    font-size:65px;
+
+    font-weight:800;
+
+    color:#fff;
+
+    margin:0 0 15px;
+
+}
+
+.hotelAddress{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    color:#dadada;
+
+    font-size:35px;
+
+    margin-bottom:18px;
+
+}
+
+.hotelAddress svg{
+
+    color:#d4af37;
+
+}
+
+.hotelRating{
+
+    display:flex;
+
+    gap:18px;
+
+    flex-wrap:wrap;
+
+}
+
+.hotelRating span{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:8px 14px;
+
+    border-radius:25px;
+
+    background:#181818;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    font-size:35px;
+
+}
+
+.hotelRating svg{
+
+    color:#d4af37;
+
+}
+
+/* =====================================================
+                    SAVE BUTTON
+===================================================== */
+
+.saveBtn{
+
+    border:none;
+
+    background:transparent;
+
+    border:1px solid #d4af37;
+
+    color:#f5d07a;
+
+    padding:15px 24px;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-size:36px;
+
+    transition:.35s;
+
+}
+
+.saveBtn:hover{
+
+    background:#d4af37;
+
+    color:#111;
+
+}
+
+/* =====================================================
+                    GALLERY
+===================================================== */
+
+.hotelImages{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:18px;
+
+}
+
+.hotelImgWrapper{
+
+    position:relative;
+
+    overflow:hidden;
+
+    border-radius:18px;
+
+    cursor:pointer;
+
+}
+
+.hotelImg{
+
+    width:100%;
+
+    height:340px;
+
+    object-fit:cover;
+
+    transition:.5s;
+
+}
+
+.hotelImgWrapper:hover .hotelImg{
+
+    transform:scale(1.08);
+
+}
+
+.hotelImgWrapper::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:linear-gradient(
+        rgba(0,0,0,0),
+        rgba(0,0,0,.35)
+    );
+
+}
+
+.galleryBtn{
+
+    position:absolute;
+
+    left:20px;
+
+    bottom:20px;
+
+    z-index:2;
+
+    padding:10px 18px;
+
+    border-radius:10px;
+
+    background:rgba(0,0,0,.55);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    backdrop-filter:blur(10px);
+
+    color:#fff;
+
+    font-size:25px;
+
+}
+
+/* =====================================================
+                    PREMIUM SLIDER
+===================================================== */
+.slider{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.95);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    z-index:99999;
+}
+
+.sliderImg{
+    width:80%;
+    max-width:1200px;
+    max-height:85vh;
+
+    object-fit:contain;
+
+    filter:none !important;
+    opacity:1 !important;
+    mix-blend-mode:normal !important;
+
+    user-select:none;
+}
+
+.close{
+    position:fixed;
+    top:225px;
+    right:300px;
+
+    font-size:80px;
+    color:#fff;
+
+    cursor:pointer;
+    z-index:999999;
+}
+
+.arrow{
+    margin: 100px;
+    top:50%;
+    transform:translateY(-50%);
+
+    width:55px;
+    height:55px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    border-radius:50%;
+
+    background:#111;
+
+    border:2px solid #d4af37;
+
+    color:white;
+
+    font-size:24px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    z-index:999999;
+}
+
+.arrow:first-of-type{
+    left:35px;
+}
+
+.arrow:last-of-type{
+    right:35px;
+}
+
+.arrow:hover{
+    background:#d4af37;
+    color:#111;
+}
+/* =====================================================
+              PREMIUM HOTEL PAGE - PART 2
+===================================================== */
+
+
+/* =====================================================
+                HOTEL DETAILS
+===================================================== */
+
+.hotelDetails{
+
+    display:grid;
+    grid-template-columns:2fr 380px;
+    justify-content:space-between;
+    align-items:start;
+    gap:35px;
+
+    margin-top:20px;
+
+}
+
+.hotelDetailsTexts{
+
+    flex:3;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.hotelHeading{
+
+    font-size:52px;
+
+    color:#ffffff;
+
+    font-weight:700;
+
+    margin-bottom:20px;
+
+}
+
+.hotelDesc{
+
+    color:#cfcfcf;
+
+    font-size:35px;
+
+    line-height:1.9;
+
+    text-align:justify;
+
+}
+
+/* =====================================================
+                AMENITIES
+===================================================== */
+
+.hotelAmenities{
+
+    margin-top:35px;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:18px;
+
+}
+
+.amenity{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    padding:16px 18px;
+
+    border-radius:14px;
+
+    background:#151515;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    transition:.35s;
+
+}
+
+.amenity:hover{
+
+    transform:translateY(-5px);
+
+    border-color:#d4af37;
+
+    box-shadow:
+    0 15px 35px rgba(0,0,0,.35);
+
+}
+
+.amenity svg{
+
+    color:#d4af37;
+
+    font-size:50px;
+
+}
+
+.amenity span{
+
+    color:#ededed;
+
+    font-size:45px;
+
+    font-weight:500;
+
+}
+
+
+/* =====================================================
+                BOOKING CARD
+===================================================== */
+
+.hotelDetailsPrice{
+
+    flex:1;
+
+    position:sticky;
+
+    top:30px;
+
+    height:max-content;
+
+    padding:28px;
+
+    border-radius:20px;
+
+    background:rgba(18,18,18,.95);
+
+    border:1px solid rgba(212,175,55,.30);
+
+    backdrop-filter:blur(18px);
+
+    box-shadow:
+    0 20px 50px rgba(0,0,0,.45);
+
+}
+
+
+/* =====================================================
+                BOOKING BADGE
+===================================================== */
+
+.bookingBadge{
+
+    display:inline-block;
+
+    padding:10px 18px;
+
+    border-radius:30px;
+
+    background:rgba(212,175,55,.12);
+
+    border:1px solid #d4af37;
+
+    color:#f5d07a;
+
+    font-size:24px;
+
+    font-weight:700;
+
+    letter-spacing:.8px;
+
+    margin-bottom:20px;
+
+}
+
+
+/* =====================================================
+                BOOKING TEXT
+===================================================== */
+
+.bookingText{
+
+    display:block;
+
+    color:#d5d5d5;
+
+    line-height:1.8;
+
+    margin-bottom:10px;
+
+    font-size:25px;
+
+}
+
+
+/* =====================================================
+                PRICE BOX
+===================================================== */
+
+.priceBox{
+
+    margin-top:25px;
+
+    margin-bottom:25px;
+
+}
+
+.priceBox small{
+
+    color:white;
+
+    font-size:24px;
+
+}
+
+.priceBox h2{
+
+    margin-top:10px;
+
+    color:#ffffff;
+
+    font-size:46px;
+
+    font-weight:800;
+
+}
+
+.priceBox h2 span{
+
+    font-size:18px;
+
+    color:#bfbfbf;
+
+    font-weight:500;
+
+}
+
+
+/* =====================================================
+                RESERVE BUTTON
+===================================================== */
+
+.reserveBtn{
+
+    width:100%;
+
+    height:60px;
+
+    border:none;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    font-size:28px;
+
+    font-weight:700;
+
+    color:#111;
+
+    background:
+    linear-gradient(
+        135deg,
+        #d4af37,
+        #f5d07a
+    );
+
+    transition:.35s;
+
+}
+
+.reserveBtn:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+    0 20px 40px rgba(212,175,55,.35);
+
+}
+
+
+/* =====================================================
+                BEST PRICE
+===================================================== */
+
+.priceGuarantee{
+
+    margin-top:22px;
+
+    text-align:center;
+
+    color:#d4af37;
+
+    font-weight:600;
+
+    font-size:25px;
+
+}
+
+
+/* =====================================================
+            PREMIUM DIVIDER
+===================================================== */
+
+.hotelDetails::before{
+
+    content:"";
+
+    position:absolute;
+
+    display:none;
+
+}
+
+
+/* =====================================================
+            SOFT GLOW
+===================================================== */
+
+.hotelWrapper::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    right:-150px;
+
+    width:320px;
+
+    height:320px;
+
+    border-radius:50%;
+
+    background:rgba(212,175,55,.06);
+
+    filter:blur(80px);
+
+    pointer-events:none;
+
+}
+/* =====================================================
+            PREMIUM HOTEL PAGE - PART 3
+                RESPONSIVE
+===================================================== */
+
+
+/* ===============================
+            Large Laptop
+================================ */
+
+@media (max-width:1400px){
+
+.hotelWrapper{
+    max-width:95%;
+    padding:35px;
+}
+
+.hotelTitle{
+    font-size:52px;
+}
+
+.hotelHeading{
+    font-size:36px;
+}
+
+.hotelImages{
+    gap:16px;
+}
+
+.hotelImg{
+    height:300px;
+}
+
+.hotelAmenities{
+    grid-template-columns:repeat(2,1fr);
+}
+
+.sliderImg{
+    width:88%;
+}
+
+}
+
+
+/* ===============================
+              Laptop
+================================ */
+
+@media (max-width:1200px){
+
+.hotelTop{
+    flex-direction:column;
+    gap:25px;
+}
+
+.saveBtn{
+    align-self:flex-start;
+}
+
+.hotelTitle{
+    font-size:46px;
+}
+
+.hotelHeading{
+    font-size:32px;
+}
+
+.hotelDetails{
+    gap:30px;
+}
+
+.hotelImg{
+    height:260px;
+}
+
+.priceBox h2{
+    font-size:38px;
+}
+
+.reserveBtn{
+    height:56px;
+}
+
+}
+
+
+/* ===============================
+              Tablet
+================================ */
+
+@media (max-width:992px){
+
+.hotelWrapper{
+    padding:25px;
+}
+
+.hotelImages{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+.hotelImg{
+
+    height:240px;
+
+}
+
+.hotelDetails{
+
+    flex-direction:column;
+
+}
+
+.hotelDetailsPrice{
+
+    position:relative;
+
+    top:0;
+
+    width:100%;
+
+}
+
+.hotelAmenities{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+.hotelHeading{
+
+    font-size:30px;
+
+}
+
+.hotelDesc{
+
+    font-size:15px;
+
+}
+
+.sliderImg{
+
+    width:92%;
+
+    max-height:75vh;
+
+}
+
+.arrow{
+
+    font-size:42px;
+
+}
+
+.close{
+
+    font-size:40px;
+
+}
+
+}
+
+
+/* ===============================
+              Mobile
+================================ */
+
+@media (max-width:768px){
+
+.hotelWrapper{
+
+    padding:18px;
+
+}
+
+.hotelBadge{
+
+    font-size:12px;
+
+    padding:8px 15px;
+
+}
+
+.hotelTitle{
+
+    font-size:34px;
+
+}
+
+.hotelAddress{
+
+    font-size:15px;
+
+    flex-wrap:wrap;
+
+}
+
+.hotelRating{
+
+    gap:10px;
+
+}
+
+.hotelRating span{
+
+    font-size:13px;
+
+    padding:7px 12px;
+
+}
+
+.hotelImages{
+
+    grid-template-columns:1fr;
+
+}
+
+.hotelImg{
+
+    height:250px;
+
+}
+
+.hotelHeading{
+
+    font-size:28px;
+
+}
+
+.hotelDesc{
+
+    font-size:14px;
+
+    line-height:1.8;
+
+}
+
+.hotelAmenities{
+
+    grid-template-columns:1fr;
+
+}
+
+.hotelDetailsPrice{
+
+    padding:22px;
+
+}
+
+.priceBox h2{
+
+    font-size:34px;
+
+}
+
+.reserveBtn{
+
+    font-size:16px;
+
+}
+
+.sliderImg{
+
+    width:95%;
+
+    max-height:65vh;
+
+}
+
+.arrow{
+
+    font-size:34px;
+
+}
+
+.close{
+
+    font-size:34px;
+
+}
+
+.galleryBtn{
+
+    left:15px;
+
+    bottom:15px;
+
+    font-size:13px;
+
+}
+
+}
+
+
+/* ===============================
+            Small Mobile
+================================ */
+
+@media (max-width:576px){
+
+.hotelWrapper{
+
+    padding:15px;
+
+}
+
+.hotelTitle{
+
+    font-size:28px;
+
+}
+
+.hotelHeading{
+
+    font-size:24px;
+
+}
+
+.hotelAddress{
+
+    font-size:14px;
+
+}
+
+.hotelDesc{
+
+    font-size:13px;
+
+}
+
+.hotelImg{
+
+    height:220px;
+
+}
+
+.hotelAmenities{
+
+    gap:12px;
+
+}
+
+.amenity{
+
+    padding:14px;
+
+}
+
+.amenity span{
+
+    font-size:13px;
+
+}
+
+.hotelDetailsPrice{
+
+    padding:18px;
+
+}
+
+.priceBox h2{
+
+    font-size:30px;
+
+}
+
+.reserveBtn{
+
+    height:52px;
+
+    font-size:15px;
+
+}
+
+.sliderImg{
+
+    max-height:55vh;
+
+}
+
+.arrow{
+
+    font-size:30px;
+
+}
+
+.close{
+
+    font-size:30px;
+
+}
+
+}
+
+
+/* =====================================================
+                PREMIUM ANIMATIONS
+===================================================== */
+
+.hotelImg{
+
+    animation:fadeZoom .5s ease;
+
+}
+
+.hotelDetails{
+
+    animation:slideUp .8s ease;
+
+}
+
+.hotelTop{
+
+    animation:slideDown .7s ease;
+
+}
+
+.hotelDetailsPrice{
+
+    animation:fadeRight .8s ease;
+
+}
+
+@keyframes fadeZoom{
+
+from{
+
+opacity:0;
+
+transform:scale(.95);
+
+}
+
+to{
+
+opacity:1;
+
+transform:scale(1);
+
+}
+
+}
+
+@keyframes slideUp{
+
+from{
+
+opacity:0;
+
+transform:translateY(35px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+@keyframes slideDown{
+
+from{
+
+opacity:0;
+
+transform:translateY(-25px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+@keyframes fadeRight{
+
+from{
+
+opacity:0;
+
+transform:translateX(30px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateX(0);
+
+}
+
+}
+
+
+/* =====================================================
+              CUSTOM SCROLLBAR
+===================================================== */
+
+::-webkit-scrollbar{
+
+width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+background:#0f0f0f;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:#d4af37;
+
+border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+background:#f5d07a;
+
+}

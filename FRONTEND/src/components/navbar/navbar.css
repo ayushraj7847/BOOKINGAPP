@@ -1,0 +1,215 @@
+/* ===========================
+        PREMIUM NAVBAR
+=========================== */
+
+.navbar{
+    width:100%;
+    background:#0b0b0b;
+    border-bottom:1px solid rgba(212,175,55,.25);
+    position:sticky;
+    top:0;
+    z-index:9999;
+    display:flex;
+    justify-content:center;
+}
+
+.navContainer{
+    width:100%;
+    max-width:1400px;
+    margin:auto;
+    padding:15px 25px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:25px;
+}
+
+/* Logo */
+
+.logo{
+    font-size:32px;
+    font-weight:700;
+    color:#d4af37;
+    white-space:nowrap;
+    cursor: pointer;
+}
+
+/* Center Menu */
+
+.navMenu{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.navMenuItem{
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    color:#fff;
+    font-size:17px;
+    font-weight:500;
+
+    padding:10px 18px;
+
+    border-radius:30px;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.navMenuItem svg{
+    font-size:18px;
+    color:#d4af37;
+}
+
+.navMenuItem:hover{
+    background:#7a1f2b;
+}
+
+.navMenuItem.active{
+    background:#7a1f2b;
+    border:1px solid #d4af37;
+}
+
+/* Buttons */
+
+.navItems{
+    display:flex;
+    gap:12px;
+}
+
+.navButtonOutline,
+.navButton{
+
+    padding:10px 22px;
+
+    font-size:15px;
+
+    border-radius:30px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.navButtonOutline{
+
+    border:1px solid #d4af37;
+    background:transparent;
+    color:#d4af37;
+
+}
+
+.navButton{
+
+    border:none;
+    background:#d4af37;
+    color:#111;
+
+}
+
+.navButton:hover{
+    background:#f5d07a;
+}
+
+/* ==============================
+        RESPONSIVE
+============================== */
+
+/* Laptop */
+
+@media(max-width:1200px){
+
+.logo{
+    font-size:28px;
+}
+
+.navMenuItem{
+    font-size:15px;
+    padding:8px 14px;
+}
+
+.navMenuItem svg{
+    font-size:16px;
+}
+
+}
+/* mobile */
+@media(max-width:768px){
+
+.logo{
+    font-size:24px;
+}
+
+.navMenu{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    width:100%;
+
+    gap:12px;
+
+}
+
+.navMenuItem{
+
+    justify-content:center;
+
+    font-size:14px;
+
+}
+
+.navItems{
+
+    width:100%;
+
+    display:flex;
+
+}
+
+.navButton,
+.navButtonOutline{
+
+    flex:1;
+
+}
+
+}
+/* small mobile */
+@media(max-width:480px){
+
+.logo{
+    text-align:center;
+    font-size:22px;
+}
+
+.navMenu{
+
+    grid-template-columns:1fr;
+
+}
+
+.navItems{
+
+    flex-direction:column;
+
+}
+
+.navButton,
+.navButtonOutline{
+
+    width:100%;
+
+}
+
+}

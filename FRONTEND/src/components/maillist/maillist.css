@@ -1,0 +1,414 @@
+.mail {
+  width: 100%;
+  max-width: 1500px;
+  margin: 70px auto;
+  padding: 60px 40px;
+
+  position: relative;
+  overflow: hidden;
+
+  border: 1px solid rgba(212,175,55,.45);
+  border-radius: 25px;
+
+  background:
+    linear-gradient(rgba(56,8,14,.92),rgba(56,8,14,.92)),
+    url("https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80");
+
+  background-size: cover;
+  background-position: center;
+
+  text-align: center;
+}
+
+.mail::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.25);
+}
+
+.mail>*{
+  position:relative;
+  z-index:2;
+}
+
+.mailIcon{
+  width:90px;
+  height:90px;
+
+  margin:0 auto 25px;
+
+  border:2px solid #d4af37;
+  border-radius:50%;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  color:#d4af37;
+  font-size:38px;
+
+  background:rgba(0,0,0,.25);
+  backdrop-filter:blur(10px);
+}
+
+.mailTitle{
+  font-size:58px;
+  color:white;
+  margin-bottom:15px;
+  font-weight:700;
+}
+
+.mailTitle span{
+  color:#d4af37;
+}
+
+.mailDesc{
+  color:#ececec;
+  font-size:42px;
+  margin-bottom:40px;
+}
+
+.mailInputContainer{
+  max-width:950px;
+  margin:auto;
+
+  display:flex;
+  overflow:hidden;
+
+  border-radius:15px;
+  border:2px solid #d4af37;
+}
+
+.inputBox{
+  flex:1;
+  display:flex;
+  align-items:center;
+  gap:18px;
+
+  padding:0 25px;
+
+  background:#111;
+}
+
+.inputIcon{
+  color:#cfcfcf;
+  font-size:45px;
+}
+
+.inputBox input{
+  flex:1;
+
+  height:75px;
+
+  border:none;
+  outline:none;
+
+  background:transparent;
+
+  color:white;
+  font-size:40px;
+}
+
+.inputBox input::placeholder{
+  color:#a7a7a7;
+}
+
+.mailInputContainer button{
+  width:260px;
+
+  border:none;
+  cursor:pointer;
+
+  background:#d4af37;
+  color:#111;
+
+  font-size:35px;
+  font-weight:700;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:15px;
+
+  transition:.35s;
+}
+
+.mailInputContainer button:hover{
+
+  background:#f0c75e;
+
+}
+
+.mailFeatures{
+
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+
+  gap:35px;
+
+  margin-top:55px;
+}
+
+.featureCard{
+
+  padding:20px;
+
+  border-right:1px solid rgba(212,175,55,.35);
+}
+
+.featureCard:last-child{
+
+  border-right:none;
+
+}
+
+.featureIcon{
+
+  width:70px;
+  height:70px;
+
+  margin:auto;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  border-radius:50%;
+  border:2px solid #d4af37;
+
+  color:#d4af37;
+  font-size:28px;
+}
+
+.featureCard h3{
+
+  margin:20px 0 10px;
+
+  color:white;
+  font-size:39px;
+
+}
+
+.featureCard p{
+
+  color:#e4e4e4;
+  line-height:1.7;
+  font-size:27px;
+
+}
+
+/* ================= Laptop ================= */
+
+@media(max-width:1200px){
+
+.mail{
+
+padding:55px 30px;
+
+}
+
+.mailTitle{
+
+font-size:48px;
+
+}
+
+}
+
+/* ================= Tablet ================= */
+
+@media(max-width:992px){
+
+.mail{
+
+padding:45px 25px;
+
+}
+
+.mailTitle{
+
+font-size:40px;
+
+}
+
+.mailDesc{
+
+font-size:35px;
+
+}
+
+.mailInputContainer{
+
+flex-direction:column;
+
+}
+
+.inputBox{
+
+width:100%;
+
+}
+
+.inputBox input{
+
+height:65px;
+
+}
+
+.mailInputContainer button{
+
+width:100%;
+height:65px;
+
+}
+
+.mailFeatures{
+
+grid-template-columns:1fr;
+
+}
+
+.featureCard{
+
+border-right:none;
+border-bottom:1px solid rgba(212,175,55,.25);
+
+}
+
+.featureCard:last-child{
+
+border-bottom:none;
+
+}
+
+}
+
+/* ================= Mobile ================= */
+
+@media(max-width:768px){
+
+.mail{
+
+margin:50px 15px;
+padding:40px 20px;
+
+}
+
+.mailIcon{
+
+width:70px;
+height:70px;
+font-size:30px;
+
+}
+
+.mailTitle{
+
+font-size:34px;
+
+}
+
+.mailDesc{
+
+font-size:16px;
+
+}
+
+.inputBox{
+
+padding:0 18px;
+
+}
+
+.inputBox input{
+
+font-size:17px;
+
+}
+
+.mailInputContainer button{
+
+font-size:18px;
+
+}
+
+.featureCard h3{
+
+font-size:22px;
+
+}
+
+.featureCard p{
+
+font-size:15px;
+
+}
+
+}
+
+/* ================= Small Mobile ================= */
+
+@media(max-width:576px){
+
+.mail{
+
+padding:35px 15px;
+
+}
+
+.mailTitle{
+
+font-size:28px;
+
+}
+
+.mailDesc{
+
+font-size:14px;
+
+}
+
+.mailIcon{
+
+width:60px;
+height:60px;
+font-size:24px;
+
+}
+
+.inputBox input{
+
+height:55px;
+font-size:15px;
+
+}
+
+.mailInputContainer button{
+
+height:55px;
+font-size:16px;
+
+}
+
+.featureIcon{
+
+width:55px;
+height:55px;
+font-size:22px;
+
+}
+
+.featureCard h3{
+
+font-size:18px;
+
+}
+
+.featureCard p{
+
+font-size:13px;
+
+}
+
+}

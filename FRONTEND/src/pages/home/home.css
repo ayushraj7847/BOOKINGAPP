@@ -1,0 +1,142 @@
+.homeContainer {
+  width: 100%;
+  min-height: 105vh;
+  
+  background: #0b0b0b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 50px;
+}
+
+/* Old Heading */
+.homeTitle {
+  width: 100%;
+  max-width: 1500px;
+  margin: 35px auto 20px;
+  padding: 0 30px;
+
+  font-size: 28px;
+  font-weight: 700;
+  color: #f5d07a;
+}
+
+/* Premium Section Heading */
+.sectionTitle {
+  width: 100%;
+  max-width: 2550px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin: 40px auto 20px;
+  padding: 0 30px;
+}
+
+.sectionTitle h1 {
+  font-size: 45px;
+  font-weight: 700;
+  color: #f5d07a;
+  margin: 0;
+}
+
+.sectionTitle span {
+  font-size: 4cap;
+  color: #d4af37;
+  cursor: pointer;
+  transition: 0.3s ease;
+  
+}
+
+.sectionTitle span:hover {
+  color: #ffd978;
+}
+
+/* ========================= */
+/* Laptop */
+/* ========================= */
+
+@media screen and (max-width: 1200px) {
+  .sectionTitle,
+  .homeTitle {
+    max-width: 95%;
+  }
+}
+
+/* ========================= */
+/* Tablet */
+/* ========================= */
+
+@media screen and (max-width: 992px) {
+  .homeContainer {
+    padding: 0 20px 40px;
+  }
+
+  .sectionTitle {
+    padding: 0;
+    margin: 35px auto 18px;
+  }
+
+  .sectionTitle h1,
+  .homeTitle {
+    font-size: 24px;
+  }
+
+  .sectionTitle span {
+    font-size: 14px;
+  }
+}
+
+/* ========================= */
+/* Mobile */
+/* ========================= */
+
+@media screen and (max-width: 768px) {
+  .homeContainer {
+    padding: 0 15px 35px;
+  }
+
+  .sectionTitle {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+
+    margin: 30px auto 18px;
+    padding: 0;
+  }
+
+  .sectionTitle h1,
+  .homeTitle {
+    font-size: 22px;
+    line-height: 1.4;
+  }
+
+  .sectionTitle span {
+    font-size: 14px;
+  }
+}
+
+/* ========================= */
+/* Small Mobile */
+/* ========================= */
+
+@media screen and (max-width: 576px) {
+  .homeContainer {
+    padding: 0 12px 30px;
+  }
+
+  .sectionTitle {
+    margin: 25px auto 15px;
+  }
+
+  .sectionTitle h1,
+  .homeTitle {
+    font-size: 20px;
+    line-height: 1.5;
+  }
+
+  .sectionTitle span {
+    font-size: 13px;
+  }
+}

@@ -1,0 +1,856 @@
+/* =========================================
+        PREMIUM SEARCH CARD - PART 1
+========================================= */
+
+.searchItem{
+    display:flex;
+    gap:24px;
+
+    width:100%;
+
+    background:#111315;
+
+    border:1px solid rgba(212,175,55,.18);
+
+    border-radius:22px;
+
+    overflow:hidden;
+
+    padding:18px;
+
+    margin-bottom:24px;
+
+    transition:.35s;
+
+    box-shadow:
+    0 15px 35px rgba(0,0,0,.28);
+
+    position:relative;
+}
+
+.searchItem:hover{
+
+    transform:translateY(-6px);
+
+    border-color:#d4af37;
+
+    box-shadow:
+    0 20px 45px rgba(0,0,0,.45);
+
+}
+
+/* =========================================
+            IMAGE
+========================================= */
+
+.siImageContainer{
+
+    position:relative;
+
+    width:340px;
+
+    height:250px;
+
+    flex-shrink:0;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+}
+
+.siImg{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    transition:.55s;
+
+}
+
+.searchItem:hover .siImg{
+
+    transform:scale(1.08);
+
+}
+
+/* =========================================
+        IMAGE OVERLAY
+========================================= */
+
+.siImageContainer::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:linear-gradient(
+        to top,
+        rgba(0,0,0,.75),
+        rgba(0,0,0,.20),
+        transparent
+    );
+
+}
+
+/* =========================================
+        WISHLIST BUTTON
+========================================= */
+
+.favoriteBtn{
+
+    position:absolute;
+
+    top:14px;
+
+    right:14px;
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:rgba(0,0,0,.45);
+
+    backdrop-filter:blur(10px);
+
+    color:white;
+
+    cursor:pointer;
+
+    z-index:5;
+
+    transition:.3s;
+
+}
+
+.favoriteBtn:hover{
+
+    background:#d4af37;
+
+    color:#111;
+
+    transform:scale(1.08);
+
+}
+
+/* =========================================
+        APARTMENT BADGE
+========================================= */
+
+.siBadge{
+
+    position:absolute;
+
+    left:16px;
+
+    top:16px;
+
+    z-index:5;
+
+    padding:7px 14px;
+
+    border-radius:8px;
+
+    background:#6f42c1;
+
+    color:#fff;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+/* =========================================
+        RATING ON IMAGE
+========================================= */
+
+.siImageRating{
+
+    position:absolute;
+
+    left:16px;
+
+    bottom:16px;
+
+    z-index:5;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    background:rgba(0,0,0,.60);
+
+    backdrop-filter:blur(8px);
+
+    padding:8px 12px;
+
+    border-radius:12px;
+
+    color:white;
+
+}
+
+.siImageRating svg{
+
+    color:#f5d07a;
+
+}
+
+.siImageRating span{
+
+    font-weight:700;
+
+    font-size:15px;
+
+}
+
+.siImageRating small{
+
+    color:#ddd;
+
+    font-size:12px;
+
+}
+
+/* =========================================
+        HOTEL DETAILS CONTAINER
+========================================= */
+
+.siDesc{
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    gap:12px;
+
+}
+
+/* =========================================
+        PREMIUM SEARCH CARD - PART 2
+========================================= */
+
+/* =========================================
+            HOTEL TITLE
+========================================= */
+
+.siTitle{
+    font-size:34px;
+    font-weight:800;
+    color:#ffffff;
+    margin:0;
+    line-height:1.2;
+}
+
+.siTitle:hover{
+    color:#d4af37;
+    cursor:pointer;
+}
+
+/* =========================================
+            LOCATION
+========================================= */
+
+.siLocation{
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    color:#bdbdbd;
+
+    font-size:16px;
+}
+
+.siLocation svg{
+    color:#d4af37;
+}
+
+/* =========================================
+        HIGHLIGHTS
+========================================= */
+
+.siHighlights{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-top:6px;
+}
+
+.siHighlights span{
+
+    padding:8px 14px;
+
+    border-radius:30px;
+
+    background:#1c1c1c;
+
+    color:#f5f5f5;
+
+    font-size:14px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+}
+
+.siHighlights .green{
+
+    background:#0b7d42;
+
+    border:none;
+
+    color:#fff;
+
+}
+
+/* =========================================
+            SUBTITLE
+========================================= */
+
+.siSubtitle{
+
+    font-size:16px;
+
+    color:#ececec;
+
+    font-weight:600;
+
+}
+
+/* =========================================
+            FEATURES
+========================================= */
+
+.siFeatures{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:12px;
+
+    margin-top:10px;
+
+}
+
+.siFeatures span{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:9px 14px;
+
+    background:#181818;
+
+    border-radius:10px;
+
+    color:#d7d7d7;
+
+    font-size:14px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+}
+
+.siFeatures svg{
+
+    color:#d4af37;
+
+}
+
+/* =========================================
+            PRICE SECTION
+========================================= */
+
+.siDetails{
+
+    width:260px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+
+    align-items:flex-end;
+
+    border-left:1px solid rgba(255,255,255,.08);
+
+    padding-left:22px;
+
+}
+
+/* =========================================
+            RATING
+========================================= */
+
+.siRating{
+
+    width:100%;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.siRating span{
+
+    font-size:17px;
+
+    font-weight:700;
+
+    color:#ffffff;
+
+}
+
+.siRating button{
+
+    width:56px;
+
+    height:56px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#d4af37;
+
+    color:#111;
+
+    font-size:18px;
+
+    font-weight:800;
+
+}
+
+/* =========================================
+            PRICE
+========================================= */
+
+.siDetailTexts{
+
+    width:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:flex-end;
+
+    gap:10px;
+
+}
+
+.siPrice{
+
+    font-size:40px;
+
+    font-weight:800;
+
+    color:#ffffff;
+
+}
+
+.siTaxOp{
+
+    font-size:14px;
+
+    color:#aaaaaa;
+
+}
+
+/* =========================================
+            BUTTON
+========================================= */
+
+.siCheckButton{
+
+    width:100%;
+
+    padding:18px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#d4af37;
+
+    color:#111;
+
+    font-size:17px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+    margin-top:8px;
+
+}
+
+.siCheckButton:hover{
+
+    background:#f5d07a;
+
+    transform:translateY(-3px);
+
+    box-shadow:0 15px 30px rgba(212,175,55,.35);
+
+}
+
+/* =========================================
+        PREMIUM SEARCH CARD - PART 3
+              RESPONSIVE
+========================================= */
+
+/* =========================
+        Large Laptop
+========================= */
+
+@media (max-width:1400px){
+
+.searchItem{
+    gap:20px;
+}
+
+.siImageContainer{
+    width:300px;
+    height:230px;
+}
+
+.siTitle{
+    font-size:30px;
+}
+
+.siPrice{
+    font-size:34px;
+}
+
+}
+
+/* =========================
+          Laptop
+========================= */
+
+@media (max-width:1200px){
+
+.searchItem{
+    padding:16px;
+}
+
+.siImageContainer{
+    width:280px;
+    height:220px;
+}
+
+.siTitle{
+    font-size:28px;
+}
+
+.siSubtitle{
+    font-size:15px;
+}
+
+.siPrice{
+    font-size:32px;
+}
+
+.siCheckButton{
+    font-size:16px;
+}
+
+}
+
+/* =========================
+          Tablet
+========================= */
+
+@media (max-width:992px){
+
+.searchItem{
+
+    flex-direction:column;
+
+}
+
+.siImageContainer{
+
+    width:100%;
+
+    height:320px;
+
+}
+
+.siDesc{
+
+    margin-top:10px;
+
+}
+
+.siDetails{
+
+    width:100%;
+
+    border-left:none;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+    padding-top:20px;
+
+    padding-left:0;
+
+    align-items:flex-start;
+
+}
+
+.siRating{
+
+    width:100%;
+
+}
+
+.siDetailTexts{
+
+    width:100%;
+
+    align-items:flex-start;
+
+}
+
+.siCheckButton{
+
+    width:100%;
+
+}
+
+}
+
+/* =========================
+          Mobile
+========================= */
+
+@media (max-width:768px){
+
+.searchItem{
+
+    padding:14px;
+
+    border-radius:18px;
+
+}
+
+.siImageContainer{
+
+    height:250px;
+
+}
+
+.siTitle{
+
+    font-size:24px;
+
+}
+
+.siLocation{
+
+    font-size:14px;
+
+}
+
+.siSubtitle{
+
+    font-size:14px;
+
+}
+
+.siFeatures{
+
+    gap:8px;
+
+}
+
+.siFeatures span{
+
+    font-size:13px;
+
+    padding:8px 10px;
+
+}
+
+.siPrice{
+
+    font-size:30px;
+
+}
+
+.siRating button{
+
+    width:50px;
+
+    height:50px;
+
+    font-size:16px;
+
+}
+
+.siCheckButton{
+
+    padding:16px;
+
+    font-size:16px;
+
+}
+
+}
+
+/* =========================
+        Small Mobile
+========================= */
+
+@media (max-width:576px){
+
+.searchItem{
+
+    padding:12px;
+
+    border-radius:16px;
+
+}
+
+.siImageContainer{
+
+    height:220px;
+
+}
+
+.favoriteBtn{
+
+    width:38px;
+
+    height:38px;
+
+}
+
+.siBadge{
+
+    font-size:11px;
+
+    padding:6px 12px;
+
+}
+
+.siImageRating{
+
+    padding:7px 10px;
+
+}
+
+.siImageRating span{
+
+    font-size:13px;
+
+}
+
+.siTitle{
+
+    font-size:22px;
+
+}
+
+.siLocation{
+
+    font-size:13px;
+
+}
+
+.siHighlights span{
+
+    font-size:12px;
+
+}
+
+.siSubtitle{
+
+    font-size:13px;
+
+}
+
+.siFeatures span{
+
+    font-size:12px;
+
+}
+
+.siPrice{
+
+    font-size:26px;
+
+}
+
+.siTaxOp{
+
+    font-size:12px;
+
+}
+
+.siCheckButton{
+
+    font-size:15px;
+
+}
+
+}
+
+/* =========================
+        Extra Small
+========================= */
+
+@media (max-width:400px){
+
+.siImageContainer{
+
+    height:190px;
+
+}
+
+.siTitle{
+
+    font-size:20px;
+
+}
+
+.siPrice{
+
+    font-size:22px;
+
+}
+
+.siCheckButton{
+
+    padding:14px;
+
+}
+
+}

@@ -1,0 +1,160 @@
+.footer {
+  width: 100%;
+  background: linear-gradient(180deg, #121417 0%, #0d0f12 100%);
+  border-top: 1px solid rgba(212, 175, 55, 0.25);
+  padding: 60px 30px 25px;
+  margin-top: 60px;
+  color: #fff;
+}
+
+.footerGrid {
+  width: 100%;
+  max-width: 1500px;
+  margin: auto;
+
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 35px;
+}
+
+.footerColumn h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  color: #d4af37;
+  font-size: 40px;
+  margin-bottom: 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(212, 175, 55, .3);
+}
+
+.footerColumn h3 svg {
+  font-size: 30px;
+}
+
+.footerColumn ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footerColumn ul li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  color: #b8b8b8;
+  font-size: 26px;
+
+  padding: 10px 0;
+
+  cursor: pointer;
+  transition: .3s;
+}
+
+.footerColumn ul li svg {
+  font-size: 11px;
+  color: #888;
+  transition: .3s;
+}
+
+.footerColumn ul li:hover {
+  color: #d4af37;
+  padding-left: 8px;
+}
+
+.footerColumn ul li:hover svg {
+  color: #d4af37;
+  transform: translateX(4px);
+}
+
+.footerBottom {
+  width: 100%;
+  max-width: 1500px;
+  margin: 45px auto 0;
+
+  text-align: center;
+
+  border-top: 1px solid rgba(255,255,255,.08);
+
+  padding-top: 20px;
+
+  color: #888;
+  font-size: 30px;
+}
+
+
+/* ========================= */
+/* Laptop */
+/* ========================= */
+
+@media(max-width:1200px){
+
+.footerGrid{
+grid-template-columns:repeat(3,1fr);
+gap:30px;
+}
+
+}
+
+
+/* ========================= */
+/* Tablet */
+/* ========================= */
+
+@media(max-width:992px){
+
+.footer{
+padding:50px 20px 20px;
+}
+
+.footerGrid{
+grid-template-columns:repeat(2,1fr);
+gap:25px;
+}
+
+.footerColumn h3{
+font-size:18px;
+}
+
+.footerColumn ul li{
+font-size:14px;
+}
+
+}
+
+
+/* ========================= */
+/* Mobile */
+/* ========================= */
+
+@media(max-width:768px){
+
+.footer{
+padding:45px 15px 20px;
+}
+
+.footerGrid{
+grid-template-columns:1fr;
+gap:30px;
+}
+
+.footerColumn{
+text-align:left;
+}
+
+.footerColumn h3{
+font-size:18px;
+}
+
+.footerColumn ul li{
+font-size:14px;
+}
+
+.footerBottom{
+margin-top:30px;
+font-size:13px;
+}
+
+}
