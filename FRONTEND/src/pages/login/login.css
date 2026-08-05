@@ -1,0 +1,116 @@
+.login {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(
+    135deg,
+    #3b0d16 0%,
+    #5d1423 50%,
+    #7b1e2d 100%
+  );
+}
+
+.lContainer {
+  width: 100%;
+  max-width: 420px;
+  background: rgba(40, 12, 18, 0.95);
+  border: 2px solid #d4af37;
+  border-radius: 18px;
+  padding: 40px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.lTitle {
+  color: #ffd54f;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.lSubTitle {
+  color: #f5d77d;
+  text-align: center;
+  font-size: 15px;
+  margin-bottom: 20px;
+}
+
+.lInput {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid #d4af37;
+  border-radius: 10px;
+  background: #fffaf0;
+  color: #4b0d16;
+  font-size: 15px;
+  outline: none;
+  transition: 0.3s;
+  box-sizing: border-box;
+}
+
+.lInput:focus {
+  border-color: #ffd54f;
+  box-shadow: 0 0 12px rgba(255, 213, 79, .5);
+}
+
+.lInput::placeholder {
+  color: #8a6d3b;
+}
+
+.lButton {
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(
+    90deg,
+    #d4af37,
+    #ffd54f
+  );
+  color: #4b0d16;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.lButton:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(
+    90deg,
+    #ffd54f,
+    #f4c430
+  );
+  box-shadow: 0 8px 20px rgba(255,213,79,.4);
+}
+
+.lButton:disabled {
+  opacity: .7;
+  cursor: not-allowed;
+}
+
+.lError {
+  color: #ffb3b3;
+  text-align: center;
+  font-size: 14px;
+}
+
+.lFooter {
+  margin-top: 10px;
+  text-align: center;
+  color: #f5d77d;
+  font-size: 14px;
+}
+
+.lFooter a {
+  color: #ffd54f;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.lFooter a:hover {
+  text-decoration: underline;
+}

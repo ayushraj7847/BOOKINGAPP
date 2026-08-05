@@ -64,6 +64,19 @@
     transition:.3s;
 }
 
+.navUsername {
+  color: #ffd54f;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s ease;
+  text-transform: capitalize;
+}
+
+.navUsername:hover {
+  color: #fff2a8;
+}
+
 .navMenuItem svg{
     font-size:18px;
     color:#d4af37;
@@ -91,7 +104,7 @@
     padding:10px 22px;
 
     font-size:15px;
-
+    
     border-radius:30px;
 
     cursor:pointer;

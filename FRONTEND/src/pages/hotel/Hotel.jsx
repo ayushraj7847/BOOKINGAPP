@@ -5,7 +5,7 @@ import MailList from "../../components/maillist/MailList";
 import Footer from "../../components/footer/Footer";
 
 import { useContext, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -23,6 +23,8 @@ import {
   faDumbbell,
 } from "@fortawesome/free-solid-svg-icons";
 import { SearchContext } from "../../components/context/searchContext";
+import { AuthContext } from "../../components/context/AuthContext";
+import Reserve from "../../components/reserve/Reserve";
 
 const Hotel = () => {
   const location = useLocation();
@@ -30,8 +32,11 @@ const Hotel = () => {
 
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
+  const [openModal, setOpenModal]= useState(false);
 
   const { data, loading, error } = useFetch(`/api/hotels/find/${id}`);
+  const {user} = useContext(AuthContext);
+  const navigate = useNavigate()
   
   const {date,options} = useContext(SearchContext);
   const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
@@ -72,6 +77,15 @@ console.log(days)
   if (loading) return <h2>Loading...</h2>;
 
   if (error) return <h2>Something went wrong!</h2>;
+
+  const handleClick = () =>{
+   if(user){
+   setOpenModal(true);
+   }else{
+    navigate("/login");
+   }
+  }
+
 
   return (
     <>
@@ -232,8 +246,8 @@ console.log(days)
                 </h2>
               </div>
 
-              <button className="reserveBtn">
-                Check Availability
+              <button onClick={handleClick} className="reserveBtn">
+                Reserve or Book Now!
               </button>
 
               <div className="priceGuarantee">
@@ -246,6 +260,7 @@ console.log(days)
         <MailList />
         <Footer />
       </div>
+      {openModal && <Reserve setOpen = {setOpenModal} hotelId={id}/>}
     </>
   );
 };

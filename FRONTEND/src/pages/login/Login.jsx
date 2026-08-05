@@ -1,6 +1,7 @@
 import { useContext, useState } from "react"
 import { AuthContext } from "../../components/context/AuthContext.jsx";
 import "./login.css"
+import axios from "axios";
 
 
 
@@ -9,7 +10,7 @@ const Login=() =>{
     username: undefined,
     password: undefined
   });
-  const {user,loading, error,dispatch}= useContext(AuthContext);
+  const {loading, error,dispatch}= useContext(AuthContext);
   const handleChange = (e) =>{
     setCredential((prev)=>({...prev,[e.target.id]:e.target.value}));
   }
@@ -17,13 +18,14 @@ const Login=() =>{
     e.preventDefault();
     dispatch({type:"LOGIN_START"});
     try{
-      const res =  await axios.post("/auth/login",credentials);
+      const res =  await axios.post("http://localhost:8800/api/auth/login",
+  credentials);
       dispatch({type:"LOGIN_SUCCESS",payload: res.data});
     }catch(error){
       dispatch({type:"LOGIN_FAILURE",payload:error.response.data})
     }
   };
-  console.log(user)
+
 
 
   return<div className="login">
