@@ -46,6 +46,7 @@ const Reserve = ({ setOpen, hotelId }) => {
     return !isFound;
   };
 
+  
   const handleSelect = (e) => {
     const checked = e.target.checked;
     const value = e.target.value;
