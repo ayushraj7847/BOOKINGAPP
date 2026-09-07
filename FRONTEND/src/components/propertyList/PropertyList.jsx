@@ -49,8 +49,7 @@ const properties = [
 ];
 
 const PropertyList = () => {
-  const { data, loading, error } = useFetch("/api/hotels/countByType");
-
+  const { data, loading, error } = useFetch("/hotels/countByType");
   if (loading) {
     return <h2>Loading...</h2>;
   }
