@@ -5,6 +5,7 @@ import Hotel from "./pages/hotel/Hotel";
 import Login from "./pages/login/Login";
 
 import { SearchContextProvider } from "./components/context/searchContext";
+import MyBookings from "./pages/myBookings/MyBookings";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/hotels" element={<List />} />
           <Route path="/hotels/:id" element={<Hotel />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/mybookings" element={<MyBookings />} />
         </Routes>
       </BrowserRouter>
     </SearchContextProvider>

@@ -21,73 +21,80 @@ const Login = () => {
   };
 
   const handleClick = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  dispatch({ type: "LOGIN_START" });
+    dispatch({ type: "LOGIN_START" });
 
-  try {
-    const res = await axios.post(
-      "http://localhost:8800/api/auth/login",
-      credentials,
-      {
-        withCredentials: true,
+    try {
+      const res = await axios.post(
+        "http://localhost:8800/api/auth/login",
+        credentials,
+        {
+          withCredentials: true,
+        }
+      );
+
+      console.log("LOGIN RESPONSE:", res.data);
+
+      if (res.data.isAdmin) {
+        dispatch({
+          type: "LOGIN_SUCCESS",
+          payload: {
+            ...res.data.details,
+            isAdmin: res.data.isAdmin,
+          },
+        });
+
+        navigate("/");
+      } else {
+        dispatch({
+          type: "LOGIN_FAILURE",
+          payload: {
+            message: "You are not allowed",
+          },
+        });
       }
-    );
-
-    console.log("LOGIN RESPONSE:", res.data);
-
-    if (res.data.isAdmin) {
-      dispatch({
-        type: "LOGIN_SUCCESS",
-        payload: res.data.details,
-      });
-
-      navigate("/");
-    } else {
+    } catch (error) {
       dispatch({
         type: "LOGIN_FAILURE",
-        payload: {
-          message: "You are not allowed",
-        },
+        payload:
+          error.response?.data || {
+            message: "Something went wrong",
+          },
       });
     }
-  } catch (error) {
-    dispatch({
-      type: "LOGIN_FAILURE",
-      payload:
-        error.response?.data || {
-          message: "Something went wrong",
-        },
-    });
-  }
-};
+  };
 
   return (
     <div className="login">
       <div className="lContainer">
 
-        <input
-          type="text"
-          placeholder="username"
-          id="username"
-          onChange={handleChange}
-          className="lInput"
-        />
+        <form onSubmit={handleClick}>
 
-        <input
-          type="password"
-          placeholder="password"
-          id="password"
-          onChange={handleChange}
-          className="lInput"
-        />
+          <input
+            type="text"
+            placeholder="username"
+            id="username"
+            onChange={handleChange}
+            className="lInput"
+          />
 
-        <button
-          onClick={handleClick}
-          className="lButton"
-        >
-          LOGIN
-        </button>
+          <input
+            type="password"
+            placeholder="password"
+            id="password"
+            onChange={handleChange}
+            className="lInput"
+          />
+
+          <button
+            type="submit"
+            className="lButton"
+          >
+            LOGIN
+          </button>
+
+        </form>
 
         {error && <span>{error.message}</span>}
 

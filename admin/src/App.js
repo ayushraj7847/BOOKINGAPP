@@ -27,6 +27,7 @@ import {
   hotelColumns,
   roomColumns,
   userColumns,
+  bookingColumns,
 } from "./datatablesource";
 
 import NewHotel from "./pages/newHotel/NewHotel";
@@ -40,6 +41,10 @@ function App() {
     const { user } = useContext(AuthContext);
 
     if (!user) {
+      return <Navigate to="/login" />;
+    }
+
+    if (!user.isAdmin) {
       return <Navigate to="/login" />;
     }
 
@@ -176,6 +181,22 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <NewRoom />
+                  </ProtectedRoute>
+                }
+              />
+
+            </Route>
+
+
+            {/* ================= BOOKINGS ================= */}
+
+            <Route path="bookings">
+
+              <Route
+                index
+                element={
+                  <ProtectedRoute>
+                    <List columns={bookingColumns} />
                   </ProtectedRoute>
                 }
               />

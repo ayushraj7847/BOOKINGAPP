@@ -8,11 +8,34 @@ import {
   faUmbrellaBeach,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext.jsx";
+import axios from "axios";
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, dispatch } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await axios.post(
+        "http://localhost:8800/api/auth/logout",
+        {},
+        {
+          withCredentials: true,
+        }
+      );
+    } catch (error) {
+      console.log(
+        "LOGOUT ERROR:",
+        error.response?.data || error.message
+      );
+    }
+
+    dispatch({ type: "LOGOUT" });
+    localStorage.removeItem("user");
+    navigate("/");
+  };
 
   return (
     <div className="navbar">
@@ -57,22 +80,42 @@ const Navbar = () => {
         </div>
 
         {user ? (
-          <div className="navItems">
-            <span className="navUsername">
-              👤 {user.username}
-            </span>
-          </div>
-        ) : (
-          <div className="navItems">
-            <button className="navButtonOutline">
-              Register
-            </button>
+  <div className="navItems">
 
-            <button className="navButton">
-              Login
-            </button>
-          </div>
-        )}
+    <Link to="/mybookings">
+      <button className="navButtonOutline">
+        My Bookings
+      </button>
+    </Link>
+
+    <span className="navUsername">
+      👤 {user.username}
+    </span>
+
+    <button
+      className="navButton"
+      onClick={handleLogout}
+    >
+      Logout
+    </button>
+
+  </div>
+) : (
+  <div className="navItems">
+    <Link to="/register">
+      <button className="navButtonOutline">
+        Register
+      </button>
+    </Link>
+
+    <Link to="/login">
+      <button className="navButton">
+        Login
+      </button>
+    </Link>
+  </div>
+)}
+
       </div>
     </div>
   );

@@ -319,3 +319,180 @@ export const roomColumns = [
     },
   },
 ];
+
+
+// ============================================
+// BOOKING COLUMNS
+// ============================================
+
+export const bookingColumns = [
+  {
+    field: "_id",
+    headerName: "Booking ID",
+    width: 220,
+  },
+
+  {
+    field: "user",
+    headerName: "User",
+    width: 140,
+
+    renderCell: (params) => {
+      return (
+        <span>
+          {params.row.user?.username || "N/A"}
+        </span>
+      );
+    },
+  },
+
+  {
+    field: "email",
+    headerName: "Email",
+    width: 220,
+
+    renderCell: (params) => {
+      return (
+        <span>
+          {params.row.user?.email || "N/A"}
+        </span>
+      );
+    },
+  },
+
+  {
+    field: "hotel",
+    headerName: "Hotel",
+    width: 180,
+
+    renderCell: (params) => {
+      return (
+        <span>
+          {params.row.hotel?.name || "N/A"}
+        </span>
+      );
+    },
+  },
+
+  {
+    field: "city",
+    headerName: "City",
+    width: 120,
+
+    renderCell: (params) => {
+      return (
+        <span>
+          {params.row.hotel?.city || "N/A"}
+        </span>
+      );
+    },
+  },
+
+  {
+    field: "rooms",
+    headerName: "Rooms",
+    width: 100,
+
+    renderCell: (params) => {
+      return (
+        <span>
+          {params.row.rooms?.length || 0}
+        </span>
+      );
+    },
+  },
+
+  {
+    field: "roomNumbers",
+    headerName: "Room No.",
+    width: 150,
+
+    renderCell: (params) => {
+      const rooms = params.row.rooms || [];
+
+      return (
+        <span>
+          {rooms.length > 0
+            ? rooms.map((room) => room.roomNumber).join(", ")
+            : "N/A"}
+        </span>
+      );
+    },
+  },
+
+  {
+    field: "checkIn",
+    headerName: "Check In",
+    width: 140,
+
+    renderCell: (params) => {
+      return (
+        <span>
+          {params.row.checkIn
+            ? new Date(params.row.checkIn).toLocaleDateString()
+            : "N/A"}
+        </span>
+      );
+    },
+  },
+
+  {
+    field: "checkOut",
+    headerName: "Check Out",
+    width: 140,
+
+    renderCell: (params) => {
+      return (
+        <span>
+          {params.row.checkOut
+            ? new Date(params.row.checkOut).toLocaleDateString()
+            : "N/A"}
+        </span>
+      );
+    },
+  },
+
+  {
+    field: "totalPrice",
+    headerName: "Total Price",
+    width: 140,
+
+    renderCell: (params) => {
+      return (
+        <span>
+          ₹ {params.row.totalPrice || 0}
+        </span>
+      );
+    },
+  },
+
+  {
+    field: "status",
+    headerName: "Status",
+    width: 120,
+
+    renderCell: (params) => {
+      return (
+        <span>
+          {params.row.status || "Pending"}
+        </span>
+      );
+    },
+  },
+
+  {
+    field: "createdAt",
+    headerName: "Booked At",
+    width: 140,
+
+    renderCell: (params) => {
+      return (
+        <span>
+          {params.row.createdAt
+            ? new Date(params.row.createdAt).toLocaleDateString()
+            : "N/A"}
+        </span>
+      );
+    },
+  },
+];

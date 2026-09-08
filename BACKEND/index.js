@@ -8,6 +8,7 @@ import authRoute from "./routes/auth.js";
 import hotelsRoute from "./routes/hotels.js";
 import roomsRoute from "./routes/rooms.js";
 import userRoute from "./routes/user.js";
+import bookingRoute from "./routes/bookings.js";
 
 const app = express();
 
@@ -46,6 +47,7 @@ app.use("/api/auth", authRoute);
 app.use("/api/hotels", hotelsRoute);
 app.use("/api/rooms", roomsRoute);
 app.use("/api/user", userRoute);
+app.use("/api/bookings", bookingRoute);
 
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;

@@ -16,7 +16,6 @@ const Reserve = ({ setOpen, hotelId }) => {
 
   const { date } = useContext(SearchContext);
 
-  
   const getDatesInRange = (startDate, endDate) => {
     const start = new Date(startDate);
     const end = new Date(endDate);
@@ -48,7 +47,6 @@ const Reserve = ({ setOpen, hotelId }) => {
     return !isFound;
   };
 
-  
   const handleSelect = (e) => {
     const checked = e.target.checked;
     const value = e.target.value;
@@ -59,27 +57,75 @@ const Reserve = ({ setOpen, hotelId }) => {
         : selectedRooms.filter((item) => item !== value)
     );
   };
-  
-  const navigate = useNavigate()
-  const handleClick = async () => {
-  try {
-    await Promise.all(
-      selectedRooms.map((roomId) => {
-        return axios.put(
-          `/api/rooms/availability/${roomId}`,
-          {
-            dates: allDates,
-          }
-        );
-      })
-    );
 
-    setOpen(false);
-    navigate("/")
-  } catch (error) {
-    console.log(error.response?.data || error.message);
-  }
-};
+  const navigate = useNavigate();
+
+  const handleClick = async () => {
+    if (selectedRooms.length === 0) {
+      alert("Please select at least one room!");
+      return;
+    }
+
+    if (!date || date.length === 0) {
+      alert("Please select your dates!");
+      return;
+    }
+
+    try {
+      // UPDATE ROOM AVAILABILITY
+      await Promise.all(
+        selectedRooms.map((roomId) => {
+          return axios.put(
+            `http://localhost:8800/api/rooms/availability/${roomId}`,
+            {
+              dates: allDates,
+            },
+            {
+              withCredentials: true,
+            }
+          );
+        })
+      );
+
+      // CREATE BOOKING
+      const bookingResponse = await axios.post(
+        "http://localhost:8800/api/bookings",
+        {
+          hotelId: hotelId,
+          selectedRooms: selectedRooms,
+          dates: allDates,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+
+      console.log(
+        "BOOKING CREATED:",
+        bookingResponse.data
+      );
+
+      alert("Booking successful!");
+
+      setOpen(false);
+
+      navigate("/");
+    } catch (error) {
+      console.log(
+        "BOOKING ERROR:",
+        error.response?.data || error.message
+      );
+
+      if (error.response?.status === 401) {
+        alert("Please login before booking!");
+      } else {
+        alert(
+          error.response?.data?.message ||
+            "Booking failed!"
+        );
+      }
+    }
+  };
 
   if (loading) return <h2>Loading...</h2>;
 
@@ -99,9 +145,13 @@ const Reserve = ({ setOpen, hotelId }) => {
         {data.map((item) => (
           <div className="rItem" key={item._id}>
             <div className="rItemInfo">
-              <div className="rTitle">{item.title}</div>
+              <div className="rTitle">
+                {item.title}
+              </div>
 
-              <div className="rDesc">{item.desc}</div>
+              <div className="rDesc">
+                {item.desc}
+              </div>
 
               <div className="rMax">
                 Max People: <b>{item.maxPeople}</b>

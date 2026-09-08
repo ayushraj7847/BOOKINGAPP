@@ -3,7 +3,7 @@ import useFetch from "../../hooks/useFetch";
 
 export default function Featured() {
   const { data, loading, error } = useFetch(
-    "/api/hotels/countByCity?cities=Delhi,Mumbai,Bangalore,Kolkata"
+    "/hotels/countByCity?cities=Delhi,Mumbai,Bangalore,Kolkata"
   );
 
   const cities = [
