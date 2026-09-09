@@ -1,9 +1,9 @@
 import "./hotel.css";
-import Navbar from "../../components/navbar/Navbar";
+
 import Header from "../../components/header/Header";
 import MailList from "../../components/maillist/MailList";
 import Footer from "../../components/footer/Footer";
-
+import Navbar from "../../components/navbar/Navbar";
 import { useContext, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";

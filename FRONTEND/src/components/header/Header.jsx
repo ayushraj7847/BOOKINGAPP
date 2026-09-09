@@ -104,9 +104,14 @@ const Header = ({ type }) => {
                   every time you travel.
                 </p>
 
-                { ! user && <button className="headerBtn">
-                  Sign in / Register
-                </button>}
+                {!user && (
+  <button
+    className="headerBtn"
+    onClick={() => navigate("/register")}
+  >
+    Sign in / Register
+  </button>
+)}
               </div>
 
               <div className="heroRight"></div>

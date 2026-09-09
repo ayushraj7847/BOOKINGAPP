@@ -47,14 +47,30 @@ export const getHotel  = async(req,res,next)=>{
     }
 
 }
+
+// GET ALL HOTEL
 export const getAllHotel = async (req, res, next) => {
   try {
-    const { featured, limit, min, max, ...others } = req.query;
+    const {
+      featured,
+      limit,
+      min,
+      max,
+      city,
+      ...others
+    } = req.query;
 
     const filter = { ...others };
 
     if (featured !== undefined) {
       filter.featured = featured === "true";
+    }
+
+    if (city) {
+      filter.city = {
+        $regex: `^${city.trim()}$`,
+        $options: "i",
+      };
     }
 
     const hotels = await Hotel.find({
@@ -64,8 +80,6 @@ export const getAllHotel = async (req, res, next) => {
         $lt: Number(max) || 999999,
       },
     }).limit(Number(limit) || 0);
-
-  
 
     res.status(200).json(hotels);
   } catch (err) {

@@ -1,0 +1,61 @@
+.register {
+  width: 100%;
+  min-height: calc(100vh - 80px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f5f5f5;
+}
+
+.rContainer {
+  width: 360px;
+  background: white;
+  padding: 35px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+}
+
+.rContainer h1 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #222;
+}
+
+.rContainer form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.rInput {
+  height: 45px;
+  padding: 0 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+.rInput:focus {
+  border-color: #003b95;
+}
+
+.rButton {
+  height: 45px;
+  border: none;
+  background: #003b95;
+  color: white;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.rButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.registerError {
+  color: red;
+  text-align: center;
+  font-size: 14px;
+}

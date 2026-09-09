@@ -1,116 +1,595 @@
+/* =========================================
+        STAYVORA PREMIUM LOGIN
+========================================= */
+
 .login {
+  width: 100%;
   min-height: 100vh;
+
   display: flex;
-  justify-content: center;
   align-items: center;
-  background: linear-gradient(
-    135deg,
-    #3b0d16 0%,
-    #5d1423 50%,
-    #7b1e2d 100%
-  );
+  justify-content: center;
+
+  background-image:
+    linear-gradient(
+      rgba(0, 0, 0, 0.58),
+      rgba(20, 3, 8, 0.72)
+    ),
+    url("stayvora-login.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  padding: 40px;
+
+  box-sizing: border-box;
+
+  position: relative;
 }
+
+
+/* =========================================
+        PREMIUM DARK OVERLAY
+========================================= */
+
+.login::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at 20% 50%,
+      rgba(122, 31, 43, 0.25),
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 80% 50%,
+      rgba(212, 175, 55, 0.10),
+      transparent 40%
+    );
+
+  pointer-events: none;
+}
+
+
+/* =========================================
+        LOGIN CONTAINER
+========================================= */
 
 .lContainer {
-  width: 100%;
-  max-width: 420px;
-  background: rgba(40, 12, 18, 0.95);
-  border: 2px solid #d4af37;
-  border-radius: 18px;
-  padding: 40px;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.4);
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
+  width: 430px;
+
+  padding: 45px 45px 38px;
+
+  box-sizing: border-box;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(25, 25, 25, 0.94),
+      rgba(5, 5, 5, 0.97)
+    );
+
+  border: 1px solid rgba(212, 175, 55, 0.75);
+
+  border-radius: 22px;
+
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.80),
+    0 0 35px rgba(212, 175, 55, 0.15),
+    inset 0 0 25px rgba(212, 175, 55, 0.03);
+
+  position: relative;
+
+  z-index: 2;
+
+  overflow: hidden;
+
+  backdrop-filter: blur(12px);
 }
 
-.lTitle {
-  color: #ffd54f;
-  text-align: center;
-  font-size: 30px;
-  font-weight: bold;
-  margin-bottom: 10px;
+
+/* Premium gold glow */
+
+.lContainer::before {
+  content: "";
+
+  position: absolute;
+
+  top: -120px;
+  right: -120px;
+
+  width: 240px;
+  height: 240px;
+
+  background: rgba(212, 175, 55, 0.08);
+
+  border-radius: 50%;
+
+  filter: blur(50px);
+
+  pointer-events: none;
 }
 
-.lSubTitle {
-  color: #f5d77d;
+
+/* =========================================
+        TITLE
+========================================= */
+
+.loginTitle {
   text-align: center;
-  font-size: 15px;
-  margin-bottom: 20px;
+
+  margin-bottom: 32px;
+
+  position: relative;
+
+  z-index: 2;
 }
+
+.loginTitle h1 {
+  margin: 0;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 36px;
+
+  font-weight: 700;
+
+  color: #ffffff;
+
+  letter-spacing: 0.5px;
+}
+
+.loginTitle h1 span {
+  color: #d4af37;
+}
+
+.loginTitle p {
+  margin: 10px 0 0;
+
+  color: #a8a8a8;
+
+  font-size: 14px;
+
+  letter-spacing: 0.4px;
+}
+
+
+/* =========================================
+        INPUTS
+========================================= */
 
 .lInput {
   width: 100%;
-  padding: 14px 16px;
-  border: 2px solid #d4af37;
-  border-radius: 10px;
-  background: #fffaf0;
-  color: #4b0d16;
-  font-size: 15px;
-  outline: none;
-  transition: 0.3s;
-  box-sizing: border-box;
-}
 
-.lInput:focus {
-  border-color: #ffd54f;
-  box-shadow: 0 0 12px rgba(255, 213, 79, .5);
+  height: 54px;
+
+  padding: 0 18px;
+
+  box-sizing: border-box;
+
+  margin-bottom: 14px;
+
+  border-radius: 11px;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  outline: none;
+
+  background: rgba(255, 255, 255, 0.055);
+
+  color: #ffffff;
+
+  font-size: 14px;
+
+  transition: all 0.3s ease;
 }
 
 .lInput::placeholder {
-  color: #8a6d3b;
+  color: #777;
 }
 
-.lButton {
-  padding: 14px;
-  border: none;
-  border-radius: 10px;
-  background: linear-gradient(
-    90deg,
-    #d4af37,
-    #ffd54f
-  );
-  color: #4b0d16;
-  font-size: 17px;
-  font-weight: bold;
+.lInput:focus {
+  border-color: #d4af37;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  box-shadow:
+    0 0 0 2px rgba(212, 175, 55, 0.08),
+    0 0 18px rgba(212, 175, 55, 0.10);
+}
+
+
+/* =========================================
+        LOGIN OPTIONS
+========================================= */
+
+.loginOptions {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  margin: 2px 0 22px;
+
+  color: #aaa;
+
+  font-size: 12px;
+}
+
+.loginOptions label {
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
   cursor: pointer;
-  transition: .3s;
+}
+
+.loginOptions input {
+  width: 14px;
+  height: 14px;
+
+  accent-color: #d4af37;
+
+  cursor: pointer;
+}
+
+
+/* =========================================
+        FORGOT PASSWORD
+========================================= */
+
+.forgotPassword {
+  color: #d4af37;
+
+  font-size: 12px;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.forgotPassword:hover {
+  color: #f5d07a;
+
+  text-decoration: underline;
+}
+
+
+/* =========================================
+        LOGIN BUTTON
+========================================= */
+
+.lButton {
+  width: 100%;
+
+  height: 54px;
+
+  border: none;
+
+  border-radius: 11px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #d4af37,
+      #f5d06f,
+      #d4af37
+    );
+
+  color: #111;
+
+  font-size: 15px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.8px;
+
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+
+  box-shadow:
+    0 8px 25px rgba(212, 175, 55, 0.18);
 }
 
 .lButton:hover {
   transform: translateY(-2px);
-  background: linear-gradient(
-    90deg,
-    #ffd54f,
-    #f4c430
-  );
-  box-shadow: 0 8px 20px rgba(255,213,79,.4);
+
+  box-shadow:
+    0 12px 30px rgba(212, 175, 55, 0.30);
+}
+
+.lButton:active {
+  transform: translateY(0);
 }
 
 .lButton:disabled {
-  opacity: .7;
+  opacity: 0.6;
+
   cursor: not-allowed;
+
+  transform: none;
 }
 
-.lError {
-  color: #ffb3b3;
+
+/* =========================================
+        ERROR
+========================================= */
+
+.loginError {
+  display: block;
+
+  margin-top: 12px;
+
   text-align: center;
-  font-size: 14px;
+
+  color: #ff6b6b;
+
+  font-size: 12px;
 }
 
-.lFooter {
-  margin-top: 10px;
+
+/* =========================================
+        DIVIDER
+========================================= */
+
+.divider {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin: 27px 0 18px;
+}
+
+.divider span {
+  flex: 1;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      to right,
+      transparent,
+      rgba(212, 175, 55, 0.35),
+      transparent
+    );
+}
+
+.divider p {
+  margin: 0;
+
+  color: #777;
+
+  font-size: 12px;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================
+        SOCIAL BUTTONS
+========================================= */
+
+.socialButton {
+  width: 100%;
+
+  height: 50px;
+
+  margin-bottom: 12px;
+
+  border-radius: 10px;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  background: rgba(255, 255, 255, 0.045);
+
+  color: #eeeeee;
+
+  font-size: 13px;
+
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+}
+
+.socialButton:hover {
+  background: rgba(255, 255, 255, 0.08);
+
+  border-color: rgba(212, 175, 55, 0.45);
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================
+        GOOGLE
+========================================= */
+
+.googleIcon {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 22px;
+
+  height: 22px;
+
+  margin-right: 9px;
+
+  font-size: 16px;
+
+  font-weight: 700;
+
+  color: #4285f4;
+}
+
+
+/* =========================================
+        APPLE
+========================================= */
+
+.appleIcon {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 22px;
+
+  height: 22px;
+
+  margin-right: 9px;
+
+  color: #ffffff;
+
+  font-size: 17px;
+}
+
+
+/* =========================================
+        REGISTER
+========================================= */
+
+.registerText {
+  margin-top: 25px;
+
   text-align: center;
-  color: #f5d77d;
-  font-size: 14px;
+
+  color: #777;
+
+  font-size: 12px;
 }
 
-.lFooter a {
-  color: #ffd54f;
+.registerText a {
+  margin-left: 5px;
+
+  color: #d4af37;
+
+  font-weight: 700;
+
   text-decoration: none;
-  font-weight: 600;
+
+  transition: 0.3s;
 }
 
-.lFooter a:hover {
+.registerText a:hover {
+  color: #f5d07a;
+
   text-decoration: underline;
+}
+
+
+/* =========================================
+        DESKTOP PREMIUM LOOK
+========================================= */
+
+@media (min-width: 1100px) {
+
+  .login {
+    padding: 50px;
+  }
+
+  .lContainer {
+    width: 450px;
+
+    padding: 48px 48px 40px;
+  }
+}
+
+
+/* =========================================
+        TABLET
+========================================= */
+
+@media (max-width: 768px) {
+
+  .login {
+    padding: 25px 18px;
+
+    background-attachment: scroll;
+
+    background-position: center;
+  }
+
+  .lContainer {
+    width: 100%;
+
+    max-width: 430px;
+
+    padding: 38px 30px 32px;
+
+    border-radius: 18px;
+  }
+
+  .loginTitle h1 {
+    font-size: 30px;
+  }
+}
+
+
+/* =========================================
+        MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+  .login {
+    padding: 20px 12px;
+
+    min-height: 100vh;
+  }
+
+  .lContainer {
+    padding: 32px 20px 28px;
+
+    border-radius: 16px;
+  }
+
+  .loginTitle {
+    margin-bottom: 25px;
+  }
+
+  .loginTitle h1 {
+    font-size: 27px;
+  }
+
+  .loginTitle p {
+    font-size: 12px;
+  }
+
+  .lInput {
+    height: 50px;
+  }
+
+  .lButton {
+    height: 50px;
+  }
+
+  .socialButton {
+    height: 47px;
+  }
+
+  .loginOptions {
+    font-size: 11px;
+  }
+
+  .forgotPassword {
+    font-size: 11px;
+  }
 }

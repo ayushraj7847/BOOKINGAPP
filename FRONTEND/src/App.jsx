@@ -6,6 +6,7 @@ import Login from "./pages/login/Login";
 
 import { SearchContextProvider } from "./components/context/searchContext";
 import MyBookings from "./pages/myBookings/MyBookings";
+import Register from "./pages/register/Register";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/hotels/:id" element={<Hotel />} />
           <Route path="/login" element={<Login />} />
           <Route path="/mybookings" element={<MyBookings />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </BrowserRouter>
     </SearchContextProvider>

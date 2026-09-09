@@ -2,227 +2,282 @@
         PREMIUM NAVBAR
 =========================== */
 
-.navbar{
-    width:100%;
-    background:#0b0b0b;
-    border-bottom:1px solid rgba(212,175,55,.25);
-    position:sticky;
-    top:0;
-    z-index:9999;
-    display:flex;
-    justify-content:center;
+.navbar {
+    width: 100%;
+    background: #0b0b0b;
+    border-bottom: 1px solid rgba(212,175,55,.25);
+
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+
+    display: flex;
+    justify-content: center;
 }
 
-.navContainer{
-    width:100%;
-    max-width:1400px;
-    margin:auto;
-    padding:15px 25px;
+.navContainer {
+    width: 100%;
+    max-width: 1400px;
+    margin: auto;
 
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:25px;
+    padding: 15px 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    min-height: 70px;
 }
 
-/* Logo */
 
-.logo{
-    font-size:32px;
-    font-weight:700;
-    color:#d4af37;
-    white-space:nowrap;
+/* ===========================
+        CENTER LOGO
+=========================== */
+
+.logo {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    font-size: 32px;
+    font-weight: 700;
+
+    color: #d4af37;
+
+    white-space: nowrap;
+    text-decoration: none;
+
     cursor: pointer;
 }
 
-/* Center Menu */
 
-.navMenu{
-    flex:1;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:20px;
-    flex-wrap:wrap;
+/* ===========================
+        USER SECTION
+=========================== */
+
+.navItems {
+    position: absolute;
+
+    right: 25px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
 }
 
-.navMenuItem{
-    display:flex;
-    align-items:center;
-    gap:8px;
 
-    color:#fff;
-    font-size:17px;
-    font-weight:500;
-
-    padding:10px 18px;
-
-    border-radius:30px;
-
-    cursor:pointer;
-
-    transition:.3s;
-}
+/* Username */
 
 .navUsername {
-  color: #ffd54f;
-  font-size: 16px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: 0.3s ease;
-  text-transform: capitalize;
+    color: #ffd54f;
+
+    font-size: 16px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+
+    text-transform: capitalize;
+
+    white-space: nowrap;
 }
 
 .navUsername:hover {
-  color: #fff2a8;
+    color: #fff2a8;
 }
 
-.navMenuItem svg{
-    font-size:18px;
-    color:#d4af37;
+
+/* ===========================
+        MY BOOKINGS
+=========================== */
+
+.bookingButton {
+    padding: 10px 22px;
+
+    font-size: 15px;
+
+    border-radius: 30px;
+
+    cursor: pointer;
+
+    transition: .3s;
+
+    border: 1px solid #d4af37;
+
+    background: transparent;
+
+    color: #d4af37;
 }
 
-.navMenuItem:hover{
-    background:#7a1f2b;
+.bookingButton:hover {
+    background: #7a1f2b;
 }
 
-.navMenuItem.active{
-    background:#7a1f2b;
-    border:1px solid #d4af37;
-}
 
-/* Buttons */
-
-.navItems{
-    display:flex;
-    gap:12px;
-}
+/* ===========================
+        BUTTONS
+=========================== */
 
 .navButtonOutline,
-.navButton{
+.navButton {
 
-    padding:10px 22px;
+    padding: 10px 22px;
 
-    font-size:15px;
-    
-    border-radius:30px;
+    font-size: 15px;
 
-    cursor:pointer;
+    border-radius: 30px;
 
-    transition:.3s;
+    cursor: pointer;
 
+    transition: .3s;
 }
 
-.navButtonOutline{
 
-    border:1px solid #d4af37;
-    background:transparent;
-    color:#d4af37;
+.navButtonOutline {
 
+    border: 1px solid #d4af37;
+
+    background: transparent;
+
+    color: #d4af37;
 }
 
-.navButton{
 
-    border:none;
-    background:#d4af37;
-    color:#111;
+.navButton {
 
+    border: none;
+
+    background: #d4af37;
+
+    color: #111;
 }
 
-.navButton:hover{
-    background:#f5d07a;
+
+.navButton:hover {
+    background: #f5d07a;
 }
+
 
 /* ==============================
         RESPONSIVE
 ============================== */
 
+
 /* Laptop */
 
-@media(max-width:1200px){
+@media(max-width:1200px) {
 
-.logo{
-    font-size:28px;
-}
+    .logo {
+        font-size: 28px;
+    }
 
-.navMenuItem{
-    font-size:15px;
-    padding:8px 14px;
-}
+    .navItems {
+        right: 20px;
+    }
 
-.navMenuItem svg{
-    font-size:16px;
-}
-
-}
-/* mobile */
-@media(max-width:768px){
-
-.logo{
-    font-size:24px;
-}
-
-.navMenu{
-
-    display:grid;
-
-    grid-template-columns:repeat(2,1fr);
-
-    width:100%;
-
-    gap:12px;
+    .bookingButton,
+    .navButton,
+    .navButtonOutline {
+        font-size: 14px;
+        padding: 9px 17px;
+    }
 
 }
 
-.navMenuItem{
 
-    justify-content:center;
+/* ==============================
+        TABLET
+============================== */
 
-    font-size:14px;
+@media(max-width:768px) {
 
-}
+    .navContainer {
+        min-height: 120px;
 
-.navItems{
+        padding: 15px;
+    }
 
-    width:100%;
+    .logo {
+        position: absolute;
 
-    display:flex;
+        top: 25px;
 
-}
+        font-size: 24px;
+    }
 
-.navButton,
-.navButtonOutline{
+    .navItems {
+        position: absolute;
 
-    flex:1;
+        top: 78px;
+        right: 15px;
 
-}
+        transform: none;
 
-}
-/* small mobile */
-@media(max-width:480px){
+        width: calc(100% - 30px);
 
-.logo{
-    text-align:center;
-    font-size:22px;
-}
+        justify-content: center;
+    }
 
-.navMenu{
+    .bookingButton,
+    .navButton,
+    .navButtonOutline {
+        flex: 1;
 
-    grid-template-columns:1fr;
+        font-size: 13px;
 
-}
-
-.navItems{
-
-    flex-direction:column;
-
-}
-
-.navButton,
-.navButtonOutline{
-
-    width:100%;
+        padding: 9px 12px;
+    }
 
 }
+
+
+/* ==============================
+        SMALL MOBILE
+============================== */
+
+@media(max-width:480px) {
+
+    .navContainer {
+        min-height: 115px;
+
+        padding: 12px 10px;
+    }
+
+    .logo {
+        top: 23px;
+
+        font-size: 21px;
+    }
+
+    .navItems {
+        top: 68px;
+
+        right: 10px;
+
+        width: calc(100% - 20px);
+
+        gap: 7px;
+    }
+
+    .bookingButton,
+    .navButton,
+    .navButtonOutline {
+        padding: 8px 8px;
+
+        font-size: 11px;
+    }
+
+    .navUsername {
+        font-size: 12px;
+    }
 
 }

@@ -1,57 +1,61 @@
 import "./propertyList.css";
 import useFetch from "../../hooks/useFetch";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faHotel,
-  faBuilding,
-  faUmbrellaBeach,
-  faHouse,
-  faTree,
-} from "@fortawesome/free-solid-svg-icons";
-
-const properties = [
-  {
-    name: "Hotels",
-    icon: faHotel,
-    image:
-      "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80",
-  },
-  {
-    name: "Apartments",
-    icon: faBuilding,
-    image:
-      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80",
-  },
-  {
-    name: "Resorts",
-    icon: faUmbrellaBeach,
-    image:
-      "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?auto=format&fit=crop&w=1200&q=80",
-  },
-  {
-    name: "Villas",
-    icon: faHouse,
-    image:
-      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1200&q=80",
-  },
-  {
-    name: "Cottages",
-    icon: faTree,
-    image:
-      "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=80",
-  },
-  {
-    name: "Hostels",
-    icon: faHotel,
-    image:
-      "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=1200&q=80",
-  },
-];
+import { useNavigate } from "react-router-dom";
 
 const PropertyList = () => {
-  const { data, loading, error } = useFetch("/hotels/countByType");
+  const navigate = useNavigate();
+
+  const { data, loading, error } = useFetch(
+    "/hotels/countByType"
+  );
+
+  const propertyTypes = [
+    {
+      type: "hotel",
+      title: "Hotels",
+      image:
+        "https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg",
+      icon: "🏨",
+    },
+    {
+      type: "apartment",
+      title: "Apartments",
+      image:
+        "https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg",
+      icon: "🏢",
+    },
+    {
+      type: "resort",
+      title: "Resorts",
+      image:
+        "https://images.pexels.com/photos/261388/pexels-photo-261388.jpeg",
+      icon: "🏝️",
+    },
+    {
+      type: "villa",
+      title: "Villas",
+      image:
+        "https://images.pexels.com/photos/1438832/pexels-photo-1438832.jpeg",
+      icon: "🏡",
+    },
+    {
+      type: "cottage",
+      title: "Cottages",
+      image:
+        "https://images.pexels.com/photos/338504/pexels-photo-338504.jpeg",
+      icon: "🏕️",
+    },
+    {
+      type: "hostel",
+      title: "Hostels",
+      image:
+        "https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg",
+      icon: "🏨",
+    },
+  ];
+
   if (loading) {
-    return <h2>Loading...</h2>;
+    return <h2>Loading... Please wait</h2>;
   }
 
   if (error) {
@@ -59,27 +63,48 @@ const PropertyList = () => {
   }
 
   return (
-    <div className="pList">
-      {properties.map((item, index) => (
-        <div className="pListItem" key={index}>
-          <img
-            src={item.image}
-            alt={item.name}
-            className="pListImage"
-          />
+    <div>
 
-          <div className="pListOverlay">
-            <div className="propertyIcon">
-              <FontAwesomeIcon icon={item.icon} />
+      <div className="pList">
+
+        {propertyTypes.map((item, index) => (
+          <div
+            className="pListItem"
+            key={item.type}
+            onClick={() =>
+              navigate(`/hotels?type=${item.type}`)
+            }
+          >
+
+            <img
+              src={item.image}
+              alt={item.title}
+              className="pListImage"
+            />
+
+            <div className="pListOverlay">
+
+              <div className="propertyIcon">
+                {item.icon}
+              </div>
+
+              <div className="pListTitles">
+
+                <h1>{item.title}</h1>
+
+                <h2>
+                  {data[index]?.count || 0} Properties
+                </h2>
+
+              </div>
+
             </div>
 
-            <div className="pListTitles">
-              <h1>{item.name}</h1>
-              <h2>{data[index]?.count || 0} Properties</h2>
-            </div>
           </div>
-        </div>
-      ))}
+        ))}
+
+      </div>
+
     </div>
   );
 };

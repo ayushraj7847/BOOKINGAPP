@@ -1,7 +1,10 @@
 import "./featured.css";
 import useFetch from "../../hooks/useFetch";
+import { useNavigate } from "react-router-dom";
 
 export default function Featured() {
+  const navigate = useNavigate();
+
   const { data, loading, error } = useFetch(
     "/hotels/countByCity?cities=Delhi,Mumbai,Bangalore,Kolkata"
   );
@@ -41,12 +44,25 @@ export default function Featured() {
     <div className="featuredSection">
       <div className="featuredHeader">
         <h2>⭐ Top Destinations</h2>
-        <span>View all destinations →</span>
+
+        <span
+          onClick={() => navigate("/hotels")}
+          style={{ cursor: "pointer" }}
+        >
+          View all destinations →
+        </span>
       </div>
 
       <div className="featured">
         {cities.map((item, index) => (
-          <div className="featuredItem" key={index}>
+          <div
+            className="featuredItem"
+            key={item.name}
+            onClick={() =>
+              navigate(`/hotels?city=${encodeURIComponent(item.name)}`)
+            }
+            style={{ cursor: "pointer" }}
+          >
             <img
               src={item.image}
               alt={item.name}
@@ -56,7 +72,10 @@ export default function Featured() {
             <div className="featuredOverlay">
               <div className="featuredTitles">
                 <h1>{item.name}</h1>
-                <h2>📍 {data[index]|| 0} Properties</h2>
+
+                <h2>
+                  📍 {data[index] || 0} Properties
+                </h2>
               </div>
             </div>
           </div>
