@@ -10,15 +10,11 @@
   align-items: center;
   justify-content: center;
 
-  background-image:
-    linear-gradient(
-      rgba(0, 0, 0, 0.58),
-      rgba(20, 3, 8, 0.72)
-    ),
-    url("stayvora-login.jpg");
+  /* BACKGROUND IMAGE */
+  background-image: url("/stayvora-login.jpg");
 
   background-size: cover;
-  background-position: center;
+  background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
 
@@ -27,11 +23,13 @@
   box-sizing: border-box;
 
   position: relative;
+
+  overflow: hidden;
 }
 
 
 /* =========================================
-        PREMIUM DARK OVERLAY
+        LIGHT PREMIUM OVERLAY
 ========================================= */
 
 .login::before {
@@ -42,18 +40,15 @@
   inset: 0;
 
   background:
-    radial-gradient(
-      circle at 20% 50%,
-      rgba(122, 31, 43, 0.25),
-      transparent 40%
-    ),
-    radial-gradient(
-      circle at 80% 50%,
-      rgba(212, 175, 55, 0.10),
-      transparent 40%
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.08),
+      rgba(0, 0, 0, 0.18)
     );
 
   pointer-events: none;
+
+  z-index: 1;
 }
 
 
@@ -71,18 +66,18 @@
   background:
     linear-gradient(
       145deg,
-      rgba(25, 25, 25, 0.94),
-      rgba(5, 5, 5, 0.97)
+      rgba(12, 12, 12, 0.92),
+      rgba(5, 5, 5, 0.96)
     );
 
-  border: 1px solid rgba(212, 175, 55, 0.75);
+  border: 1px solid rgba(212, 175, 55, 0.85);
 
   border-radius: 22px;
 
   box-shadow:
-    0 30px 80px rgba(0, 0, 0, 0.80),
-    0 0 35px rgba(212, 175, 55, 0.15),
-    inset 0 0 25px rgba(212, 175, 55, 0.03);
+    0 30px 80px rgba(0, 0, 0, 0.85),
+    0 0 40px rgba(212, 175, 55, 0.16),
+    inset 0 0 25px rgba(212, 175, 55, 0.04);
 
   position: relative;
 
@@ -90,11 +85,13 @@
 
   overflow: hidden;
 
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(8px);
 }
 
 
-/* Premium gold glow */
+/* =========================================
+        PREMIUM GOLD GLOW
+========================================= */
 
 .lContainer::before {
   content: "";
@@ -131,6 +128,7 @@
   z-index: 2;
 }
 
+
 .loginTitle h1 {
   margin: 0;
 
@@ -145,18 +143,33 @@
   letter-spacing: 0.5px;
 }
 
-.loginTitle h1 span {
+
+/* Gold first letter */
+
+.loginTitle h1::first-letter {
   color: #d4af37;
 }
+
 
 .loginTitle p {
   margin: 10px 0 0;
 
-  color: #a8a8a8;
+  color: #b5b5b5;
 
   font-size: 14px;
 
   letter-spacing: 0.4px;
+}
+
+
+/* =========================================
+        FORM
+========================================= */
+
+.lContainer form {
+  position: relative;
+
+  z-index: 2;
 }
 
 
@@ -177,11 +190,11 @@
 
   border-radius: 11px;
 
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.15);
 
   outline: none;
 
-  background: rgba(255, 255, 255, 0.055);
+  background: rgba(255, 255, 255, 0.065);
 
   color: #ffffff;
 
@@ -190,18 +203,36 @@
   transition: all 0.3s ease;
 }
 
+
 .lInput::placeholder {
-  color: #777;
+  color: #888;
 }
+
+
+.lInput:hover {
+  border-color: rgba(212, 175, 55, 0.35);
+}
+
 
 .lInput:focus {
   border-color: #d4af37;
 
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.09);
 
   box-shadow:
     0 0 0 2px rgba(212, 175, 55, 0.08),
-    0 0 18px rgba(212, 175, 55, 0.10);
+    0 0 18px rgba(212, 175, 55, 0.12);
+}
+
+
+/* =========================================
+        PASSWORD BOX
+========================================= */
+
+.passwordBox {
+  position: relative;
+
+  width: 100%;
 }
 
 
@@ -223,6 +254,7 @@
   font-size: 12px;
 }
 
+
 .loginOptions label {
   display: flex;
 
@@ -233,8 +265,10 @@
   cursor: pointer;
 }
 
+
 .loginOptions input {
   width: 14px;
+
   height: 14px;
 
   accent-color: #d4af37;
@@ -257,10 +291,22 @@
   transition: 0.3s ease;
 }
 
+
 .forgotPassword:hover {
   color: #f5d07a;
 
   text-decoration: underline;
+}
+
+
+/*
+   Agar passwordBox ke andar wala
+   duplicate "Forgot password?" visible ho raha hai,
+   to usko hide karenge.
+*/
+
+.passwordBox > .forgotPassword {
+  display: none;
 }
 
 
@@ -280,7 +326,7 @@
   background:
     linear-gradient(
       135deg,
-      #d4af37,
+      #c99b24,
       #f5d06f,
       #d4af37
     );
@@ -298,19 +344,30 @@
   transition: all 0.3s ease;
 
   box-shadow:
-    0 8px 25px rgba(212, 175, 55, 0.18);
+    0 8px 25px rgba(212, 175, 55, 0.22);
 }
+
 
 .lButton:hover {
   transform: translateY(-2px);
 
+  background:
+    linear-gradient(
+      135deg,
+      #d4af37,
+      #ffe08a,
+      #d4af37
+    );
+
   box-shadow:
-    0 12px 30px rgba(212, 175, 55, 0.30);
+    0 12px 30px rgba(212, 175, 55, 0.35);
 }
+
 
 .lButton:active {
   transform: translateY(0);
 }
+
 
 .lButton:disabled {
   opacity: 0.6;
@@ -350,7 +407,12 @@
   gap: 12px;
 
   margin: 27px 0 18px;
+
+  position: relative;
+
+  z-index: 2;
 }
+
 
 .divider span {
   flex: 1;
@@ -361,15 +423,16 @@
     linear-gradient(
       to right,
       transparent,
-      rgba(212, 175, 55, 0.35),
+      rgba(212, 175, 55, 0.40),
       transparent
     );
 }
 
+
 .divider p {
   margin: 0;
 
-  color: #777;
+  color: #888;
 
   font-size: 12px;
 
@@ -390,7 +453,7 @@
 
   border-radius: 10px;
 
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.14);
 
   background: rgba(255, 255, 255, 0.045);
 
@@ -403,14 +466,22 @@
   cursor: pointer;
 
   transition: all 0.3s ease;
+
+  position: relative;
+
+  z-index: 2;
 }
 
-.socialButton:hover {
-  background: rgba(255, 255, 255, 0.08);
 
-  border-color: rgba(212, 175, 55, 0.45);
+.socialButton:hover {
+  background: rgba(255, 255, 255, 0.09);
+
+  border-color: rgba(212, 175, 55, 0.55);
 
   transform: translateY(-1px);
+
+  box-shadow:
+    0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 
@@ -471,10 +542,15 @@
 
   text-align: center;
 
-  color: #777;
+  color: #888;
 
   font-size: 12px;
+
+  position: relative;
+
+  z-index: 2;
 }
+
 
 .registerText a {
   margin-left: 5px;
@@ -488,6 +564,7 @@
   transition: 0.3s;
 }
 
+
 .registerText a:hover {
   color: #f5d07a;
 
@@ -496,7 +573,7 @@
 
 
 /* =========================================
-        DESKTOP PREMIUM LOOK
+        DESKTOP PREMIUM
 ========================================= */
 
 @media (min-width: 1100px) {
@@ -524,7 +601,7 @@
 
     background-attachment: scroll;
 
-    background-position: center;
+    background-position: center center;
   }
 
   .lContainer {
@@ -553,6 +630,8 @@
     padding: 20px 12px;
 
     min-height: 100vh;
+
+    background-position: center center;
   }
 
   .lContainer {

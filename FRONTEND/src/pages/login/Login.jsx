@@ -64,7 +64,7 @@ const Login = () => {
               LEFT STAYVORA SECTION
       ================================= */}
 
-      <div className="loginBrand">
+      {/* <div className="loginBrand">
 
         <div className="brandOverlay">
 
@@ -106,7 +106,7 @@ const Login = () => {
         </div>
 
       </div>
-
+ */}
 
       {/* =================================
               RIGHT LOGIN SECTION

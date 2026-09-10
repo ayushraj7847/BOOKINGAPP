@@ -139,6 +139,7 @@ const Register = () => {
             autoComplete="new-password"
           />
 
+          {/* REGISTER BUTTON */}
           <button
             type="submit"
             className="rButton"
@@ -152,6 +153,25 @@ const Register = () => {
               {error.message}
             </span>
           )}
+
+          {/* BACK TO HOME BUTTON */}
+          <button
+            type="button"
+            onClick={() => navigate("/")}
+            style={{
+              width: "100%",
+              padding: "10px 20px",
+              marginTop: "12px",
+              border: "1px solid #d4af37",
+              borderRadius: "25px",
+              background: "#d4af37",
+              color: "#111",
+              fontWeight: "600",
+              cursor: "pointer",
+            }}
+          >
+            ← Back to Home
+          </button>
 
         </form>
       </div>

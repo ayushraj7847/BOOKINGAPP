@@ -3,1306 +3,1758 @@
         Layout + Sidebar + Search Form
 ===================================================== */
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-.listContainer{
-    width:100%;
-    display:flex;
-    justify-content:center;
-    padding:70px 30px;
-    background:#090909;
-}
-
-.listWrapper{
-    width:100%;
-    max-width:1500px;
-    display:flex;
-    gap:35px;
-    align-items:flex-start;
-}
-
-/* ===================================
-          PREMIUM SIDEBAR
-=================================== */
-
-.listSearch{
-
-    width:360px;
-    min-width:360px;
-
-    position:sticky;
-    top:25px;
-
-    padding:32px;
-
-    border-radius:24px;
-
-    background:
-    linear-gradient(
-    180deg,
-    rgba(26,26,26,.95),
-    rgba(12,12,12,.96));
-
-    border:1px solid rgba(212,175,55,.25);
-
-    box-shadow:
-    0 25px 70px rgba(0,0,0,.45);
-
-    overflow:visible;
-
-    z-index:20;
-
-}
-
-/* Gold Glow */
-
-.listSearch::before{
-
-content:"";
-
-position:absolute;
-
-top:-130px;
-right:-130px;
-
-width:260px;
-height:260px;
-
-border-radius:50%;
-
-background:
-rgba(212,175,55,.08);
-
-filter:blur(70px);
-
-pointer-events:none;
-
-}
-
-/* ===================================
-            TITLE
-=================================== */
-
-.lsTitle{
-
-font-size:38px;
-
-font-weight:800;
-
-color:#f5d07a;
-
-margin-bottom:35px;
-
-line-height:1;
-
-}
-
-.lsTitle::after{
-
-content:"";
-
-display:block;
-
-margin-top:12px;
-
-width:75px;
-
-height:4px;
-
-border-radius:50px;
-
-background:#d4af37;
-
-}
-
-/* ===================================
-            ITEM
-=================================== */
-
-.lsItem{
-
-display:flex;
-
-flex-direction:column;
-
-gap:12px;
-
-margin-bottom:28px;
-
-position:relative;
-
-}
-
-.lsItem label{
-
-font-size:30px;
-
-font-weight:700;
-
-color:#d4af37;
-
-letter-spacing:.5px;
-
-}
-
-/* ===================================
-          PREMIUM INPUT
-=================================== */
-
-.inputBox{
-
-width:100%;
-
-height:60px;
-
-padding:0 18px;
-
-display:flex;
-
-align-items:center;
-
-gap:14px;
-
-border-radius:14px;
-
-background:#181818;
-
-border:1px solid rgba(255,255,255,.08);
-
-transition:.35s;
-
-cursor:pointer;
-
-}
-
-.inputBox:hover{
-
-border-color:#d4af37;
-
-box-shadow:
-0 0 0 3px rgba(212,175,55,.08);
-
-}
-
-.inputBox svg{
-
-font-size:45px;
-
-color:#d4af37;
-
-}
-
-.inputBox input{
-
-flex:1;
-
-height:100%;
-
-border:none;
-
-outline:none;
-
-background:transparent;
-
-color:white;
-
-font-size:25px;
-
-}
-
-.inputBox input::placeholder{
-
-color:#999;
-
-}
-
-.inputBox span{
-
-color:white;
-
-font-size:25px;
-
-}
-
-/* ===================================
-        DATE PICKER
-=================================== */
-
-.date{
-
-position:absolute;
-
-top:95px;
-
-left:0;
-
-z-index:99999;
-
-background:#fff;
-
-border-radius:18px;
-
-overflow:hidden;
-
-box-shadow:
-0 30px 70px rgba(0,0,0,.55);
-
-border:1px solid rgba(212,175,55,.35);
-
-animation:fadeDate .25s ease;
-
-}
-
-@keyframes fadeDate{
-
-from{
-
-opacity:0;
-
-transform:translateY(-10px);
-
-}
-
-to{
-
-opacity:1;
-
-transform:translateY(0);
-
-}
-
-}
-
-/* Calendar */
-
-.rdrCalendarWrapper{
-
-font-size:26px;
-
-}
-
-.rdrMonth{
-
-padding:18px;
-
-}
-
-.rdrMonthName{
-
-font-size:25px;
-
-font-weight:700;
-
-}
-
-.rdrWeekDay{
-
-font-size:25px;
-
-font-weight:700;
-
-}
-
-.rdrDayNumber span{
-
-font-size:25px;
-
-}
-
-/* ===================================
-      RIGHT SIDE
-=================================== */
-
-.listResult{
-
-flex:1;
-
-display:flex;
-
-flex-direction:column;
-
-gap:28px;
-
-}
-
-/* ===================================
-      RESULT HEADER
-=================================== */
-
-.listTop{
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-margin-bottom:8px;
-
-}
-
-.listTop h2{
-
-font-size:35px;
-
-color:white;
-
-font-weight:700;
-
-}
-
-.listTop select{
-
-height:52px;
-
-padding:0 18px;
-
-border-radius:12px;
-
-background:#181818;
-
-border:1px solid rgba(212,175,55,.20);
-
-color:white;
-
-font-size:25px;
-
-outline:none;
-
-cursor:pointer;
-
-}
 
 /* =====================================================
-          PREMIUM HOTEL LIST - PART 2
-      Counter + Slider + Checkbox + Button
+          GLOBAL
 ===================================================== */
 
-/* ===================================
-        GUEST COUNTER
-=================================== */
-
-.counterRow{
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-padding:14px 0;
-
-border-bottom:1px solid rgba(255,255,255,.06);
-
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.counterRow:last-child{
-
-border-bottom:none;
-
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
 }
 
-.counterRow>span{
-
-color:#f2f2f2;
-
-font-size:26px;
-
-font-weight:600;
-
+#root {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
-.counter{
 
-display:flex;
+/* =====================================================
+          MAIN LIST CONTAINER
+===================================================== */
 
-align-items:center;
+.listContainer {
+    width: 100%;
+    max-width: 100%;
 
-gap:16px;
+    display: flex;
+    justify-content: center;
 
+    padding: 70px 30px;
+
+    background: #090909;
+
+    box-sizing: border-box;
+
+    overflow-x: hidden;
 }
 
-.counter button{
 
-width:38px;
+/* =====================================================
+          LIST WRAPPER
+===================================================== */
 
-height:38px;
+.listWrapper {
+    width: 100%;
+    max-width: 1500px;
 
-border:none;
+    display: flex;
 
-border-radius:12px;
+    gap: 35px;
 
-background:#1d1d1d;
+    align-items: flex-start;
 
-border:1px solid rgba(212,175,55,.25);
-
-color:#d4af37;
-
-cursor:pointer;
-
-font-size:25px;
-
-transition:.35s;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
+    min-width: 0;
 }
 
-.counter button:hover{
 
-background:#d4af37;
+/* =====================================================
+          PREMIUM SIDEBAR
+===================================================== */
 
-color:#111;
+.listSearch {
+    width: 360px;
+    min-width: 360px;
 
-transform:scale(1.08);
+    position: sticky;
+    top: 25px;
 
-box-shadow:0 8px 20px rgba(212,175,55,.35);
+    padding: 32px;
 
+    border-radius: 24px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(26,26,26,.95),
+            rgba(12,12,12,.96)
+        );
+
+    border: 1px solid rgba(212,175,55,.25);
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.45);
+
+    overflow: visible;
+
+    z-index: 20;
+
+    box-sizing: border-box;
 }
 
-.counter button:disabled{
 
-opacity:.35;
+/* =====================================================
+          GOLD GLOW
+===================================================== */
 
-cursor:not-allowed;
+.listSearch::before {
+    content: "";
 
-transform:none;
+    position: absolute;
 
-box-shadow:none;
+    top: -130px;
+    right: -130px;
 
+    width: 260px;
+    height: 260px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(212,175,55,.08);
+
+    filter: blur(70px);
+
+    pointer-events: none;
 }
 
-.counter span{
 
-width:30px;
+/* =====================================================
+          TITLE
+===================================================== */
 
-text-align:center;
+.lsTitle {
+    font-size: 38px;
 
-font-size:30px;
+    font-weight: 800;
 
-font-weight:700;
+    color: #f5d07a;
 
-color:white;
+    margin-bottom: 35px;
 
+    line-height: 1;
 }
 
-/* ===================================
-        PRICE RANGE
-=================================== */
+.lsTitle::after {
+    content: "";
 
-.rangeSlider{
+    display: block;
 
-width:100%;
+    margin-top: 12px;
 
-margin-top:12px;
+    width: 75px;
+    height: 4px;
 
-appearance:none;
+    border-radius: 50px;
 
-height:7px;
-
-border-radius:20px;
-
-background:#2b2b2b;
-
-outline:none;
-
-cursor:pointer;
-
+    background: #d4af37;
 }
 
-.rangeSlider::-webkit-slider-thumb{
 
-appearance:none;
+/* =====================================================
+          SEARCH ITEM
+===================================================== */
 
-width:22px;
+.lsItem {
+    display: flex;
 
-height:22px;
+    flex-direction: column;
 
-border-radius:50%;
+    gap: 12px;
 
-background:#d4af37;
+    margin-bottom: 28px;
 
-border:3px solid #fff;
+    position: relative;
 
-cursor:pointer;
-
-box-shadow:0 8px 18px rgba(212,175,55,.45);
-
-transition:.3s;
-
+    min-width: 0;
 }
 
-.rangeSlider::-webkit-slider-thumb:hover{
+.lsItem label {
+    font-size: 30px;
 
-transform:scale(1.15);
+    font-weight: 700;
 
+    color: #d4af37;
+
+    letter-spacing: .5px;
 }
 
-.priceValues{
 
-margin-top:14px;
+/* =====================================================
+          INPUT BOX
+===================================================== */
 
-display:flex;
+.inputBox {
+    width: 100%;
 
-justify-content:space-between;
+    height: 60px;
 
-color:#d8d8d8;
+    padding: 0 18px;
 
-font-size:35px;
+    display: flex;
 
-font-weight:600;
+    align-items: center;
 
+    gap: 14px;
+
+    border-radius: 14px;
+
+    background: #181818;
+
+    border: 1px solid rgba(255,255,255,.08);
+
+    transition: .35s;
+
+    cursor: pointer;
+
+    box-sizing: border-box;
 }
 
-/* ===================================
-      PROPERTY TYPE
-=================================== */
+.inputBox:hover {
+    border-color: #d4af37;
 
-.checkBox{
-
-display:flex;
-
-flex-direction:column;
-
-gap:14px;
-
-margin-top:8px;
-
+    box-shadow:
+        0 0 0 3px rgba(212,175,55,.08);
 }
 
-.checkBox label{
+.inputBox svg {
+    font-size: 45px;
 
-display:flex;
+    color: #d4af37;
 
-align-items:center;
-
-gap:12px;
-
-cursor:pointer;
-
-font-size:35px;
-
-font-weight:500;
-
-color:#f5f5f5;
-
-transition:.3s;
-
+    flex-shrink: 0;
 }
 
-.checkBox label:hover{
+.inputBox input {
+    flex: 1;
 
-color:#d4af37;
+    width: 100%;
 
-padding-left:6px;
+    min-width: 0;
 
+    height: 100%;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 25px;
 }
 
-.propertyCheck{
-
-appearance:none;
-
-width:20px;
-
-height:20px;
-
-border-radius:6px;
-
-border:2px solid #777;
-
-background:#1d1d1d;
-
-cursor:pointer;
-
-transition:.35s;
-
-position:relative;
-
+.inputBox input::placeholder {
+    color: #999;
 }
 
-.propertyCheck:checked{
+.inputBox span {
+    color: white;
 
-background:#d4af37;
+    font-size: 25px;
 
-border-color:#d4af37;
-
+    min-width: 0;
 }
 
-.propertyCheck:checked::after{
 
-content:"✓";
+/* =====================================================
+          DATE PICKER
+===================================================== */
 
-position:absolute;
+.date {
+    position: absolute;
 
-left:50%;
+    top: 95px;
+    left: 0;
 
-top:50%;
+    z-index: 99999;
 
-transform:translate(-50%,-55%);
+    background: #fff;
 
-font-size:3px;
+    border-radius: 18px;
 
-font-weight:700;
+    overflow: hidden;
 
-color:#111;
+    box-shadow:
+        0 30px 70px rgba(0,0,0,.55);
 
+    border: 1px solid rgba(212,175,55,.35);
+
+    animation: fadeDate .25s ease;
+
+    max-width: 100%;
 }
 
-/* ===================================
-      SEARCH BUTTON
-=================================== */
+@keyframes fadeDate {
 
-.lsSearchBtn{
+    from {
+        opacity: 0;
 
-width:100%;
+        transform: translateY(-10px);
+    }
 
-height:60px;
+    to {
+        opacity: 1;
 
-margin-top:30px;
-
-border:none;
-
-border-radius:16px;
-
-cursor:pointer;
-
-font-size:30px;
-
-font-weight:700;
-
-background:linear-gradient(
-135deg,
-#d4af37,
-#f7d97c
-);
-
-color:#111;
-
-transition:.35s;
-
-box-shadow:
-0 15px 35px rgba(212,175,55,.35);
-
+        transform: translateY(0);
+    }
 }
 
-.lsSearchBtn:hover{
 
-transform:translateY(-4px);
+/* =====================================================
+          CALENDAR
+===================================================== */
 
-box-shadow:
-0 22px 45px rgba(212,175,55,.45);
-
+.rdrCalendarWrapper {
+    font-size: 26px;
 }
 
-.lsSearchBtn:active{
-
-transform:scale(.98);
-
+.rdrMonth {
+    padding: 18px;
 }
 
-/* ===================================
-      CUSTOM SCROLLBAR
-=================================== */
+.rdrMonthName {
+    font-size: 25px;
 
-.listSearch::-webkit-scrollbar{
-
-width:8px;
-
+    font-weight: 700;
 }
 
-.listSearch::-webkit-scrollbar-thumb{
+.rdrWeekDay {
+    font-size: 25px;
 
-background:#d4af37;
-
-border-radius:20px;
-
+    font-weight: 700;
 }
 
-.listSearch::-webkit-scrollbar-track{
-
-background:#161616;
-
+.rdrDayNumber span {
+    font-size: 25px;
 }
 
-/* ===================================
-      INPUT ANIMATION
-=================================== */
+
+/* =====================================================
+          RIGHT SIDE
+===================================================== */
+
+.listResult {
+    flex: 1;
+
+    min-width: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 28px;
+}
+
+
+/* =====================================================
+          RESULT HEADER
+===================================================== */
+
+.listTop {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 8px;
+
+    gap: 15px;
+
+    min-width: 0;
+}
+
+.listTop h2 {
+    font-size: 35px;
+
+    color: white;
+
+    font-weight: 700;
+
+    min-width: 0;
+}
+
+.listTop select {
+    height: 52px;
+
+    padding: 0 18px;
+
+    border-radius: 12px;
+
+    background: #181818;
+
+    border: 1px solid rgba(212,175,55,.20);
+
+    color: white;
+
+    font-size: 25px;
+
+    outline: none;
+
+    cursor: pointer;
+
+    max-width: 100%;
+}
+
+
+/* =====================================================
+          GUEST COUNTER
+===================================================== */
+
+.counterRow {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 14px 0;
+
+    border-bottom: 1px solid rgba(255,255,255,.06);
+
+    gap: 12px;
+}
+
+.counterRow:last-child {
+    border-bottom: none;
+}
+
+.counterRow > span {
+    color: #f2f2f2;
+
+    font-size: 26px;
+
+    font-weight: 600;
+}
+
+.counter {
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    flex-shrink: 0;
+}
+
+.counter button {
+    width: 38px;
+
+    height: 38px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #1d1d1d;
+
+    border: 1px solid rgba(212,175,55,.25);
+
+    color: #d4af37;
+
+    cursor: pointer;
+
+    font-size: 25px;
+
+    transition: .35s;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+.counter button:hover {
+    background: #d4af37;
+
+    color: #111;
+
+    transform: scale(1.08);
+
+    box-shadow:
+        0 8px 20px rgba(212,175,55,.35);
+}
+
+.counter button:disabled {
+    opacity: .35;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+    box-shadow: none;
+}
+
+.counter span {
+    width: 30px;
+
+    text-align: center;
+
+    font-size: 30px;
+
+    font-weight: 700;
+
+    color: white;
+}
+
+
+/* =====================================================
+          PRICE RANGE
+===================================================== */
+
+.rangeSlider {
+    width: 100%;
+
+    margin-top: 12px;
+
+    appearance: none;
+
+    height: 7px;
+
+    border-radius: 20px;
+
+    background: #2b2b2b;
+
+    outline: none;
+
+    cursor: pointer;
+}
+
+.rangeSlider::-webkit-slider-thumb {
+    appearance: none;
+
+    width: 22px;
+    height: 22px;
+
+    border-radius: 50%;
+
+    background: #d4af37;
+
+    border: 3px solid #fff;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 18px rgba(212,175,55,.45);
+
+    transition: .3s;
+}
+
+.rangeSlider::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+}
+
+.priceValues {
+    margin-top: 14px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    color: #d8d8d8;
+
+    font-size: 35px;
+
+    font-weight: 600;
+}
+
+
+/* =====================================================
+          PROPERTY TYPE
+===================================================== */
+
+.checkBox {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 14px;
+
+    margin-top: 8px;
+}
+
+.checkBox label {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    cursor: pointer;
+
+    font-size: 35px;
+
+    font-weight: 500;
+
+    color: #f5f5f5;
+
+    transition: .3s;
+}
+
+.checkBox label:hover {
+    color: #d4af37;
+
+    padding-left: 6px;
+}
+
+.propertyCheck {
+    appearance: none;
+
+    width: 20px;
+    height: 20px;
+
+    border-radius: 6px;
+
+    border: 2px solid #777;
+
+    background: #1d1d1d;
+
+    cursor: pointer;
+
+    transition: .35s;
+
+    position: relative;
+
+    flex-shrink: 0;
+}
+
+.propertyCheck:checked {
+    background: #d4af37;
+
+    border-color: #d4af37;
+}
+
+.propertyCheck:checked::after {
+    content: "✓";
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%,-55%);
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    color: #111;
+}
+
+
+/* =====================================================
+          FILTER SEARCH BUTTON
+===================================================== */
+
+.lsSearchBtn {
+    width: 100%;
+
+    height: 60px;
+
+    margin-top: 30px;
+
+    border: none;
+
+    border-radius: 16px;
+
+    cursor: pointer;
+
+    font-size: 30px;
+
+    font-weight: 700;
+
+    background:
+        linear-gradient(
+            135deg,
+            #d4af37,
+            #f7d97c
+        );
+
+    color: #111;
+
+    transition: .35s;
+
+    box-shadow:
+        0 15px 35px rgba(212,175,55,.35);
+}
+
+.lsSearchBtn:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 22px 45px rgba(212,175,55,.45);
+}
+
+.lsSearchBtn:active {
+    transform: scale(.98);
+}
+
+
+/* =====================================================
+          CUSTOM SCROLLBAR
+===================================================== */
+
+.listSearch::-webkit-scrollbar {
+    width: 8px;
+}
+
+.listSearch::-webkit-scrollbar-thumb {
+    background: #d4af37;
+
+    border-radius: 20px;
+}
+
+.listSearch::-webkit-scrollbar-track {
+    background: #161616;
+}
+
+
+/* =====================================================
+          INPUT ANIMATION
+===================================================== */
 
 .inputBox,
 .counter button,
 .propertyCheck,
-.lsSearchBtn{
-
-transition:all .35s ease;
-
+.lsSearchBtn {
+    transition: all .35s ease;
 }
 
-.inputBox:focus-within{
+.inputBox:focus-within {
+    border-color: #d4af37;
 
-border-color:#d4af37;
-
-box-shadow:
-0 0 0 4px rgba(212,175,55,.10);
-
+    box-shadow:
+        0 0 0 4px rgba(212,175,55,.10);
 }
+
 
 /* =====================================================
-          PREMIUM HOTEL LIST - PART 3
-        Responsive + Final Premium Effects
+          SEARCH ITEM ANIMATION
 ===================================================== */
 
-/* ===================================
-        CARD ANIMATION
-=================================== */
+.searchItem {
+    animation: fadeUp .5s ease;
 
-.searchItem{
-    animation:fadeUp .5s ease;
+    max-width: 100%;
+
+    min-width: 0;
 }
 
-@keyframes fadeUp{
+@keyframes fadeUp {
 
-from{
-    opacity:0;
-    transform:translateY(35px);
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(35px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
 }
 
-to{
-    opacity:1;
-    transform:translateY(0);
+
+/* =====================================================
+          RESULT SPACING
+===================================================== */
+
+.listResult {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 28px;
+
+    min-width: 0;
 }
 
+.listResult > * {
+    animation: fadeUp .45s ease;
+
+    max-width: 100%;
+
+    min-width: 0;
 }
 
-/* ===================================
-        RESULT SPACING
-=================================== */
 
-.listResult{
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:28px;
-
-}
-
-.listResult>*{
-
-    animation:fadeUp .45s ease;
-
-}
-
-/* ===================================
-        PREMIUM SHADOWS
-=================================== */
+/* =====================================================
+          PREMIUM SHADOWS
+===================================================== */
 
 .listSearch,
-.searchItem{
-
-transition:.35s ease;
-
+.searchItem {
+    transition: .35s ease;
 }
 
-.listSearch:hover{
-
-box-shadow:
-0 30px 70px rgba(0,0,0,.55);
-
+.listSearch:hover {
+    box-shadow:
+        0 30px 70px rgba(0,0,0,.55);
 }
 
-.searchItem:hover{
-
-transform:translateY(-6px);
-
+.searchItem:hover {
+    transform: translateY(-6px);
 }
 
-/* ===================================
-        DATE PICKER
-=================================== */
 
-.date{
+/* =====================================================
+          DATE PICKER - FINAL
+===================================================== */
 
-position:absolute;
+.date {
+    position: absolute;
 
-top:95px;
+    top: 95px;
 
-left:0;
+    left: 0;
 
-z-index:99999;
+    z-index: 99999;
 
-border-radius:18px;
+    border-radius: 18px;
 
-overflow:hidden;
+    overflow: hidden;
 
-background:#fff;
+    background: #fff;
 
-box-shadow:
-0 30px 70px rgba(0,0,0,.55);
+    box-shadow:
+        0 30px 70px rgba(0,0,0,.55);
 
+    max-width: calc(100vw - 30px);
+
+    box-sizing: border-box;
 }
 
-.rdrCalendarWrapper{
-
-font-size:16px;
-
+.rdrCalendarWrapper {
+    font-size: 16px;
 }
 
-.rdrMonth{
-
-padding:15px;
-
+.rdrMonth {
+    padding: 15px;
 }
 
-.rdrDayToday .rdrDayNumber span:after{
-
-background:#d4af37;
-
+.rdrDayToday .rdrDayNumber span:after {
+    background: #d4af37;
 }
 
 .rdrStartEdge,
 .rdrEndEdge,
-.rdrInRange{
-
-background:#d4af37 !important;
-
+.rdrInRange {
+    background: #d4af37 !important;
 }
 
-/* ===================================
-        DESKTOP
-=================================== */
 
-@media (max-width:1400px){
+/* =====================================================
+          DESKTOP
+===================================================== */
 
-.listWrapper{
+@media (max-width:1400px) {
 
-max-width:95%;
+    .listWrapper {
+        max-width: 95%;
+    }
 
+    .listSearch {
+        width: 330px;
+
+        min-width: 330px;
+    }
+
+    .listTop h2 {
+        font-size: 30px;
+    }
 }
 
-.listSearch{
 
-width:330px;
-
-min-width:330px;
-
-}
-
-.listTop h2{
-
-font-size:30px;
-
-}
-
-}
-
-/* ===================================
+/* =====================================================
           LAPTOP
-=================================== */
+===================================================== */
 
-@media (max-width:1200px){
+@media (max-width:1200px) {
 
-.listWrapper{
+    .listContainer {
+        padding: 55px 20px;
+    }
 
-gap:28px;
+    .listWrapper {
+        gap: 28px;
+    }
 
+    .listSearch {
+        width: 310px;
+
+        min-width: 310px;
+
+        padding: 26px;
+    }
+
+    .lsTitle {
+        font-size: 32px;
+    }
+
+    .inputBox {
+        height: 56px;
+    }
+
+    .inputBox input {
+        font-size: 20px;
+    }
+
+    .counterRow > span {
+        font-size: 20px;
+    }
+
+    .checkBox label {
+        font-size: 20px;
+    }
+
+    .priceValues {
+        font-size: 20px;
+    }
+
+    .lsSearchBtn {
+        font-size: 20px;
+    }
 }
 
-.listSearch{
 
-width:310px;
-
-min-width:310px;
-
-padding:26px;
-
-}
-
-.lsTitle{
-
-font-size:32px;
-
-}
-
-.inputBox{
-
-height:56px;
-
-}
-
-}
-
-/* ===================================
+/* =====================================================
           TABLET
-=================================== */
+===================================================== */
 
-@media (max-width:992px){
+@media (max-width:992px) {
 
-.listContainer{
+    .listContainer {
+        width: 100%;
 
-padding:25px 18px;
+        padding: 30px 18px;
 
+        overflow-x: hidden;
+    }
+
+    .listWrapper {
+        width: 100%;
+
+        max-width: 100%;
+
+        flex-direction: column;
+
+        gap: 25px;
+
+        min-width: 0;
+    }
+
+    .listSearch {
+        position: relative;
+
+        top: 0;
+
+        left: auto;
+
+        width: 100%;
+
+        min-width: 0;
+
+        max-width: 100%;
+
+        padding: 25px;
+
+        border-radius: 20px;
+
+        box-sizing: border-box;
+    }
+
+    .listResult {
+        width: 100%;
+
+        max-width: 100%;
+
+        min-width: 0;
+    }
+
+    .listTop {
+        width: 100%;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 15px;
+
+        min-width: 0;
+    }
+
+    .listTop h2 {
+        width: 100%;
+
+        font-size: 28px;
+
+        word-break: break-word;
+    }
+
+    .listTop select {
+        width: 100%;
+
+        font-size: 16px;
+    }
+
+    .date {
+        position: absolute;
+
+        top: calc(100% + 8px);
+
+        left: 0;
+
+        width: min(420px, calc(100vw - 36px));
+
+        max-width: calc(100vw - 36px);
+
+        transform: none;
+
+        z-index: 999999;
+    }
 }
 
-.listWrapper{
 
-flex-direction:column;
-
-}
-
-.listSearch{
-
-position:relative;
-
-top:0;
-
-width:100%;
-
-min-width:100%;
-
-}
-
-.listResult{
-
-width:100%;
-
-}
-
-.listTop{
-
-flex-direction:column;
-
-align-items:flex-start;
-
-gap:15px;
-
-}
-
-.listTop select{
-
-width:100%;
-
-}
-
-.date{
-
-position:relative;
-
-top:15px;
-
-left:0;
-
-transform:none;
-
-}
-
-}
-
-/* ===================================
+/* =====================================================
           MOBILE
-=================================== */
+===================================================== */
 
-@media (max-width:768px){
+@media (max-width:768px) {
 
-.listContainer{
+    .listContainer {
+        width: 100% !important;
 
-padding:15px;
+        max-width: 100% !important;
 
+        padding: 18px 12px 30px !important;
+
+        margin: 0 !important;
+
+        overflow-x: hidden !important;
+
+        box-sizing: border-box !important;
+    }
+
+
+    .listWrapper {
+        width: 100% !important;
+
+        max-width: 100% !important;
+
+        min-width: 0 !important;
+
+        margin: 0 !important;
+
+        display: flex !important;
+
+        flex-direction: column !important;
+
+        align-items: stretch !important;
+
+        gap: 18px !important;
+
+        box-sizing: border-box !important;
+    }
+
+
+    /* =================================================
+          SIDEBAR
+    ================================================= */
+
+    .listSearch {
+        width: 100% !important;
+
+        min-width: 0 !important;
+
+        max-width: 100% !important;
+
+        padding: 18px !important;
+
+        margin: 0 !important;
+
+        position: relative !important;
+
+        top: auto !important;
+
+        left: auto !important;
+
+        right: auto !important;
+
+        border-radius: 16px !important;
+
+        box-sizing: border-box !important;
+
+        overflow: visible !important;
+    }
+
+
+    .lsTitle {
+        width: 100% !important;
+
+        font-size: 24px !important;
+
+        line-height: 1.2 !important;
+
+        text-align: left !important;
+
+        margin-bottom: 25px !important;
+    }
+
+
+    .lsTitle::after {
+        margin-top: 9px !important;
+
+        width: 55px !important;
+
+        height: 3px !important;
+    }
+
+
+    /* =================================================
+          FILTER ITEM
+    ================================================= */
+
+    .lsItem {
+        width: 100% !important;
+
+        max-width: 100% !important;
+
+        min-width: 0 !important;
+
+        margin-bottom: 18px !important;
+
+        gap: 8px !important;
+    }
+
+
+    .lsItem label {
+        font-size: 16px !important;
+
+        line-height: 1.3 !important;
+    }
+
+
+    /* =================================================
+          INPUT BOX
+    ================================================= */
+
+    .inputBox {
+        width: 100% !important;
+
+        max-width: 100% !important;
+
+        height: 50px !important;
+
+        min-height: 50px !important;
+
+        padding: 0 12px !important;
+
+        gap: 9px !important;
+
+        border-radius: 11px !important;
+
+        box-sizing: border-box !important;
+
+        overflow: visible !important;
+    }
+
+
+    .inputBox svg {
+        font-size: 20px !important;
+
+        flex-shrink: 0 !important;
+    }
+
+
+    .inputBox input {
+        width: 100% !important;
+
+        min-width: 0 !important;
+
+        font-size: 13px !important;
+    }
+
+
+    .inputBox span {
+        min-width: 0 !important;
+
+        font-size: 12px !important;
+
+        white-space: nowrap !important;
+
+        overflow: hidden !important;
+
+        text-overflow: ellipsis !important;
+    }
+
+
+    /* =================================================
+          DATE PICKER
+    ================================================= */
+
+    .date {
+        position: absolute !important;
+
+        top: calc(100% + 8px) !important;
+
+        left: 0 !important;
+
+        width: 100% !important;
+
+        max-width: 100% !important;
+
+        min-width: 0 !important;
+
+        transform: none !important;
+
+        margin: 0 !important;
+
+        padding: 0 !important;
+
+        z-index: 999999 !important;
+
+        box-sizing: border-box !important;
+
+        overflow: hidden !important;
+
+        border-radius: 12px !important;
+    }
+
+
+    .date .rdrCalendarWrapper {
+        width: 100% !important;
+
+        max-width: 100% !important;
+
+        box-sizing: border-box !important;
+
+        font-size: 10px !important;
+    }
+
+
+    .date .rdrDateRangeWrapper {
+        width: 100% !important;
+
+        max-width: 100% !important;
+    }
+
+
+    .date .rdrMonths {
+        width: 100% !important;
+
+        display: block !important;
+    }
+
+
+    .date .rdrMonth {
+        width: 100% !important;
+
+        max-width: 100% !important;
+
+        padding: 6px !important;
+
+        box-sizing: border-box !important;
+    }
+
+
+    .date .rdrMonthAndYearWrapper {
+        width: 100% !important;
+
+        box-sizing: border-box !important;
+    }
+
+
+    .date .rdrMonthName {
+        font-size: 11px !important;
+    }
+
+
+    .date .rdrWeekDay {
+        font-size: 8px !important;
+
+        padding: 2px 0 !important;
+    }
+
+
+    .date .rdrDay {
+        height: 30px !important;
+    }
+
+
+    .date .rdrDayNumber span {
+        font-size: 9px !important;
+    }
+
+
+    /* =================================================
+          COUNTER
+    ================================================= */
+
+    .counterRow {
+        width: 100% !important;
+
+        padding: 10px 0 !important;
+
+        gap: 10px !important;
+
+        box-sizing: border-box !important;
+    }
+
+
+    .counterRow > span {
+        font-size: 14px !important;
+
+        white-space: nowrap !important;
+    }
+
+
+    .counter {
+        gap: 8px !important;
+
+        flex-shrink: 0 !important;
+    }
+
+
+    .counter button {
+        width: 30px !important;
+
+        height: 30px !important;
+
+        min-width: 30px !important;
+
+        font-size: 18px !important;
+
+        border-radius: 8px !important;
+    }
+
+
+    .counter span {
+        width: 20px !important;
+
+        font-size: 14px !important;
+    }
+
+
+    /* =================================================
+          PRICE
+    ================================================= */
+
+    .rangeSlider {
+        width: 100% !important;
+
+        height: 6px !important;
+    }
+
+
+    .priceValues {
+        width: 100% !important;
+
+        font-size: 13px !important;
+
+        margin-top: 10px !important;
+    }
+
+
+    /* =================================================
+          PROPERTY TYPE
+    ================================================= */
+
+    .checkBox {
+        width: 100% !important;
+
+        gap: 10px !important;
+    }
+
+
+    .checkBox label {
+        width: 100% !important;
+
+        font-size: 14px !important;
+
+        gap: 9px !important;
+
+        padding-left: 0 !important;
+    }
+
+
+    .checkBox label:hover {
+        padding-left: 0 !important;
+    }
+
+
+    .propertyCheck {
+        width: 17px !important;
+
+        height: 17px !important;
+
+        min-width: 17px !important;
+
+        border-radius: 4px !important;
+    }
+
+
+    .propertyCheck:checked::after {
+        font-size: 10px !important;
+    }
+
+
+    /* =================================================
+          FILTER BUTTON
+    ================================================= */
+
+    .lsSearchBtn {
+        width: 100% !important;
+
+        height: 48px !important;
+
+        min-height: 48px !important;
+
+        margin-top: 18px !important;
+
+        padding: 0 15px !important;
+
+        font-size: 14px !important;
+
+        border-radius: 10px !important;
+
+        box-sizing: border-box !important;
+    }
+
+
+    /* =================================================
+          RESULTS
+    ================================================= */
+
+    .listResult {
+        width: 100% !important;
+
+        max-width: 100% !important;
+
+        min-width: 0 !important;
+
+        display: flex !important;
+
+        flex-direction: column !important;
+
+        gap: 15px !important;
+
+        box-sizing: border-box !important;
+
+        overflow-x: hidden !important;
+    }
+
+
+    .listTop {
+        width: 100% !important;
+
+        max-width: 100% !important;
+
+        display: flex !important;
+
+        flex-direction: column !important;
+
+        align-items: flex-start !important;
+
+        gap: 10px !important;
+
+        margin-bottom: 5px !important;
+
+        box-sizing: border-box !important;
+    }
+
+
+    .listTop h2 {
+        width: 100% !important;
+
+        font-size: 22px !important;
+
+        line-height: 1.3 !important;
+
+        word-break: break-word !important;
+    }
+
+
+    .listTop select {
+        width: 100% !important;
+
+        max-width: 100% !important;
+
+        height: 44px !important;
+
+        font-size: 13px !important;
+
+        padding: 0 12px !important;
+
+        box-sizing: border-box !important;
+    }
+
+
+    /* =================================================
+          SEARCH ITEM SAFETY
+    ================================================= */
+
+    .searchItem {
+        width: 100% !important;
+
+        max-width: 100% !important;
+
+        min-width: 0 !important;
+
+        box-sizing: border-box !important;
+
+        overflow: hidden !important;
+    }
+
+
+    .listResult > * {
+        width: 100% !important;
+
+        max-width: 100% !important;
+
+        min-width: 0 !important;
+
+        box-sizing: border-box !important;
+    }
 }
 
-.listSearch{
 
-padding:22px;
+/* =====================================================
+          SMALL MOBILE
+===================================================== */
 
-border-radius:18px;
+@media (max-width:576px) {
 
+    .listContainer {
+        padding: 12px 10px 25px !important;
+    }
+
+
+    .listWrapper {
+        gap: 15px !important;
+    }
+
+
+    .listSearch {
+        padding: 15px !important;
+
+        border-radius: 14px !important;
+    }
+
+
+    .lsTitle {
+        font-size: 21px !important;
+
+        margin-bottom: 20px !important;
+    }
+
+
+    .lsItem {
+        margin-bottom: 15px !important;
+    }
+
+
+    .lsItem label {
+        font-size: 13px !important;
+    }
+
+
+    .inputBox {
+        height: 47px !important;
+
+        min-height: 47px !important;
+
+        padding: 0 10px !important;
+    }
+
+
+    .inputBox svg {
+        font-size: 18px !important;
+    }
+
+
+    .inputBox input {
+        font-size: 12px !important;
+    }
+
+
+    .inputBox span {
+        font-size: 11px !important;
+    }
+
+
+    .counterRow > span {
+        font-size: 13px !important;
+    }
+
+
+    .counter {
+        gap: 6px !important;
+    }
+
+
+    .counter button {
+        width: 28px !important;
+
+        height: 28px !important;
+
+        min-width: 28px !important;
+
+        font-size: 16px !important;
+    }
+
+
+    .counter span {
+        font-size: 13px !important;
+
+        width: 18px !important;
+    }
+
+
+    .checkBox label {
+        font-size: 13px !important;
+    }
+
+
+    .lsSearchBtn {
+        height: 46px !important;
+
+        min-height: 46px !important;
+
+        font-size: 13px !important;
+    }
+
+
+    .listTop h2 {
+        font-size: 20px !important;
+    }
 }
 
-.lsTitle{
 
-font-size:26px;
+/* =====================================================
+          EXTRA SMALL MOBILE
+===================================================== */
 
-text-align:center;
+@media (max-width:400px) {
 
+    .listContainer {
+        padding: 10px 8px 20px !important;
+    }
+
+
+    .listSearch {
+        padding: 13px !important;
+    }
+
+
+    .lsTitle {
+        font-size: 19px !important;
+    }
+
+
+    .inputBox {
+        height: 44px !important;
+
+        min-height: 44px !important;
+    }
+
+
+    .inputBox input {
+        font-size: 11px !important;
+    }
+
+
+    .inputBox span {
+        font-size: 10px !important;
+    }
+
+
+    .counterRow > span {
+        font-size: 12px !important;
+    }
+
+
+    .counter button {
+        width: 26px !important;
+
+        height: 26px !important;
+
+        min-width: 26px !important;
+    }
+
+
+    .counter span {
+        font-size: 12px !important;
+
+        width: 16px !important;
+    }
+
+
+    .priceValues {
+        font-size: 12px !important;
+    }
+
+
+    .checkBox label {
+        font-size: 12px !important;
+    }
+
+
+    .lsSearchBtn {
+        height: 44px !important;
+
+        min-height: 44px !important;
+
+        font-size: 12px !important;
+    }
+
+
+    .listTop h2 {
+        font-size: 18px !important;
+    }
 }
 
-.lsTitle::after{
 
-margin:auto;
-
-margin-top:10px;
-
-}
-
-.inputBox{
-
-height:54px;
-
-}
-
-.inputBox input{
-
-font-size:15px;
-
-}
-
-.counterRow{
-
-padding:12px 0;
-
-}
-
-.counter button{
-
-width:34px;
-
-height:34px;
-
-}
-
-.counter span{
-
-font-size:16px;
-
-}
-
-.priceValues{
-
-font-size:13px;
-
-}
-
-.lsSearchBtn{
-
-height:56px;
-
-font-size:16px;
-
-}
-
-.date{
-
-width:100%;
-
-overflow:auto;
-
-}
-
-}
-
-/* ===================================
-      SMALL MOBILE
-=================================== */
-
-@media (max-width:576px){
-
-.listContainer{
-
-padding:10px;
-
-}
-
-.listSearch{
-
-padding:18px;
-
-border-radius:16px;
-
-}
-
-.lsTitle{
-
-font-size:22px;
-
-}
-
-.lsItem label{
-
-font-size:14px;
-
-}
-
-.inputBox{
-
-height:50px;
-
-padding:0 14px;
-
-}
-
-.inputBox input{
-
-font-size:14px;
-
-}
-
-.inputBox span{
-
-font-size:14px;
-
-}
-
-.counterRow span{
-
-font-size:14px;
-
-}
-
-.counter{
-
-gap:10px;
-
-}
-
-.counter button{
-
-width:32px;
-
-height:32px;
-
-}
-
-.counter span{
-
-font-size:15px;
-
-}
-
-.propertyCheck{
-
-width:18px;
-
-height:18px;
-
-}
-
-.checkBox label{
-
-font-size:14px;
-
-}
-
-.lsSearchBtn{
-
-height:52px;
-
-font-size:15px;
-
-}
-
-.listTop h2{
-
-font-size:24px;
-
-}
-
-}
-
-/* ===================================
-      EXTRA SMALL
-=================================== */
-
-@media (max-width:400px){
-
-.listSearch{
-
-padding:15px;
-
-}
-
-.lsTitle{
-
-font-size:20px;
-
-}
-
-.inputBox{
-
-height:46px;
-
-}
-
-.counter button{
-
-width:28px;
-
-height:28px;
-
-}
-
-.counter span{
-
-font-size:14px;
-
-}
-
-.lsSearchBtn{
-
-height:48px;
-
-font-size:14px;
-
-}
-
-}
-
-/* ===================================
-      SMOOTH TRANSITIONS
-=================================== */
-
-button,
-input,
-select,
-.searchItem,
-.listSearch,
-.inputBox{
-
-transition:all .35s ease;
-
-}
-
-/* ===================================
-      PREMIUM SELECTION
-=================================== */
-
-::selection{
-
-background:#d4af37;
-
-color:#111;
-
-}
-
-/* ===================================
-      PREMIUM SCROLLBAR
-=================================== */
-
-::-webkit-scrollbar{
-
-width:8px;
-
-height:8px;
-
-}
-
-::-webkit-scrollbar-thumb{
-
-background:#d4af37;
-
-border-radius:20px;
-
-}
-
-::-webkit-scrollbar-track{
-
-background:#151515;
-
+/* =====================================================
+          GLOBAL MOBILE SAFETY
+===================================================== */
+
+@media (max-width:768px) {
+
+    .listContainer *,
+    .listWrapper *,
+    .listSearch *,
+    .listResult * {
+        max-width: 100%;
+    }
+
+    .listContainer img,
+    .listResult img {
+        max-width: 100%;
+
+        height: auto;
+    }
+
+    input,
+    select,
+    button {
+        max-width: 100%;
+    }
 }

@@ -5,7 +5,7 @@
 .navbar {
     width: 100%;
     background: #0b0b0b;
-    border-bottom: 1px solid rgba(212,175,55,.25);
+    border-bottom: 1px solid rgba(212,175,55,.35);
 
     position: sticky;
     top: 0;
@@ -13,14 +13,18 @@
 
     display: flex;
     justify-content: center;
+
+    box-sizing: border-box;
 }
+
 
 .navContainer {
     width: 100%;
-    max-width: 1400px;
-    margin: auto;
+    max-width: 100%;
 
-    padding: 15px 25px;
+    margin: 0;
+
+    padding: 12px 18px;
 
     display: flex;
     align-items: center;
@@ -28,7 +32,9 @@
 
     position: relative;
 
-    min-height: 70px;
+    min-height: 58px;
+
+    box-sizing: border-box;
 }
 
 
@@ -38,20 +44,38 @@
 
 .logo {
     position: absolute;
+
     left: 50%;
     top: 50%;
 
     transform: translate(-50%, -50%);
 
-    font-size: 32px;
-    font-weight: 700;
+    font-size: 30px;
+
+    font-weight: 800;
 
     color: #d4af37;
 
     white-space: nowrap;
+
     text-decoration: none;
 
     cursor: pointer;
+
+    letter-spacing: 1px;
+
+    text-shadow:
+        0 0 10px rgba(212,175,55,.18);
+
+    transition: .3s ease;
+}
+
+
+.logo:hover {
+    color: #f5d07a;
+
+    text-shadow:
+        0 0 18px rgba(212,175,55,.35);
 }
 
 
@@ -62,34 +86,46 @@
 .navItems {
     position: absolute;
 
-    right: 25px;
+    right: 12px;
+
     top: 50%;
 
     transform: translateY(-50%);
 
     display: flex;
+
     align-items: center;
 
-    gap: 12px;
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-left: auto;
 }
 
 
-/* Username */
+/* ===========================
+        USERNAME
+=========================== */
 
 .navUsername {
     color: #ffd54f;
 
-    font-size: 16px;
+    font-size: 14px;
+
     font-weight: 700;
 
     cursor: pointer;
 
-    transition: 0.3s ease;
+    transition: .3s ease;
 
     text-transform: capitalize;
 
     white-space: nowrap;
+
+    padding: 0 4px;
 }
+
 
 .navUsername:hover {
     color: #fff2a8;
@@ -101,25 +137,36 @@
 =========================== */
 
 .bookingButton {
-    padding: 10px 22px;
 
-    font-size: 15px;
+    padding: 8px 16px;
 
-    border-radius: 30px;
+    font-size: 35px;
+
+    font-weight: 600;
+
+    border-radius: 25px;
 
     cursor: pointer;
 
-    transition: .3s;
+    transition: .3s ease;
 
     border: 1px solid #d4af37;
 
     background: transparent;
 
     color: #d4af37;
+
+    white-space: nowrap;
 }
 
+
 .bookingButton:hover {
-    background: #7a1f2b;
+    background: #d4af37;
+
+    color: #111;
+
+    box-shadow:
+        0 5px 15px rgba(212,175,55,.20);
 }
 
 
@@ -130,15 +177,19 @@
 .navButtonOutline,
 .navButton {
 
-    padding: 10px 22px;
+    padding: 8px 16px;
 
-    font-size: 15px;
+    font-size: 12px;
 
-    border-radius: 30px;
+    font-weight: 600;
+
+    border-radius: 25px;
 
     cursor: pointer;
 
-    transition: .3s;
+    transition: .3s ease;
+
+    white-space: nowrap;
 }
 
 
@@ -149,6 +200,14 @@
     background: transparent;
 
     color: #d4af37;
+}
+
+
+.navButtonOutline:hover {
+
+    background: #d4af37;
+
+    color: #111;
 }
 
 
@@ -163,107 +222,72 @@
 
 
 .navButton:hover {
+
     background: #f5d07a;
+
+    box-shadow:
+        0 5px 15px rgba(212,175,55,.25);
 }
 
 
-/* ==============================
-        RESPONSIVE
-============================== */
+/* ===========================
+        DESKTOP LARGE
+=========================== */
 
-
-/* Laptop */
-
-@media(max-width:1200px) {
-
-    .logo {
-        font-size: 28px;
-    }
-
-    .navItems {
-        right: 20px;
-    }
-
-    .bookingButton,
-    .navButton,
-    .navButtonOutline {
-        font-size: 14px;
-        padding: 9px 17px;
-    }
-
-}
-
-
-/* ==============================
-        TABLET
-============================== */
-
-@media(max-width:768px) {
+@media (min-width: 1400px) {
 
     .navContainer {
-        min-height: 120px;
+        min-height: 64px;
 
-        padding: 15px;
+        padding-left: 25px;
+        padding-right: 15px;
     }
 
     .logo {
-        position: absolute;
+        font-size: 34px;
 
-        top: 25px;
-
-        font-size: 24px;
+        letter-spacing: 1.5px;
     }
 
     .navItems {
-        position: absolute;
-
-        top: 78px;
         right: 15px;
 
-        transform: none;
-
-        width: calc(100% - 30px);
-
-        justify-content: center;
+        gap: 10px;
     }
 
     .bookingButton,
     .navButton,
     .navButtonOutline {
-        flex: 1;
+        padding: 9px 18px;
 
         font-size: 13px;
-
-        padding: 9px 12px;
     }
 
+    .navUsername {
+        font-size: 15px;
+    }
 }
 
 
-/* ==============================
-        SMALL MOBILE
-============================== */
+/* ===========================
+        LAPTOP
+=========================== */
 
-@media(max-width:480px) {
+@media (max-width:1200px) {
 
     .navContainer {
-        min-height: 115px;
+        min-height: 60px;
 
-        padding: 12px 10px;
+        padding-left: 20px;
+        padding-right: 12px;
     }
 
     .logo {
-        top: 23px;
-
-        font-size: 21px;
+        font-size: 29px;
     }
 
     .navItems {
-        top: 68px;
-
-        right: 10px;
-
-        width: calc(100% - 20px);
+        right: 12px;
 
         gap: 7px;
     }
@@ -271,13 +295,126 @@
     .bookingButton,
     .navButton,
     .navButtonOutline {
-        padding: 8px 8px;
+        font-size: 12px;
+
+        padding: 8px 14px;
+    }
+
+    .navUsername {
+        font-size: 13px;
+    }
+}
+
+
+/* ===========================
+        TABLET
+=========================== */
+
+@media (max-width:768px) {
+
+    .navContainer {
+
+        min-height: 105px;
+
+        padding: 12px 15px;
+    }
+
+
+    .logo {
+
+        position: absolute;
+
+        top: 25px;
+
+        left: 50%;
+
+        transform: translateX(-50%);
+
+        font-size: 25px;
+    }
+
+
+    .navItems {
+
+        position: absolute;
+
+        top: 65px;
+
+        right: 12px;
+
+        transform: none;
+
+        width: calc(100% - 24px);
+
+        justify-content: flex-end;
+
+        gap: 6px;
+    }
+
+
+    .bookingButton,
+    .navButton,
+    .navButtonOutline {
+
+        padding: 8px 12px;
 
         font-size: 11px;
     }
 
+
     .navUsername {
         font-size: 12px;
     }
+}
 
+
+/* ===========================
+        SMALL MOBILE
+=========================== */
+
+@media (max-width:480px) {
+
+    .navContainer {
+
+        min-height: 100px;
+
+        padding: 10px;
+    }
+
+
+    .logo {
+
+        top: 22px;
+
+        font-size: 21px;
+
+        letter-spacing: .5px;
+    }
+
+
+    .navItems {
+
+        top: 62px;
+
+        right: 8px;
+
+        width: calc(100% - 16px);
+
+        gap: 5px;
+    }
+
+
+    .bookingButton,
+    .navButton,
+    .navButtonOutline {
+
+        padding: 7px 9px;
+
+        font-size: 10px;
+    }
+
+
+    .navUsername {
+        font-size: 11px;
+    }
 }
