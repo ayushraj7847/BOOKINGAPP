@@ -156,7 +156,7 @@
 
   color: #b5b5b5;
 
-  font-size: 14px;
+  font-size: 16px;
 
   letter-spacing: 0.4px;
 }
@@ -198,7 +198,7 @@
 
   color: #ffffff;
 
-  font-size: 14px;
+  font-size: 24px;
 
   transition: all 0.3s ease;
 }
@@ -251,7 +251,7 @@
 
   color: #aaa;
 
-  font-size: 12px;
+  font-size: 18px;
 }
 
 
@@ -284,7 +284,7 @@
 .forgotPassword {
   color: #d4af37;
 
-  font-size: 12px;
+  font-size: 18px;
 
   cursor: pointer;
 
@@ -299,11 +299,7 @@
 }
 
 
-/*
-   Agar passwordBox ke andar wala
-   duplicate "Forgot password?" visible ho raha hai,
-   to usko hide karenge.
-*/
+
 
 .passwordBox > .forgotPassword {
   display: none;
@@ -333,7 +329,7 @@
 
   color: #111;
 
-  font-size: 15px;
+  font-size: 25px;
 
   font-weight: 800;
 
@@ -434,7 +430,7 @@
 
   color: #888;
 
-  font-size: 12px;
+  font-size: 18px;
 
   white-space: nowrap;
 }
@@ -459,7 +455,7 @@
 
   color: #eeeeee;
 
-  font-size: 13px;
+  font-size: 18px;
 
   font-weight: 500;
 
@@ -502,7 +498,7 @@
 
   margin-right: 9px;
 
-  font-size: 16px;
+  font-size: 18px;
 
   font-weight: 700;
 
@@ -529,7 +525,7 @@
 
   color: #ffffff;
 
-  font-size: 17px;
+  font-size: 20px;
 }
 
 
@@ -544,7 +540,7 @@
 
   color: #888;
 
-  font-size: 12px;
+  font-size: 22px;
 
   position: relative;
 

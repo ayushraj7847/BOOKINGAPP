@@ -1,61 +1,691 @@
+/* =========================================================
+        STAYVORA PREMIUM REGISTER
+        SAME LOOK AS LOGIN PAGE
+========================================================= */
+
 .register {
   width: 100%;
-  min-height: calc(100vh - 80px);
+  min-height: 100vh;
+
+  position: relative;
+
   display: flex;
-  justify-content: center;
   align-items: center;
-  background: #f5f5f5;
+  justify-content: center;
+
+  padding: 0;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+
+  color: #fff;
+
+  /* SAME LOGIN BACKGROUND */
+
+  background-image:
+    linear-gradient(
+      rgba(0, 0, 0, 0.42),
+      rgba(0, 0, 0, 0.52)
+    ),
+    url("/stayvora-login.jpg");
+
+  background-repeat: no-repeat;
+
+  background-position: center center;
+
+  background-size: cover;
+
+  background-color: #050505;
 }
+
+
+/* =========================================================
+        BACKGROUND OVERLAY
+========================================================= */
+
+.register::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.08),
+      rgba(0, 0, 0, 0.16)
+    );
+
+  pointer-events: none;
+
+  z-index: 1;
+}
+
+
+/* =========================================================
+        REGISTER SECTION
+========================================================= */
+
+.registerSection {
+  width: 100%;
+
+  min-height: 100vh;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  position: relative;
+
+  z-index: 2;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+        REGISTER CARD
+        SAME STYLE AS LOGIN CARD
+========================================================= */
 
 .rContainer {
-  width: 360px;
-  background: white;
-  padding: 35px;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+  width: 450px;
+
+  padding: 38px 38px 30px;
+
+  box-sizing: border-box;
+
+  position: relative;
+
+  overflow: hidden;
+
+  border-radius: 20px;
+
+  border: 1px solid rgba(212, 175, 55, 0.78);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(14, 14, 14, 0.93),
+      rgba(5, 5, 5, 0.97)
+    );
+
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.82),
+    0 0 35px rgba(212, 175, 55, 0.12),
+    inset 0 0 25px rgba(212, 175, 55, 0.03);
+
+  backdrop-filter: blur(8px);
 }
 
-.rContainer h1 {
-  text-align: center;
-  margin-bottom: 25px;
-  color: #222;
+
+/* =========================================================
+        GOLD GLOW
+========================================================= */
+
+.rContainer::before {
+  content: "";
+
+  position: absolute;
+
+  top: -120px;
+
+  right: -120px;
+
+  width: 240px;
+
+  height: 240px;
+
+  border-radius: 50%;
+
+  background: rgba(212, 175, 55, 0.07);
+
+  filter: blur(50px);
+
+  pointer-events: none;
 }
+
+
+/* =========================================================
+        REGISTER TITLE
+        SAME AS LOGIN TITLE
+========================================================= */
+
+.registerTitle {
+  position: relative;
+
+  z-index: 2;
+
+  text-align: center;
+
+  margin-bottom: 25px;
+}
+
+
+.registerTitle h1 {
+  margin: 0;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 34px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.5px;
+
+  color: #ffffff;
+}
+
+
+.registerTitle h1 span {
+  color: #d4af37;
+}
+
+
+.registerTitle p {
+  margin: 8px 0 0;
+
+  color: #a8a8a8;
+
+  font-size: 12px;
+
+  letter-spacing: 0.3px;
+}
+
+
+/* =========================================================
+        FORM
+========================================================= */
 
 .rContainer form {
+  width: 100%;
+
+  position: relative;
+
+  z-index: 2;
+
   display: flex;
+
   flex-direction: column;
-  gap: 15px;
+
+  box-sizing: border-box;
 }
+
+
+/* =========================================================
+        INPUTS
+========================================================= */
 
 .rInput {
-  height: 45px;
-  padding: 0 12px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  width: 100%;
+
+  height: 48px;
+
+  padding: 0 14px;
+
+  margin: 0 0 10px;
+
+  box-sizing: border-box;
+
+  border-radius: 9px;
+
+  border: 1px solid rgba(255, 255, 255, 0.14);
+
   outline: none;
+
+  background: rgba(255, 255, 255, 0.055);
+
+  color: #ffffff;
+
+  font-size: 25px;
+
+  transition: all 0.3s ease;
 }
+
+
+.rInput::placeholder {
+  color: #858585;
+
+  text-transform: capitalize;
+}
+
+
+.rInput:hover {
+  border-color: rgba(212, 175, 55, 0.35);
+}
+
 
 .rInput:focus {
-  border-color: #003b95;
+  border-color: #d4af37;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  box-shadow:
+    0 0 0 2px rgba(212, 175, 55, 0.08),
+    0 0 18px rgba(212, 175, 55, 0.09);
 }
+
+
+/* =========================================================
+        REGISTER BUTTON
+        SAME GOLD AS LOGIN
+========================================================= */
 
 .rButton {
-  height: 45px;
+  width: 100%;
+
+  height: 48px;
+
+  margin-top: 4px;
+
+  padding: 0 14px;
+
   border: none;
-  background: #003b95;
-  color: white;
-  font-weight: 600;
-  border-radius: 5px;
+
+  border-radius: 9px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #c99b24,
+      #f5d06f,
+      #d4af37
+    );
+
+  color: #111111;
+
+  font-size: 25px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.7px;
+
   cursor: pointer;
+
+  box-sizing: border-box;
+
+  transition: all 0.3s ease;
+
+  box-shadow:
+    0 8px 25px rgba(212, 175, 55, 0.18);
 }
+
+
+.rButton:hover {
+  transform: translateY(-2px);
+
+  background:
+    linear-gradient(
+      135deg,
+      #d4af37,
+      #ffe08a,
+      #d4af37
+    );
+
+  box-shadow:
+    0 12px 30px rgba(212, 175, 55, 0.30);
+}
+
+
+.rButton:active {
+  transform: translateY(0);
+}
+
 
 .rButton:disabled {
-  opacity: 0.7;
+  opacity: 0.6;
+
   cursor: not-allowed;
+
+  transform: none;
 }
 
+
+/* =========================================================
+        ERROR
+========================================================= */
+
 .registerError {
-  color: red;
+  display: block;
+
+  margin-top: 10px;
+
   text-align: center;
-  font-size: 14px;
+
+  color: #ff6b6b;
+
+  font-size: 11px;
+
+  line-height: 1.4;
+}
+
+
+/* =========================================================
+        BACK TO HOME
+========================================================= */
+
+.backHomeButton {
+  width: 100%;
+
+  height: 42px;
+
+  margin-top: 10px;
+
+  padding: 0 14px;
+
+  border-radius: 9px;
+
+  border: 1px solid #d4af37;
+
+  background: rgba(212, 175, 55, 0.06);
+
+  color: #d4af37;
+
+  font-size: 20px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-sizing: border-box;
+
+  transition: all 0.3s ease;
+}
+
+
+.backHomeButton:hover {
+  background: #d4af37;
+
+  color: #111111;
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 8px 20px rgba(212, 175, 55, 0.20);
+}
+
+
+/* =========================================================
+        BOTTOM QUOTE
+        SAME POSITIONING IDEA AS LOGIN
+========================================================= */
+
+.registerQuote {
+  position: fixed;
+
+  right: 45px;
+
+  bottom: 30px;
+
+  z-index: 3;
+
+  text-align: right;
+
+  color: #d4af37;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 17px;
+
+  font-style: italic;
+
+  line-height: 1.4;
+
+  text-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.85);
+}
+
+
+/* =========================================================
+        DESKTOP
+========================================================= */
+
+@media (min-width: 1100px) {
+
+  .register {
+    padding: 0;
+  }
+
+  .rContainer {
+    width: 450px;
+
+    padding: 38px 38px 30px;
+  }
+
+  .registerTitle h1 {
+    font-size: 34px;
+  }
+}
+
+
+/* =========================================================
+        TABLET
+========================================================= */
+
+@media (max-width: 768px) {
+
+  .register {
+    width: 100%;
+
+    min-height: 100vh;
+
+    padding: 25px 18px;
+
+    background-attachment: scroll;
+
+    background-position: center center;
+
+    background-size: cover;
+
+    overflow-y: auto;
+  }
+
+
+  .registerSection {
+    width: 100%;
+
+    min-height: auto;
+
+    padding: 20px 0;
+  }
+
+
+  .rContainer {
+    width: 100%;
+
+    max-width: 430px;
+
+    padding: 34px 28px 28px;
+
+    border-radius: 18px;
+  }
+
+
+  .registerTitle {
+    margin-bottom: 23px;
+  }
+
+
+  .registerTitle h1 {
+    font-size: 29px;
+  }
+
+
+  .registerTitle p {
+    font-size: 11px;
+  }
+
+
+  .rInput {
+    height: 49px;
+
+    font-size: 12px;
+  }
+
+
+  .rButton {
+    height: 49px;
+
+    font-size: 12px;
+  }
+
+
+  .backHomeButton {
+    height: 43px;
+
+    font-size: 11px;
+  }
+
+
+  .registerQuote {
+    display: none;
+  }
+}
+
+
+/* =========================================================
+        MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+  .register {
+    padding: 18px 12px;
+
+    background-attachment: scroll;
+
+    background-position: center center;
+
+    background-size: cover;
+  }
+
+
+  .registerSection {
+    padding: 10px 0;
+  }
+
+
+  .rContainer {
+    width: 100%;
+
+    max-width: 390px;
+
+    padding: 30px 20px 24px;
+
+    border-radius: 16px;
+  }
+
+
+  .registerTitle {
+    margin-bottom: 20px;
+  }
+
+
+  .registerTitle h1 {
+    font-size: 26px;
+  }
+
+
+  .registerTitle p {
+    font-size: 10px;
+  }
+
+
+  .rInput {
+    height: 46px;
+
+    margin-bottom: 9px;
+
+    padding: 0 12px;
+
+    font-size: 11px;
+  }
+
+
+  .rButton {
+    height: 46px;
+
+    font-size: 11px;
+  }
+
+
+  .backHomeButton {
+    height: 40px;
+
+    margin-top: 9px;
+
+    font-size: 10px;
+  }
+
+
+  .registerError {
+    font-size: 10px;
+  }
+}
+
+
+/* =========================================================
+        EXTRA SMALL MOBILE
+========================================================= */
+
+@media (max-width: 360px) {
+
+  .register {
+    padding: 12px 9px;
+  }
+
+
+  .rContainer {
+    padding: 26px 15px 20px;
+
+    border-radius: 14px;
+  }
+
+
+  .registerTitle {
+    margin-bottom: 18px;
+  }
+
+
+  .registerTitle h1 {
+    font-size: 23px;
+  }
+
+
+  .registerTitle p {
+    font-size: 9px;
+  }
+
+
+  .rInput {
+    height: 43px;
+
+    font-size: 10px;
+
+    margin-bottom: 8px;
+  }
+
+
+  .rButton {
+    height: 43px;
+
+    font-size: 10px;
+  }
+
+
+  .backHomeButton {
+    height: 38px;
+
+    font-size: 9px;
+  }
 }
