@@ -39,7 +39,7 @@ const Header = ({ type }) => {
   });
 
   const navigate = useNavigate();
-  const {user} = useContext(AuthContext)
+  const { user } = useContext(AuthContext);
 
   const handleOption = (name, operation) => {
     setOptions((prev) => ({
@@ -50,16 +50,25 @@ const Header = ({ type }) => {
           : prev[name] - 1,
     }));
   };
- 
-  const {dispatch} = useContext(SearchContext)
+
+  const { dispatch } = useContext(SearchContext);
 
   const handleSearch = () => {
-    dispatch({type:"NEW_SEARCH",payload:{destination,date,options}})
+    dispatch({
+      type: "NEW_SEARCH",
+      payload: {
+        destination,
+        date,
+        options,
+      },
+    });
+
     navigate("/hotels", {
       state: {
         destination,
         date,
         options,
+        fromSearch: true,
       },
     });
   };
@@ -73,16 +82,18 @@ const Header = ({ type }) => {
             : "headerContainer"
         }
       >
+
         {/* HEADER MENU */}
 
-        
 
         {type !== "list" && (
           <>
             {/* HERO SECTION */}
 
             <div className="heroSection">
+
               <div className="heroLeft">
+
                 <div className="offerTag">
                   EXCLUSIVE OFFERS
                 </div>
@@ -105,22 +116,27 @@ const Header = ({ type }) => {
                 </p>
 
                 {!user && (
-  <button
-    className="headerBtn"
-    onClick={() => navigate("/register")}
-  >
-    Sign in / Register
-  </button>
-)}
+                  <button
+                    className="headerBtn"
+                    onClick={() => navigate("/register")}
+                  >
+                    Sign in / Register
+                  </button>
+                )}
+
               </div>
 
               <div className="heroRight"></div>
+
             </div>
+
 
             {/* SEARCH */}
 
             <div className="headerSearch">
+
               <div className="headerSearchItem">
+
                 <FontAwesomeIcon
                   icon={faBed}
                   className="headerIcon"
@@ -134,9 +150,12 @@ const Header = ({ type }) => {
                     setDestination(e.target.value)
                   }
                 />
+
               </div>
 
+
               <div className="headerSearchItem">
+
                 <FontAwesomeIcon
                   icon={faCalendarDays}
                   className="headerIcon"
@@ -169,9 +188,12 @@ const Header = ({ type }) => {
                     minDate={new Date()}
                   />
                 )}
+
               </div>
 
+
               <div className="headerSearchItem">
+
                 <FontAwesomeIcon
                   icon={faPerson}
                   className="headerIcon"
@@ -188,12 +210,15 @@ const Header = ({ type }) => {
 
                 {openOptions && (
                   <div className="options">
+
                     <div className="optionItem">
+
                       <span className="optionText">
                         Adult
                       </span>
 
                       <div className="optionCounter">
+
                         <button
                           disabled={
                             options.adult <= 1
@@ -224,15 +249,20 @@ const Header = ({ type }) => {
                         >
                           +
                         </button>
+
                       </div>
+
                     </div>
 
+
                     <div className="optionItem">
+
                       <span className="optionText">
                         Children
                       </span>
 
                       <div className="optionCounter">
+
                         <button
                           disabled={
                             options.children <= 0
@@ -263,15 +293,20 @@ const Header = ({ type }) => {
                         >
                           +
                         </button>
+
                       </div>
+
                     </div>
 
+
                     <div className="optionItem">
+
                       <span className="optionText">
                         Room
                       </span>
 
                       <div className="optionCounter">
+
                         <button
                           disabled={
                             options.room <= 1
@@ -302,23 +337,33 @@ const Header = ({ type }) => {
                         >
                           +
                         </button>
+
                       </div>
+
                     </div>
+
                   </div>
                 )}
+
               </div>
 
+
               <div className="headerSearchItem">
+
                 <span
                   className="headerBtn"
                   onClick={handleSearch}
                 >
                   Search
                 </span>
+
               </div>
+
             </div>
+
           </>
         )}
+
       </div>
     </div>
   );

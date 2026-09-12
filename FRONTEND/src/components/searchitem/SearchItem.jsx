@@ -8,14 +8,20 @@ import {
   faStar,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
-const SearchItem = ({item}) => {
+const SearchItem = ({ item }) => {
+  const location = useLocation();
+
+  const fromSearch =
+    location.state?.fromSearch === true;
+
   return (
     <div className="searchItem">
 
       {/* Hotel Image */}
       <div className="siImageContainer">
+
         <img
           src={item.photos[0]}
           alt="Hotel"
@@ -35,7 +41,9 @@ const SearchItem = ({item}) => {
           <span>4.8</span>
           <small>(128 reviews)</small>
         </div>
+
       </div>
+
 
       {/* Hotel Details */}
       <div className="siDesc">
@@ -50,6 +58,7 @@ const SearchItem = ({item}) => {
         </span>
 
         <div className="siHighlights">
+
           <span className="green">
             ✓ Free cancellation
           </span>
@@ -57,6 +66,7 @@ const SearchItem = ({item}) => {
           <span>
             Pay at the property
           </span>
+
         </div>
 
         <p className="siSubtitle">
@@ -64,39 +74,52 @@ const SearchItem = ({item}) => {
         </p>
 
         <div className="siFeatures">
-         <span>{item.desc}</span>
-         
+          <span>
+            {item.desc}
+          </span>
         </div>
 
       </div>
 
+
       {/* Price Section */}
       <div className="siDetails">
 
-        {item.rating && <div className="siRating">
+        {item.rating && (
+          <div className="siRating">
 
-          <span>Excellent</span>
+            <span>
+              Excellent
+            </span>
 
-          <button>
-            {item.rating}
-          </button>
+            <button>
+              {item.rating}
+            </button>
 
-        </div>}
+          </div>
+        )}
+
 
         <div className="siDetailTexts">
 
           <span className="siPrice">
-            ${item.cheapestPrice}
+            ₹{item.cheapestPrice}
           </span>
 
           <span className="siTaxOp">
             Includes taxes & fees
           </span>
-          <Link  to={`/hotels/${item._id}`}>
-          <button className="siCheckButton">
-            See availability
-          </button>
 
+
+          <Link
+            to={`/hotels/${item._id}`}
+            state={{
+              fromSearch: fromSearch,
+            }}
+          >
+            <button className="siCheckButton">
+              See availability
+            </button>
           </Link>
 
         </div>
