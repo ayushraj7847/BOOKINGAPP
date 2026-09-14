@@ -1,11 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/home/Home";
-import List from "./pages/list/list";
+import List from "./pages/list/List";
 import Hotel from "./pages/hotel/Hotel";
 import Login from "./pages/login/Login";
 import MyBookings from "./pages/myBookings/MyBookings";
 import Register from "./pages/register/Register";
-
 import { SearchContextProvider } from "./components/context/searchContext";
 
 function App() {
