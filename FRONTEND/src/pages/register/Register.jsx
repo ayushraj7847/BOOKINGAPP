@@ -4,6 +4,8 @@ import axios from "axios";
 import { AuthContext } from "../../components/context/AuthContext.jsx";
 import { useNavigate } from "react-router-dom";
 
+const API_URL = import.meta.env.VITE_API_URL || "/api";
+
 const Register = () => {
   const [credentials, setCredentials] = useState({
     username: "",
@@ -14,7 +16,6 @@ const Register = () => {
   });
 
   const { dispatch, error, loading } = useContext(AuthContext);
-
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -48,7 +49,7 @@ const Register = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:8800/api/auth/register",
+        `${API_URL}/auth/register`,
         credentials,
         {
           withCredentials: true,
@@ -88,7 +89,7 @@ const Register = () => {
         <h1>Create Account</h1>
 
         <form onSubmit={handleClick}>
-
+          {/* USERNAME */}
           <input
             type="text"
             placeholder="username"
@@ -99,6 +100,7 @@ const Register = () => {
             autoComplete="username"
           />
 
+          {/* EMAIL */}
           <input
             type="email"
             placeholder="email"
@@ -109,6 +111,7 @@ const Register = () => {
             autoComplete="email"
           />
 
+          {/* COUNTRY */}
           <input
             type="text"
             placeholder="country"
@@ -119,6 +122,7 @@ const Register = () => {
             autoComplete="country-name"
           />
 
+          {/* CITY */}
           <input
             type="text"
             placeholder="city"
@@ -129,6 +133,7 @@ const Register = () => {
             autoComplete="address-level2"
           />
 
+          {/* PASSWORD */}
           <input
             type="password"
             placeholder="password"
@@ -172,7 +177,6 @@ const Register = () => {
           >
             ← Back to Home
           </button>
-
         </form>
       </div>
     </div>

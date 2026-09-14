@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext.jsx";
 import axios from "axios";
 
+const API_URL = import.meta.env.VITE_API_URL || "/api";
+
 const Navbar = () => {
   const { user, dispatch } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -11,7 +13,7 @@ const Navbar = () => {
   const handleLogout = async () => {
     try {
       await axios.post(
-        "http://localhost:8800/api/auth/logout",
+        `${API_URL}/auth/logout`,
         {},
         {
           withCredentials: true,
@@ -32,19 +34,14 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <div className="navContainer">
-
         {/* CENTER - LOGO */}
-        <Link
-          to="/"
-          className="logo"
-        >
+        <Link to="/" className="logo">
           ✧ Stayvora.com ✧
         </Link>
 
         {/* RIGHT - USER */}
         {user ? (
           <div className="navItems">
-
             <button
               className="bookingButton"
               onClick={() => navigate("/mybookings")}
@@ -62,11 +59,9 @@ const Navbar = () => {
             >
               Logout
             </button>
-
           </div>
         ) : (
           <div className="navItems">
-
             <Link to="/register">
               <button className="navButtonOutline">
                 Register
@@ -78,10 +73,8 @@ const Navbar = () => {
                 Login
               </button>
             </Link>
-
           </div>
         )}
-
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import "./list.css";
 import Header from "../../components/header/Header";
 import Navbar from "../../components/navbar/Navbar";
-import SearchItem from "../../components/searchItem/SearchItem";
+import SearchItem from "../../components/searchitem/SearchItem";
 import useFetch from "../../hooks/useFetch";
 import { useLocation } from "react-router-dom";
 import { useContext } from "react";

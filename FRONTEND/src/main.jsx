@@ -4,7 +4,9 @@ import App from "./App.jsx";
 import { SearchContextProvider } from "./components/context/searchContext.jsx";
 import { AuthContextProvider } from "./components/context/AuthContext";
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+ReactDOM.createRoot(
+  document.getElementById("root")
+).render(
   <React.StrictMode>
     <AuthContextProvider>
       <SearchContextProvider>

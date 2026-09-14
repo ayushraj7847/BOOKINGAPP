@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 
 const MyBookings = () => {
   const navigate = useNavigate();
-
   const { user } = useContext(AuthContext);
 
   const { data, loading, error } = useFetch("/bookings/user");
@@ -38,11 +37,7 @@ const MyBookings = () => {
   return (
     <div className="myBookings">
       <div className="myBookingsContainer">
-
-        {/* =========================
-              HEADER
-        ========================= */}
-
+        {/* HEADER */}
         <div
           style={{
             display: "flex",
@@ -69,61 +64,39 @@ const MyBookings = () => {
           </button>
         </div>
 
-        {/* =========================
-              LOADING
-        ========================= */}
-
+        {/* LOADING */}
         {loading && (
           <div className="bookingMessage">
             Loading your bookings...
           </div>
         )}
 
-        {/* =========================
-              ERROR
-        ========================= */}
-
+        {/* ERROR */}
         {error && (
           <div className="bookingMessage error">
             Something went wrong!
           </div>
         )}
 
-        {/* =========================
-              NO BOOKINGS
-        ========================= */}
-
+        {/* NO BOOKINGS */}
         {!loading && !error && data.length === 0 && (
           <div className="bookingMessage">
             <h2>No bookings found</h2>
-
-            <p>
-              You haven't made any bookings yet.
-            </p>
+            <p>You haven't made any bookings yet.</p>
           </div>
         )}
 
-        {/* =========================
-              BOOKINGS
-        ========================= */}
-
+        {/* BOOKINGS */}
         {!loading && !error && data.length > 0 && (
           <div className="bookingList">
-
             {data.map((booking) => (
               <div
                 className="bookingCard"
                 key={booking._id}
               >
-
-                {/* =========================
-                      BOOKING TOP
-                ========================= */}
-
+                {/* BOOKING TOP */}
                 <div className="bookingTop">
-
                   <div>
-
                     <h2>
                       {booking.hotel?.name || "Hotel"}
                     </h2>
@@ -131,31 +104,22 @@ const MyBookings = () => {
                     <span className="bookingCity">
                       📍 {booking.hotel?.city || "India"}
                     </span>
-
                   </div>
 
                   <span
                     className={`bookingStatus ${
-                      booking.status?.toLowerCase() || "pending"
+                      booking.status?.toLowerCase() ||
+                      "pending"
                     }`}
                   >
                     {booking.status || "Pending"}
                   </span>
-
                 </div>
 
-
-                {/* =========================
-                      BOOKING DETAILS
-                ========================= */}
-
+                {/* BOOKING DETAILS */}
                 <div className="bookingDetails">
-
                   <div className="bookingDetail">
-
-                    <span>
-                      Check-in
-                    </span>
+                    <span>Check-in</span>
 
                     <strong>
                       {booking.checkIn
@@ -164,15 +128,10 @@ const MyBookings = () => {
                           ).toLocaleDateString("en-IN")
                         : "N/A"}
                     </strong>
-
                   </div>
 
-
                   <div className="bookingDetail">
-
-                    <span>
-                      Check-out
-                    </span>
+                    <span>Check-out</span>
 
                     <strong>
                       {booking.checkOut
@@ -181,28 +140,18 @@ const MyBookings = () => {
                           ).toLocaleDateString("en-IN")
                         : "N/A"}
                     </strong>
-
                   </div>
 
-
                   <div className="bookingDetail">
-
-                    <span>
-                      Rooms
-                    </span>
+                    <span>Rooms</span>
 
                     <strong>
                       {booking.rooms?.length || 0}
                     </strong>
-
                   </div>
 
-
                   <div className="bookingDetail">
-
-                    <span>
-                      Room No.
-                    </span>
+                    <span>Room No.</span>
 
                     <strong>
                       {booking.rooms?.length > 0
@@ -214,31 +163,19 @@ const MyBookings = () => {
                             .join(", ")
                         : "N/A"}
                     </strong>
-
                   </div>
 
-
                   <div className="bookingDetail">
-
-                    <span>
-                      Total Price
-                    </span>
+                    <span>Total Price</span>
 
                     <strong className="bookingPrice">
                       ₹{booking.totalPrice || 0}
                     </strong>
-
                   </div>
-
                 </div>
 
-
-                {/* =========================
-                      BOOKING BOTTOM
-                ========================= */}
-
+                {/* BOOKING BOTTOM */}
                 <div className="bookingBottom">
-
                   <span>
                     Booking ID: {booking._id}
                   </span>
@@ -251,15 +188,11 @@ const MyBookings = () => {
                         ).toLocaleDateString("en-IN")
                       : "N/A"}
                   </span>
-
                 </div>
-
               </div>
             ))}
-
           </div>
         )}
-
       </div>
     </div>
   );

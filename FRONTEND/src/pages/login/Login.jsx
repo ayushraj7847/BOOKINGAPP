@@ -4,6 +4,8 @@ import "./login.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
+const API_URL = import.meta.env.VITE_API_URL || "/api";
+
 const Login = () => {
   const [credentials, setCredential] = useState({
     username: undefined,
@@ -27,7 +29,7 @@ const Login = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:8800/api/auth/login",
+        `${API_URL}/auth/login`,
         credentials,
         {
           withCredentials: true,
@@ -59,15 +61,10 @@ const Login = () => {
 
   return (
     <div className="login">
-
-      {/* =================================
-              LEFT STAYVORA SECTION
-      ================================= */}
+      {/* LEFT STAYVORA SECTION */}
 
       {/* <div className="loginBrand">
-
         <div className="brandOverlay">
-
           <div className="brandLogo">
             ✧ Stayvora.com ✧
           </div>
@@ -85,54 +82,50 @@ const Login = () => {
           </p>
 
           <div className="brandFeatures">
-
             <div className="brandFeature">
               <div className="featureIcon">🛏</div>
-              <span>Premium<br />Stays</span>
+              <span>
+                Premium
+                <br />
+                Stays
+              </span>
             </div>
 
             <div className="brandFeature">
               <div className="featureIcon">♢</div>
-              <span>Trusted<br />Bookings</span>
+              <span>
+                Trusted
+                <br />
+                Bookings
+              </span>
             </div>
 
             <div className="brandFeature">
               <div className="featureIcon">♡</div>
-              <span>Memorable<br />Experiences</span>
+              <span>
+                Memorable
+                <br />
+                Experiences
+              </span>
             </div>
-
           </div>
-
         </div>
+      </div> */}
 
-      </div>
- */}
-
-      {/* =================================
-              RIGHT LOGIN SECTION
-      ================================= */}
+      {/* RIGHT LOGIN SECTION */}
 
       <div className="loginSection">
-
         <div className="lContainer">
-
           <div className="loginTitle">
-
             <h1>
               <span>Welcome</span> Back
             </h1>
 
-            <p>
-              Sign in to continue your journey
-            </p>
-
+            <p>Sign in to continue your journey</p>
           </div>
 
-
           <form onSubmit={handleClick}>
-
             {/* Username */}
-
             <input
               type="text"
               placeholder="Username"
@@ -142,9 +135,7 @@ const Login = () => {
               autoComplete="username"
             />
 
-
             {/* Password */}
-
             <input
               type="password"
               placeholder="Password"
@@ -154,28 +145,19 @@ const Login = () => {
               autoComplete="current-password"
             />
 
-
             {/* Login Options */}
-
             <div className="loginOptions">
-
               <label>
                 <input type="checkbox" />
-
-                <span>
-                  Remember me
-                </span>
+                <span>Remember me</span>
               </label>
 
               <span className="forgotPassword">
                 Forgot password?
               </span>
-
             </div>
 
-
             {/* Login Button */}
-
             <button
               type="submit"
               className="lButton"
@@ -184,96 +166,58 @@ const Login = () => {
               {loading ? "LOGGING IN..." : "LOGIN  →"}
             </button>
 
-
             {/* Error */}
-
             {error && (
               <span className="loginError">
                 {error.message}
               </span>
             )}
-
           </form>
 
-
-          {/* =================================
-                  SOCIAL LOGIN
-          ================================= */}
+          {/* SOCIAL LOGIN */}
 
           <div className="divider">
-
             <span></span>
-
-            <p>
-              or continue with
-            </p>
-
+            <p>or continue with</p>
             <span></span>
-
           </div>
 
-
           {/* Google */}
-
           <button
             type="button"
             className="socialButton"
           >
-
-            <span className="googleIcon">
-              G
-            </span>
-
+            <span className="googleIcon">G</span>
             Continue with Google
-
           </button>
-
 
           {/* Apple */}
-
           <button
             type="button"
             className="socialButton"
           >
-
-            <span className="appleIcon">
-              
-            </span>
-
+            <span className="appleIcon"></span>
             Continue with Apple
-
           </button>
 
-
           {/* Register */}
-
           <div className="registerText">
-
-            <span>
-              New here?
-            </span>
+            <span>New here?</span>
 
             <Link to="/register">
               Create an account
             </Link>
-
           </div>
-
         </div>
-
       </div>
 
-
-      {/* =================================
-                BOTTOM QUOTE
-      ================================= */}
+      {/* BOTTOM QUOTE */}
 
       <div className="loginQuote">
         “Good Stays
         <br />
         Create Great Stories.”
       </div>
-
     </div>
   );
 };

@@ -4,6 +4,7 @@ import {
   faStar,
   faLocationDot,
 } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 
 const FeaturedPropeties = () => {
@@ -22,41 +23,47 @@ const FeaturedPropeties = () => {
   return (
     <div className="fp">
       {data.map((item) => (
-        <div className="fpItem" key={item._id}>
-          <img
-            src={item.photos?.[0]}
-            alt={item.name}
-            className="fpImg"
-          />
+        <Link
+          to={`/hotels/${item._id}`}
+          key={item._id}
+          style={{ textDecoration: "none", color: "inherit" }}
+        >
+          <div className="fpItem">
+            <img
+              src={item.photos?.[0]}
+              alt={item.name}
+              className="fpImg"
+            />
 
-          <div className="fpContent">
-            {item.rating && (
-              <div className="fpRating">
-                <button>{item.rating}</button>
-                <span>Excellent</span>
-              </div>
-            )}
+            <div className="fpContent">
+              {item.rating && (
+                <div className="fpRating">
+                  <button>{item.rating}</button>
+                  <span>Excellent</span>
+                </div>
+              )}
 
-            <h2 className="fpName">{item.name}</h2>
+              <h2 className="fpName">{item.name}</h2>
 
-            <span className="fpCity">
-              <FontAwesomeIcon icon={faLocationDot} />
-              {item.city}
-            </span>
+              <span className="fpCity">
+                <FontAwesomeIcon icon={faLocationDot} />
+                {item.city}
+              </span>
 
-            <div className="fpBottom">
-              <div>
-                <h3>₹{item.cheapestPrice}</h3>
-                <small>/ night</small>
-              </div>
+              <div className="fpBottom">
+                <div>
+                  <h3>₹{item.cheapestPrice}</h3>
+                  <small>/ night</small>
+                </div>
 
-              <div className="fpDiscount">
-                <FontAwesomeIcon icon={faStar} />
-                10% Genius Discount
+                <div className="fpDiscount">
+                  <FontAwesomeIcon icon={faStar} />
+                  10% Genius Discount
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   );

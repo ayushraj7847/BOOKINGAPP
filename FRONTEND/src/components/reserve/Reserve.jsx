@@ -7,39 +7,29 @@ import { SearchContext } from "../context/searchContext";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 
+const API_URL = import.meta.env.VITE_API_URL || "/api";
+
 const Reserve = ({ setOpen, hotelId }) => {
   const [selectedRooms, setSelectedRooms] = useState([]);
 
-  const { data, loading, error } = useFetch(
-    `/hotels/room/${hotelId}`
-  );
+  const { data, loading, error } = useFetch(`/hotels/room/${hotelId}`);
 
-  const {
-    city,
-    date,
-    options,
-    hasSearched,
-  } = useContext(SearchContext);
+  const { city, date, options, hasSearched } = useContext(SearchContext);
 
   const navigate = useNavigate();
   const location = useLocation();
 
-  const fromSearch =
-    location.state?.fromSearch === true;
+  const fromSearch = location.state?.fromSearch === true;
 
   const getDatesInRange = (startDate, endDate) => {
     const start = new Date(startDate);
     const end = new Date(endDate);
-
     const list = [];
     const current = new Date(start.getTime());
 
     while (current <= end) {
       list.push(current.getTime());
-
-      current.setDate(
-        current.getDate() + 1
-      );
+      current.setDate(current.getDate() + 1);
     }
 
     return list;
@@ -50,20 +40,13 @@ const Reserve = ({ setOpen, hotelId }) => {
     date.length > 0 &&
     date[0]?.startDate &&
     date[0]?.endDate
-      ? getDatesInRange(
-          date[0].startDate,
-          date[0].endDate
-        )
+      ? getDatesInRange(date[0].startDate, date[0].endDate)
       : [];
 
   const isAvailable = (roomNumber) => {
-    const isFound =
-      roomNumber.unavailableDates.some(
-        (roomDate) =>
-          allDates.includes(
-            new Date(roomDate).getTime()
-          )
-      );
+    const isFound = roomNumber.unavailableDates.some((roomDate) =>
+      allDates.includes(new Date(roomDate).getTime())
+    );
 
     return !isFound;
   };
@@ -75,35 +58,22 @@ const Reserve = ({ setOpen, hotelId }) => {
     setSelectedRooms(
       checked
         ? [...selectedRooms, value]
-        : selectedRooms.filter(
-            (item) => item !== value
-          )
+        : selectedRooms.filter((item) => item !== value)
     );
   };
 
   const handleClick = async () => {
-
-    /* =========================================
-          DIRECT HOTEL ACCESS CHECK
-    ========================================= */
-
+    // Direct hotel access check
     if (!fromSearch) {
       alert(
         "Please fill your booking details first. Redirecting to home page..."
       );
-
       setOpen(false);
-
       navigate("/");
-
       return;
     }
 
-
-    /* =========================================
-          SEARCH DETAILS CHECK
-    ========================================= */
-
+    // Search details check
     if (
       !hasSearched ||
       !city ||
@@ -119,257 +89,137 @@ const Reserve = ({ setOpen, hotelId }) => {
       alert(
         "Please fill your booking details first. Redirecting to home page..."
       );
-
       setOpen(false);
-
       navigate("/");
-
       return;
     }
 
+    // Date validation
+    const startDate = new Date(date[0].startDate);
+    const endDate = new Date(date[0].endDate);
 
-    /* =========================================
-          DATE VALIDATION
-    ========================================= */
-
-    const startDate =
-      new Date(date[0].startDate);
-
-    const endDate =
-      new Date(date[0].endDate);
-
-    if (
-      isNaN(startDate.getTime()) ||
-      isNaN(endDate.getTime())
-    ) {
-      alert(
-        "Please select valid booking dates first."
-      );
-
+    if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
+      alert("Please select valid booking dates first.");
       setOpen(false);
-
       navigate("/");
-
       return;
     }
-
 
     if (endDate < startDate) {
-      alert(
-        "Check-out date must be after check-in date."
-      );
-
+      alert("Check-out date must be after check-in date.");
       setOpen(false);
-
       navigate("/");
-
       return;
     }
 
-
-    /* =========================================
-          ROOM CHECK
-    ========================================= */
-
+    // Room check
     if (selectedRooms.length === 0) {
       alert("Please select at least one room!");
       return;
     }
-
 
     if (allDates.length === 0) {
       alert("Please select your booking dates!");
       return;
     }
 
-
     try {
-
-      /* =========================================
-            UPDATE ROOM AVAILABILITY
-      ========================================= */
-
+      // Update room availability
       await Promise.all(
         selectedRooms.map((roomId) => {
           return axios.put(
-            `http://localhost:8800/api/rooms/availability/${roomId}`,
-            {
-              dates: allDates,
-            },
-            {
-              withCredentials: true,
-            }
+            `${API_URL}/rooms/availability/${roomId}`,
+            { dates: allDates },
+            { withCredentials: true }
           );
         })
       );
 
-
-      /* =========================================
-            CREATE BOOKING
-      ========================================= */
-
-      const bookingResponse =
-        await axios.post(
-          "http://localhost:8800/api/bookings",
-          {
-            hotelId: hotelId,
-            selectedRooms: selectedRooms,
-            dates: allDates,
-          },
-          {
-            withCredentials: true,
-          }
-        );
-
-
-      console.log(
-        "BOOKING CREATED:",
-        bookingResponse.data
+      // Create booking
+      const bookingResponse = await axios.post(
+        `${API_URL}/bookings`,
+        {
+          hotelId: hotelId,
+          selectedRooms: selectedRooms,
+          dates: allDates,
+        },
+        { withCredentials: true }
       );
 
+      console.log("BOOKING CREATED:", bookingResponse.data);
 
       alert("Booking successful!");
-
-
       setOpen(false);
-
       navigate("/");
-
     } catch (error) {
-
       console.log(
         "BOOKING ERROR:",
-        error.response?.data ||
-          error.message
+        error.response?.data || error.message
       );
 
-
-      if (
-        error.response?.status === 401
-      ) {
-        alert(
-          "Please login before booking!"
-        );
+      if (error.response?.status === 401) {
+        alert("Please login before booking!");
       } else {
         alert(
-          error.response?.data?.message ||
-            "Booking failed!"
+          error.response?.data?.message || "Booking failed!"
         );
       }
     }
   };
 
-
   if (loading) {
     return <h2>Loading...</h2>;
   }
 
-
   if (error) {
-    return (
-      <h2>
-        Something went wrong!
-      </h2>
-    );
+    return <h2>Something went wrong!</h2>;
   }
-
 
   return (
     <div className="reserve">
-
       <div className="rContainer">
-
         <FontAwesomeIcon
           icon={faCircleXmark}
           className="rClose"
-          onClick={() =>
-            setOpen(false)
-          }
+          onClick={() => setOpen(false)}
         />
 
-
-        <span>
-          Select your rooms
-        </span>
-
+        <span>Select your rooms</span>
 
         {data.map((item) => (
-          <div
-            className="rItem"
-            key={item._id}
-          >
-
+          <div className="rItem" key={item._id}>
             <div className="rItemInfo">
-
-              <div className="rTitle">
-                {item.title}
-              </div>
-
-
-              <div className="rDesc">
-                {item.desc}
-              </div>
-
+              <div className="rTitle">{item.title}</div>
+              <div className="rDesc">{item.desc}</div>
 
               <div className="rMax">
-                Max People:{" "}
-                <b>
-                  {item.maxPeople}
-                </b>
+                Max People: <b>{item.maxPeople}</b>
               </div>
 
-
-              <div className="rPrice">
-                ₹{item.price}
-              </div>
-
+              <div className="rPrice">₹{item.price}</div>
             </div>
-
 
             <div className="rSelectRooms">
+              {item.roomNumbers.map((roomNumber) => (
+                <div className="room" key={roomNumber._id}>
+                  <label>{roomNumber.number}</label>
 
-              {item.roomNumbers.map(
-                (roomNumber) => (
-                  <div
-                    className="room"
-                    key={roomNumber._id}
-                  >
-
-                    <label>
-                      {roomNumber.number}
-                    </label>
-
-
-                    <input
-                      type="checkbox"
-                      value={roomNumber._id}
-                      onChange={handleSelect}
-                      disabled={
-                        !isAvailable(
-                          roomNumber
-                        )
-                      }
-                    />
-
-                  </div>
-                )
-              )}
-
+                  <input
+                    type="checkbox"
+                    value={roomNumber._id}
+                    onChange={handleSelect}
+                    disabled={!isAvailable(roomNumber)}
+                  />
+                </div>
+              ))}
             </div>
-
           </div>
         ))}
 
-
-        <button
-          className="rButton"
-          onClick={handleClick}
-        >
+        <button className="rButton" onClick={handleClick}>
           Reserve Now!
         </button>
-
       </div>
-
     </div>
   );
 };
