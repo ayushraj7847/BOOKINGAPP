@@ -1,4 +1,4 @@
-import "./searchitem.css";
+import "./searchItem.css";
 import {
   faLocationDot,
   faHeart,
