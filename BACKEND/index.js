@@ -33,6 +33,7 @@ app.use(
       "http://localhost:3000",
       "http://localhost:3001",
       "http://localhost:5173",
+      "https://stayvora.vercel.app",
     ],
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
@@ -61,7 +62,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(8800, () => {
+app.listen(process.env.PORT || 8800, "0.0.0.0", () => {
   connect();
   console.log("Connected to backend");
 });
