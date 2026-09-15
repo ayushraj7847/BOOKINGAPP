@@ -3,6 +3,8 @@ import bcrypt from "bcryptjs";
 import JsonWebToken from "jsonwebtoken";
 import { createError } from "../utils/error.js";
 
+const isProduction = process.env.NODE_ENV === "production";
+
 export const register = async (req, res, next) => {
   try {
     const existingUser = await User.findOne({
@@ -46,8 +48,8 @@ export const register = async (req, res, next) => {
     res
       .cookie("access_token", token, {
         httpOnly: true,
-        secure: false,
-        sameSite: "lax",
+        secure: isProduction,
+        sameSite: isProduction ? "none" : "lax",
         maxAge: 24 * 60 * 60 * 1000,
       })
       .status(200)
@@ -57,11 +59,11 @@ export const register = async (req, res, next) => {
         },
         isAdmin,
       });
-
   } catch (err) {
     next(err);
   }
 };
+
 export const login = async (req, res, next) => {
   try {
     const user = await User.findOne({
@@ -91,13 +93,17 @@ export const login = async (req, res, next) => {
       process.env.JWT
     );
 
-    const { password, isAdmin, ...otherDetails } = user._doc;
+    const {
+      password,
+      isAdmin,
+      ...otherDetails
+    } = user._doc;
 
     res
       .cookie("access_token", token, {
         httpOnly: true,
-        secure: false,
-        sameSite: "lax",
+        secure: isProduction,
+        sameSite: isProduction ? "none" : "lax",
         maxAge: 24 * 60 * 60 * 1000,
       })
       .status(200)
