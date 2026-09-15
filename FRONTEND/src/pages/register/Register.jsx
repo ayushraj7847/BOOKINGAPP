@@ -163,17 +163,7 @@ const Register = () => {
           <button
             type="button"
             onClick={() => navigate("/")}
-            style={{
-              width: "100%",
-              padding: "10px 20px",
-              marginTop: "12px",
-              border: "1px solid #d4af37",
-              borderRadius: "25px",
-              background: "#d4af37",
-              color: "#111",
-              fontWeight: "600",
-              cursor: "pointer",
-            }}
+            className="backHomeButton"
           >
             ← Back to Home
           </button>
