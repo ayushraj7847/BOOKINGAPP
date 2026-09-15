@@ -1,28 +1,20 @@
 /* =========================================================
-        STAYVORA RESERVE / SELECT ROOMS
+   STAYVORA RESERVE / SELECT ROOMS
 ========================================================= */
 
 .reserve {
   width: 100vw;
-
   height: 100vh;
-
   background: rgba(45, 0, 0, 0.65);
-
   position: fixed;
-
-  top: 0;
-
-  left: 0;
-
-  z-index: 999;
+  inset: 0;
+  z-index: 999999;
 
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
+  padding: 20px;
   box-sizing: border-box;
 
   overflow: hidden;
@@ -30,48 +22,46 @@
 
 
 /* =========================================================
-        RESERVE CONTAINER
+   RESERVE CONTAINER
 ========================================================= */
 
 .rContainer {
   width: 850px;
+  max-width: 92vw;
 
-  max-width: 90%;
-
-  max-height: 85vh;
+  max-height: 88vh;
+  min-height: 0;
 
   background: #fffaf5;
 
   border-radius: 12px;
+  border-top: 5px solid #800020;
 
   padding: 30px;
 
   position: relative;
 
-  overflow-y: auto;
+  box-sizing: border-box;
 
+  overflow-y: auto;
   overflow-x: hidden;
+
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
 
   box-shadow:
     0 10px 40px rgba(0, 0, 0, 0.35);
-
-  border-top: 5px solid #800020;
-
-  box-sizing: border-box;
-
-  -webkit-overflow-scrolling: touch;
 }
 
 
 /* =========================================================
-        CLOSE ICON
+   CLOSE ICON
 ========================================================= */
 
 .rClose {
   position: absolute;
 
   top: 18px;
-
   right: 20px;
 
   font-size: 24px;
@@ -82,26 +72,23 @@
 
   transition: 0.2s ease;
 
-  z-index: 20;
+  z-index: 100;
 }
-
 
 .rClose:hover {
   color: #a00028;
-
   transform: scale(1.1);
 }
 
 
 /* =========================================================
-        HEADING
+   HEADING
 ========================================================= */
 
 .rContainer > span {
   display: block;
 
   font-size: 26px;
-
   font-weight: 700;
 
   color: #800020;
@@ -115,14 +102,15 @@
 
 
 /* =========================================================
-        ROOM ITEM
+   ROOM ITEM
 ========================================================= */
 
 .rItem {
+  width: 100%;
+
   display: flex;
 
   justify-content: space-between;
-
   align-items: flex-start;
 
   gap: 25px;
@@ -130,22 +118,19 @@
   background: #ffffff;
 
   border: 1px solid #ead8c5;
-
   border-left: 5px solid #800020;
 
   border-radius: 10px;
 
   padding: 20px;
-
   margin-bottom: 18px;
-
-  transition: 0.2s ease;
 
   box-sizing: border-box;
 
-  width: 100%;
-}
+  transition: 0.2s ease;
 
+  min-width: 0;
+}
 
 .rItem:hover {
   box-shadow:
@@ -156,19 +141,17 @@
 
 
 /* =========================================================
-        ROOM INFORMATION
+   ROOM INFORMATION
 ========================================================= */
 
 .rItemInfo {
   flex: 1;
-
   min-width: 0;
+  max-width: 100%;
 }
-
 
 .rTitle {
   font-size: 21px;
-
   font-weight: 700;
 
   color: #800020;
@@ -177,7 +160,6 @@
 
   word-break: break-word;
 }
-
 
 .rDesc {
   font-size: 14px;
@@ -191,7 +173,6 @@
   word-break: break-word;
 }
 
-
 .rMax {
   font-size: 14px;
 
@@ -202,17 +183,13 @@
   line-height: 1.4;
 }
 
-
 .rMax b {
   color: #800020;
-
   margin-left: 5px;
 }
 
-
 .rPrice {
   font-size: 20px;
-
   font-weight: 700;
 
   color: #800020;
@@ -220,14 +197,13 @@
 
 
 /* =========================================================
-        ROOM NUMBERS
+   ROOM NUMBERS
 ========================================================= */
 
 .rSelectRooms {
   display: flex;
 
   align-items: center;
-
   justify-content: flex-end;
 
   gap: 12px;
@@ -236,11 +212,17 @@
 
   max-width: 280px;
 
+  min-width: 0;
+
   flex-shrink: 0;
+
+  box-sizing: border-box;
 }
 
 
-/* Individual room */
+/* =========================================================
+   INDIVIDUAL ROOM
+========================================================= */
 
 .room {
   display: flex;
@@ -252,8 +234,9 @@
   gap: 6px;
 
   flex-shrink: 0;
-}
 
+  box-sizing: border-box;
+}
 
 .room label {
   min-width: 45px;
@@ -269,7 +252,6 @@
   border-radius: 6px;
 
   font-size: 13px;
-
   font-weight: 600;
 
   box-sizing: border-box;
@@ -277,40 +259,44 @@
 
 
 /* =========================================================
-        CHECKBOX
+   CHECKBOX
 ========================================================= */
 
 .room input[type="checkbox"] {
   width: 18px;
-
   height: 18px;
 
   accent-color: #800020;
 
   cursor: pointer;
-}
 
+  margin: 0;
+}
 
 .room input[type="checkbox"]:disabled {
   cursor: not-allowed;
-
   opacity: 0.4;
 }
 
 
 /* =========================================================
-        RESERVE BUTTON
+   RESERVE BUTTON
 ========================================================= */
 
 .rButton {
   width: 100%;
 
-  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 15px 0 5px;
+
+  min-height: 48px;
 
   padding: 14px 20px;
 
   border: none;
-
   border-radius: 8px;
 
   background: #800020;
@@ -318,7 +304,6 @@
   color: #ffd54f;
 
   font-size: 16px;
-
   font-weight: 700;
 
   cursor: pointer;
@@ -326,17 +311,16 @@
   transition: 0.25s ease;
 
   box-sizing: border-box;
-}
 
+  flex-shrink: 0;
+}
 
 .rButton:hover {
   background: #600018;
-
   color: #ffe082;
 
   transform: translateY(-1px);
 }
-
 
 .rButton:active {
   transform: translateY(0);
@@ -344,27 +328,22 @@
 
 
 /* =========================================================
-        SCROLLBAR
+   SCROLLBAR
 ========================================================= */
 
 .rContainer::-webkit-scrollbar {
   width: 7px;
 }
 
-
 .rContainer::-webkit-scrollbar-track {
   background: #f5e9df;
-
   border-radius: 10px;
 }
-
 
 .rContainer::-webkit-scrollbar-thumb {
   background: #800020;
-
   border-radius: 10px;
 }
-
 
 .rContainer::-webkit-scrollbar-thumb:hover {
   background: #600018;
@@ -372,14 +351,13 @@
 
 
 /* =========================================================
-        TABLET
+   TABLET
 ========================================================= */
 
 @media screen and (max-width: 900px) {
 
   .rContainer {
     width: 92%;
-
     max-width: 92%;
 
     max-height: 88vh;
@@ -387,23 +365,18 @@
     padding: 24px;
   }
 
-
   .rItem {
     gap: 18px;
   }
 
-
   .rSelectRooms {
     max-width: 240px;
-
     gap: 9px;
   }
-
 
   .rTitle {
     font-size: 19px;
   }
-
 
   .rDesc,
   .rMax {
@@ -413,487 +386,435 @@
 
 
 /* =========================================================
-        MOBILE
+   MOBILE
 ========================================================= */
 
 @media screen and (max-width: 700px) {
 
   .reserve {
-    width: 100vw !important;
+    width: 100vw;
+    height: 100vh;
 
-    height: 100vh !important;
+    min-height: 100vh;
 
-    min-height: 100vh !important;
+    padding: 10px 8px;
 
-    display: flex !important;
+    align-items: flex-start;
+    justify-content: center;
 
-    align-items: flex-start !important;
+    box-sizing: border-box;
 
-    justify-content: center !important;
-
-    padding: 12px 8px !important;
-
-    box-sizing: border-box !important;
-
-    overflow: hidden !important;
-
-    overflow-x: hidden !important;
-
-    overflow-y: hidden !important;
-
-    -webkit-overflow-scrolling: touch !important;
-
-    overscroll-behavior: contain !important;
+    overflow: hidden;
   }
 
 
-  /* =====================================================
-        MOBILE CONTAINER
-  ===================================================== */
+  /* Mobile container */
 
   .rContainer {
-    width: 100% !important;
+    width: 100%;
+    max-width: 430px;
 
-    max-width: 430px !important;
+    /*
+      Container screen ke andar rahega,
+      content andar scroll hoga.
+    */
 
-    height: auto !important;
+    height: auto;
 
-    max-height: calc(100vh - 24px) !important;
+    max-height: calc(100vh - 20px);
 
-    min-height: 0 !important;
+    min-height: 0;
 
-    margin: 0 auto !important;
+    margin: 0 auto;
 
-    padding: 20px 14px 18px !important;
+    padding: 18px 12px 16px;
 
-    box-sizing: border-box !important;
+    box-sizing: border-box;
 
-    border-radius: 12px !important;
+    overflow-y: auto;
+    overflow-x: hidden;
 
-    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
 
-    overflow-x: hidden !important;
+    overscroll-behavior: contain;
 
-    -webkit-overflow-scrolling: touch !important;
-
-    overscroll-behavior: contain !important;
-
-    touch-action: pan-y !important;
+    touch-action: pan-y;
   }
 
 
-  /* =====================================================
-        CLOSE BUTTON
-  ===================================================== */
-
-  .rClose {
-    position: absolute !important;
-
-    top: 12px !important;
-
-    right: 14px !important;
-
-    font-size: 22px !important;
-
-    z-index: 50 !important;
-  }
-
-
-  /* =====================================================
-        HEADING
-  ===================================================== */
+  /* Heading */
 
   .rContainer > span {
-    font-size: 21px !important;
+    display: block;
 
-    margin-bottom: 18px !important;
+    font-size: 21px;
 
-    padding-bottom: 10px !important;
+    margin-bottom: 15px;
 
-    padding-right: 35px !important;
+    padding-bottom: 10px;
 
-    line-height: 1.3 !important;
+    padding-right: 35px;
+
+    line-height: 1.3;
   }
 
 
-  /* =====================================================
-        ROOM CARD
-  ===================================================== */
+  /* Close button */
+
+  .rClose {
+    position: absolute;
+
+    top: 12px;
+    right: 12px;
+
+    font-size: 22px;
+
+    z-index: 100;
+  }
+
+
+  /* Room card */
 
   .rItem {
-    width: 100% !important;
+    width: 100%;
 
-    display: flex !important;
+    display: flex;
 
-    flex-direction: column !important;
+    flex-direction: column;
 
-    align-items: stretch !important;
+    align-items: stretch;
 
-    justify-content: flex-start !important;
+    justify-content: flex-start;
 
-    gap: 14px !important;
+    gap: 12px;
 
-    padding: 16px !important;
+    padding: 14px;
 
-    margin-bottom: 12px !important;
+    margin-bottom: 12px;
 
-    box-sizing: border-box !important;
+    box-sizing: border-box;
 
-    transform: none !important;
+    transform: none;
   }
-
 
   .rItem:hover {
-    transform: none !important;
+    transform: none;
 
     box-shadow:
-      0 4px 15px rgba(128, 0, 32, 0.10) !important;
+      0 4px 15px rgba(128, 0, 32, 0.10);
   }
 
 
-  /* =====================================================
-        ROOM INFO
-  ===================================================== */
+  /* Room information */
 
   .rItemInfo {
-    width: 100% !important;
+    width: 100%;
 
-    max-width: 100% !important;
+    max-width: 100%;
 
-    min-width: 0 !important;
+    min-width: 0;
 
-    flex: none !important;
+    flex: none;
   }
-
 
   .rTitle {
-    font-size: 18px !important;
+    font-size: 18px;
 
-    line-height: 1.3 !important;
+    line-height: 1.3;
 
-    margin-bottom: 7px !important;
+    margin-bottom: 6px;
   }
-
 
   .rDesc {
-    font-size: 12px !important;
+    font-size: 12px;
 
-    line-height: 1.5 !important;
+    line-height: 1.5;
 
-    margin-bottom: 9px !important;
+    margin-bottom: 8px;
   }
-
 
   .rMax {
-    font-size: 12px !important;
+    font-size: 12px;
 
-    margin-bottom: 9px !important;
+    margin-bottom: 8px;
   }
-
 
   .rPrice {
-    font-size: 18px !important;
+    font-size: 18px;
   }
 
 
-  /* =====================================================
-        ROOM SELECTION
-        IMPORTANT: actual class is rSelectRooms
-  ===================================================== */
+  /* Room numbers */
 
   .rSelectRooms {
-    width: 100% !important;
+    width: 100%;
 
-    max-width: 100% !important;
+    max-width: 100%;
 
-    min-width: 0 !important;
+    min-width: 0;
 
-    display: flex !important;
+    display: flex;
 
-    align-items: flex-start !important;
+    flex-wrap: wrap;
 
-    justify-content: flex-start !important;
+    align-items: flex-start;
 
-    flex-wrap: wrap !important;
+    justify-content: flex-start;
 
-    gap: 10px !important;
+    gap: 9px;
 
-    box-sizing: border-box !important;
+    box-sizing: border-box;
 
-    flex-shrink: 0 !important;
+    flex-shrink: 0;
   }
 
 
   .room {
-    min-width: 42px !important;
+    min-width: 40px;
 
-    height: auto !important;
+    height: auto;
 
-    display: flex !important;
+    display: flex;
 
-    flex-direction: column !important;
+    flex-direction: column;
 
-    align-items: center !important;
+    align-items: center;
 
-    justify-content: flex-start !important;
+    justify-content: flex-start;
 
-    gap: 6px !important;
+    gap: 5px;
 
-    box-sizing: border-box !important;
+    flex-shrink: 0;
   }
-
 
   .room label {
-    min-width: 42px !important;
+    min-width: 40px;
 
-    padding: 7px 8px !important;
+    padding: 7px;
 
-    font-size: 12px !important;
+    box-sizing: border-box;
 
-    line-height: 1.2 !important;
+    font-size: 11px;
 
-    box-sizing: border-box !important;
+    line-height: 1.2;
   }
-
 
   .room input[type="checkbox"] {
-    width: 18px !important;
+    width: 18px;
+    height: 18px;
 
-    height: 18px !important;
-
-    margin: 0 !important;
+    margin: 0;
   }
 
 
-  /* =====================================================
-        RESERVE BUTTON
-  ===================================================== */
+  /* Reserve button */
 
   .rButton {
-    width: 100% !important;
+    width: 100%;
 
-    height: 48px !important;
+    min-height: 50px;
+    height: 50px;
 
-    min-height: 48px !important;
+    margin: 10px 0 5px;
 
-    margin-top: 6px !important;
+    padding: 0 15px;
 
-    padding: 0 15px !important;
+    display: flex;
 
-    font-size: 14px !important;
+    align-items: center;
+    justify-content: center;
 
-    box-sizing: border-box !important;
+    box-sizing: border-box;
+
+    flex-shrink: 0;
+
+    font-size: 14px;
   }
 }
 
 
 /* =========================================================
-        SMALL MOBILE
+   SMALL MOBILE
 ========================================================= */
 
 @media screen and (max-width: 480px) {
 
   .reserve {
-    padding: 8px 5px !important;
-
-    align-items: flex-start !important;
+    padding: 7px 5px;
   }
 
 
   .rContainer {
-    width: 100% !important;
+    width: 100%;
 
-    max-width: 390px !important;
+    max-width: 390px;
 
-    max-height: calc(100vh - 16px) !important;
+    max-height: calc(100vh - 14px);
 
-    padding: 16px 10px 15px !important;
+    padding: 16px 10px 14px;
 
-    border-radius: 11px !important;
-  }
-
-
-  .rClose {
-    top: 10px !important;
-
-    right: 11px !important;
-
-    font-size: 20px !important;
+    border-radius: 11px;
   }
 
 
   .rContainer > span {
-    font-size: 19px !important;
+    font-size: 19px;
 
-    margin-bottom: 15px !important;
+    padding-bottom: 9px;
 
-    padding-bottom: 9px !important;
+    margin-bottom: 12px;
   }
 
 
   .rItem {
-    padding: 13px !important;
+    padding: 12px;
 
-    gap: 12px !important;
+    gap: 10px;
 
-    margin-bottom: 10px !important;
+    margin-bottom: 10px;
   }
 
 
   .rTitle {
-    font-size: 17px !important;
+    font-size: 17px;
   }
 
 
-  .rDesc {
-    font-size: 11px !important;
-
-    margin-bottom: 8px !important;
-  }
-
-
+  .rDesc,
   .rMax {
-    font-size: 11px !important;
-
-    margin-bottom: 8px !important;
+    font-size: 11px;
   }
 
 
   .rPrice {
-    font-size: 17px !important;
+    font-size: 17px;
   }
 
 
   .rSelectRooms {
-    gap: 8px !important;
-
-    justify-content: flex-start !important;
+    gap: 7px;
   }
 
 
   .room {
-    min-width: 38px !important;
+    min-width: 37px;
   }
 
 
   .room label {
-    min-width: 38px !important;
+    min-width: 37px;
 
-    padding: 6px 7px !important;
+    padding: 6px;
 
-    font-size: 11px !important;
+    font-size: 10px;
   }
 
 
   .room input[type="checkbox"] {
-    width: 17px !important;
-
-    height: 17px !important;
+    width: 17px;
+    height: 17px;
   }
 
 
   .rButton {
-    height: 46px !important;
+    height: 46px;
 
-    min-height: 46px !important;
+    min-height: 46px;
 
-    font-size: 13px !important;
+    margin-top: 8px;
+
+    font-size: 13px;
   }
 }
 
 
 /* =========================================================
-        EXTRA SMALL MOBILE
+   EXTRA SMALL MOBILE
 ========================================================= */
 
 @media screen and (max-width: 360px) {
 
   .reserve {
-    padding: 5px 4px !important;
+    padding: 5px 4px;
   }
 
 
   .rContainer {
-    max-width: 350px !important;
+    max-width: 350px;
 
-    max-height: calc(100vh - 10px) !important;
+    max-height: calc(100vh - 10px);
 
-    padding: 14px 8px 12px !important;
+    padding: 14px 8px 12px;
   }
 
 
   .rContainer > span {
-    font-size: 18px !important;
+    font-size: 18px;
 
-    margin-bottom: 13px !important;
+    margin-bottom: 11px;
   }
 
 
   .rItem {
-    padding: 11px !important;
+    padding: 10px;
 
-    gap: 10px !important;
+    gap: 9px;
   }
 
 
   .rTitle {
-    font-size: 16px !important;
+    font-size: 16px;
   }
 
 
-  .rDesc {
-    font-size: 10px !important;
-  }
-
-
+  .rDesc,
   .rMax {
-    font-size: 10px !important;
+    font-size: 10px;
   }
 
 
   .rPrice {
-    font-size: 16px !important;
+    font-size: 16px;
   }
 
 
   .rSelectRooms {
-    gap: 6px !important;
+    gap: 5px;
   }
 
 
   .room {
-    min-width: 35px !important;
+    min-width: 34px;
   }
 
 
   .room label {
-    min-width: 35px !important;
+    min-width: 34px;
 
-    padding: 6px 5px !important;
+    padding: 5px;
 
-    font-size: 10px !important;
+    font-size: 10px;
   }
 
 
   .room input[type="checkbox"] {
-    width: 16px !important;
-
-    height: 16px !important;
+    width: 16px;
+    height: 16px;
   }
 
 
   .rButton {
-    height: 44px !important;
+    height: 44px;
 
-    min-height: 44px !important;
+    min-height: 44px;
 
-    font-size: 12px !important;
+    font-size: 12px;
   }
 }
 
 
 /* =========================================================
-        TOUCH / SCROLL SAFETY
+   TOUCH / SCROLL SAFETY
 ========================================================= */
 
 @media screen and (max-width: 768px) {
@@ -903,619 +824,13 @@
     -webkit-tap-highlight-color: transparent;
   }
 
-
   .rContainer {
-    touch-action: pan-y !important;
+    touch-action: pan-y;
   }
-
 
   .rContainer input,
   .rContainer button,
   .rContainer label {
-    touch-action: manipulation !important;
-  }
-}
-/* =========================================================
-        FINAL RESERVE MODAL SCROLL FIX
-        ROOM LIST + RESERVE BUTTON VISIBLE
-        NO FUNCTION / JSX CHANGE
-========================================================= */
-
-
-/* =========================================================
-        DESKTOP / LAPTOP
-========================================================= */
-
-.reserve {
-  width: 100vw !important;
-
-  height: 100vh !important;
-
-  position: fixed !important;
-
-  inset: 0 !important;
-
-  display: flex !important;
-
-  align-items: center !important;
-
-  justify-content: center !important;
-
-  padding: 20px !important;
-
-  box-sizing: border-box !important;
-
-  overflow: hidden !important;
-
-  z-index: 999999 !important;
-}
-
-
-.rContainer {
-  width: 850px !important;
-
-  max-width: 92vw !important;
-
-  height: auto !important;
-
-  max-height: 88vh !important;
-
-  min-height: 0 !important;
-
-  padding: 30px !important;
-
-  margin: 0 !important;
-
-  box-sizing: border-box !important;
-
-  overflow-y: auto !important;
-
-  overflow-x: hidden !important;
-
-  -webkit-overflow-scrolling: touch !important;
-
-  overscroll-behavior: contain !important;
-
-  touch-action: pan-y !important;
-}
-
-
-/* =========================================================
-        CLOSE BUTTON
-========================================================= */
-
-.rClose {
-  position: sticky !important;
-
-  top: 0 !important;
-
-  float: right !important;
-
-  z-index: 100 !important;
-
-  cursor: pointer !important;
-}
-
-
-/* =========================================================
-        ROOM ITEMS
-========================================================= */
-
-.rItem {
-  width: 100% !important;
-
-  max-width: 100% !important;
-
-  box-sizing: border-box !important;
-
-  min-width: 0 !important;
-}
-
-
-.rItemInfo {
-  min-width: 0 !important;
-
-  max-width: 100% !important;
-}
-
-
-/* =========================================================
-        ROOM SELECTION
-========================================================= */
-
-.rSelectRooms {
-  max-width: 280px !important;
-
-  display: flex !important;
-
-  flex-wrap: wrap !important;
-
-  align-items: center !important;
-
-  justify-content: flex-end !important;
-
-  gap: 12px !important;
-
-  box-sizing: border-box !important;
-}
-
-
-/* =========================================================
-        RESERVE BUTTON
-        MUST STAY INSIDE SCROLL AREA
-========================================================= */
-
-.rButton {
-  width: 100% !important;
-
-  display: block !important;
-
-  position: relative !important;
-
-  height: auto !important;
-
-  min-height: 48px !important;
-
-  margin: 15px 0 5px !important;
-
-  padding: 14px 20px !important;
-
-  box-sizing: border-box !important;
-
-  flex-shrink: 0 !important;
-}
-
-
-/* =========================================================
-        SCROLLBAR
-========================================================= */
-
-.rContainer::-webkit-scrollbar {
-  width: 7px !important;
-}
-
-
-.rContainer::-webkit-scrollbar-track {
-  background: #f5e9df !important;
-
-  border-radius: 10px !important;
-}
-
-
-.rContainer::-webkit-scrollbar-thumb {
-  background: #800020 !important;
-
-  border-radius: 10px !important;
-}
-
-
-.rContainer::-webkit-scrollbar-thumb:hover {
-  background: #600018 !important;
-}
-
-
-/* =========================================================
-        MOBILE
-========================================================= */
-
-@media screen and (max-width: 700px) {
-
-  .reserve {
-    width: 100vw !important;
-
-    height: 100vh !important;
-
-    min-height: 100vh !important;
-
-    inset: 0 !important;
-
-    padding: 10px 8px !important;
-
-    align-items: flex-start !important;
-
-    justify-content: center !important;
-
-    overflow: hidden !important;
-
-    box-sizing: border-box !important;
-  }
-
-
-  .rContainer {
-    width: 100% !important;
-
-    max-width: 430px !important;
-
-    height: calc(100vh - 20px) !important;
-
-    max-height: calc(100vh - 20px) !important;
-
-    min-height: 0 !important;
-
-    margin: 0 auto !important;
-
-    padding: 18px 12px 16px !important;
-
-    box-sizing: border-box !important;
-
-    overflow-y: auto !important;
-
-    overflow-x: hidden !important;
-
-    -webkit-overflow-scrolling: touch !important;
-
-    overscroll-behavior: contain !important;
-
-    touch-action: pan-y !important;
-  }
-
-
-  /* Heading */
-  .rContainer > span {
-    display: block !important;
-
-    position: sticky !important;
-
-    top: 0 !important;
-
-    z-index: 40 !important;
-
-    background: #fffaf5 !important;
-
-    padding-top: 5px !important;
-
-    padding-bottom: 10px !important;
-
-    margin-bottom: 15px !important;
-  }
-
-
-  /* Close icon */
-  .rClose {
-    position: absolute !important;
-
-    top: 12px !important;
-
-    right: 12px !important;
-
-    z-index: 100 !important;
-
-    float: none !important;
-  }
-
-
-  /* Room card */
-  .rItem {
-    width: 100% !important;
-
-    max-width: 100% !important;
-
-    display: flex !important;
-
-    flex-direction: column !important;
-
-    align-items: stretch !important;
-
-    gap: 12px !important;
-
-    padding: 14px !important;
-
-    margin-bottom: 12px !important;
-
-    box-sizing: border-box !important;
-
-    transform: none !important;
-  }
-
-
-  .rItemInfo {
-    width: 100% !important;
-
-    max-width: 100% !important;
-
-    min-width: 0 !important;
-  }
-
-
-  .rTitle {
-    font-size: 18px !important;
-
-    line-height: 1.3 !important;
-
-    margin-bottom: 6px !important;
-  }
-
-
-  .rDesc {
-    font-size: 12px !important;
-
-    line-height: 1.5 !important;
-
-    margin-bottom: 8px !important;
-  }
-
-
-  .rMax {
-    font-size: 12px !important;
-
-    margin-bottom: 8px !important;
-  }
-
-
-  .rPrice {
-    font-size: 18px !important;
-  }
-
-
-  /* Room numbers */
-  .rSelectRooms {
-    width: 100% !important;
-
-    max-width: 100% !important;
-
-    min-width: 0 !important;
-
-    display: flex !important;
-
-    flex-wrap: wrap !important;
-
-    align-items: flex-start !important;
-
-    justify-content: flex-start !important;
-
-    gap: 9px !important;
-
-    box-sizing: border-box !important;
-  }
-
-
-  .room {
-    min-width: 40px !important;
-
-    height: auto !important;
-
-    display: flex !important;
-
-    flex-direction: column !important;
-
-    align-items: center !important;
-
-    justify-content: flex-start !important;
-
-    gap: 5px !important;
-
-    flex-shrink: 0 !important;
-  }
-
-
-  .room label {
-    min-width: 40px !important;
-
-    padding: 7px 7px !important;
-
-    box-sizing: border-box !important;
-
-    font-size: 11px !important;
-  }
-
-
-  .room input[type="checkbox"] {
-    width: 18px !important;
-
-    height: 18px !important;
-
-    margin: 0 !important;
-  }
-
-
-  /* Reserve button */
-  .rButton {
-    width: 100% !important;
-
-    height: 50px !important;
-
-    min-height: 50px !important;
-
-    margin: 10px 0 5px !important;
-
-    padding: 0 15px !important;
-
-    display: flex !important;
-
-    align-items: center !important;
-
-    justify-content: center !important;
-
-    box-sizing: border-box !important;
-
-    flex-shrink: 0 !important;
-
-    font-size: 14px !important;
-  }
-}
-
-
-/* =========================================================
-        SMALL MOBILE
-========================================================= */
-
-@media screen and (max-width: 480px) {
-
-  .reserve {
-    padding: 7px 5px !important;
-  }
-
-
-  .rContainer {
-    width: 100% !important;
-
-    max-width: 390px !important;
-
-    height: calc(100vh - 14px) !important;
-
-    max-height: calc(100vh - 14px) !important;
-
-    padding: 16px 10px 14px !important;
-
-    border-radius: 11px !important;
-  }
-
-
-  .rContainer > span {
-    font-size: 19px !important;
-
-    padding-bottom: 9px !important;
-
-    margin-bottom: 12px !important;
-  }
-
-
-  .rItem {
-    padding: 12px !important;
-
-    gap: 10px !important;
-
-    margin-bottom: 10px !important;
-  }
-
-
-  .rTitle {
-    font-size: 17px !important;
-  }
-
-
-  .rDesc,
-  .rMax {
-    font-size: 11px !important;
-  }
-
-
-  .rPrice {
-    font-size: 17px !important;
-  }
-
-
-  .rSelectRooms {
-    gap: 7px !important;
-  }
-
-
-  .room {
-    min-width: 37px !important;
-  }
-
-
-  .room label {
-    min-width: 37px !important;
-
-    padding: 6px !important;
-
-    font-size: 10px !important;
-  }
-
-
-  .room input[type="checkbox"] {
-    width: 17px !important;
-
-    height: 17px !important;
-  }
-
-
-  .rButton {
-    height: 46px !important;
-
-    min-height: 46px !important;
-
-    margin-top: 8px !important;
-
-    font-size: 13px !important;
-  }
-}
-
-
-/* =========================================================
-        EXTRA SMALL MOBILE
-========================================================= */
-
-@media screen and (max-width: 360px) {
-
-  .reserve {
-    padding: 5px 4px !important;
-  }
-
-
-  .rContainer {
-    max-width: 350px !important;
-
-    height: calc(100vh - 10px) !important;
-
-    max-height: calc(100vh - 10px) !important;
-
-    padding: 14px 8px 12px !important;
-  }
-
-
-  .rContainer > span {
-    font-size: 18px !important;
-
-    margin-bottom: 11px !important;
-  }
-
-
-  .rItem {
-    padding: 10px !important;
-
-    gap: 9px !important;
-  }
-
-
-  .rTitle {
-    font-size: 16px !important;
-  }
-
-
-  .rDesc,
-  .rMax {
-    font-size: 10px !important;
-  }
-
-
-  .rPrice {
-    font-size: 16px !important;
-  }
-
-
-  .rSelectRooms {
-    gap: 5px !important;
-  }
-
-
-  .room {
-    min-width: 34px !important;
-  }
-
-
-  .room label {
-    min-width: 34px !important;
-
-    padding: 5px !important;
-
-    font-size: 10px !important;
-  }
-
-
-  .room input[type="checkbox"] {
-    width: 16px !important;
-
-    height: 16px !important;
-  }
-
-
-  .rButton {
-    height: 44px !important;
-
-    min-height: 44px !important;
-
-    font-size: 12px !important;
+    touch-action: manipulation;
   }
 }
