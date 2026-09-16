@@ -129,7 +129,7 @@
   font-size: 34px;
   font-weight: 700;
   letter-spacing: 0.5px;
-  color:  #d4af37;
+  color: #d4af37 ;
 }
 
 .registerTitle h1 span {
@@ -170,7 +170,7 @@
   border: 1px solid rgba(255, 255, 255, 0.14);
   outline: none;
   background: rgba(255, 255, 255, 0.055);
-  color: #ffffff;
+  color:black;
   font-size: 25px;
   transition: all 0.3s ease;
 }
