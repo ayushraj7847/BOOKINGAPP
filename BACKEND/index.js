@@ -27,17 +27,46 @@ mongoose.connection.on("disconnected", () => {
   console.log("MongoDB disconnected");
 });
 
+// Allowed frontend URLs
+const allowedOrigins = [
+  "http://localhost:3000",
+  "http://localhost:3001",
+  "http://localhost:5173",
+  process.env.FRONTEND_URL,
+  process.env.ADMIN_URL,
+].filter(Boolean);
+
 app.use(
   cors({
-    origin: [
-      "http://localhost:3000",
-      "http://localhost:3001",
-      "http://localhost:5173",
-      "https://stayvora.vercel.app",
-    ],
+    origin: function (origin, callback) {
+      // Allow requests without origin
+      if (!origin) {
+        return callback(null, true);
+      }
+
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      return callback(
+        new Error(`CORS blocked for origin: ${origin}`)
+      );
+    },
+
     credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
+
+    methods: [
+      "GET",
+      "POST",
+      "PUT",
+      "DELETE",
+      "OPTIONS",
+    ],
+
+    allowedHeaders: [
+      "Content-Type",
+      "Authorization",
+    ],
   })
 );
 
@@ -52,7 +81,8 @@ app.use("/api/bookings", bookingRoute);
 
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;
-  const errorMessage = err.message || "Something went wrong";
+  const errorMessage =
+    err.message || "Something went wrong";
 
   return res.status(errorStatus).json({
     success: false,
@@ -62,7 +92,11 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(process.env.PORT || 8800, "0.0.0.0", () => {
-  connect();
-  console.log("Connected to backend");
-});
+app.listen(
+  process.env.PORT || 8800,
+  "0.0.0.0",
+  () => {
+    connect();
+    console.log("Connected to backend");
+  }
+);

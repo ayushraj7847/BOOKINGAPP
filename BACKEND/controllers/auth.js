@@ -71,7 +71,9 @@ export const login = async (req, res, next) => {
     });
 
     if (!user) {
-      return next(createError(404, "user not found"));
+      return next(
+        createError(404, "user not found")
+      );
     }
 
     const isPasswordCorrect = await bcrypt.compare(
@@ -81,7 +83,10 @@ export const login = async (req, res, next) => {
 
     if (!isPasswordCorrect) {
       return next(
-        createError(400, "incorrect password or username")
+        createError(
+          400,
+          "incorrect password or username"
+        )
       );
     }
 
