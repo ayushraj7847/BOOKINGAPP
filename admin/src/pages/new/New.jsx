@@ -5,40 +5,79 @@ import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUpload
 import { useState } from "react";
 import axios from "axios";
 
+const API_URL =
+  process.env.REACT_APP_API_URL ||
+  "https://stayvora-backend.onrender.com/api";
+  
 const New = ({ inputs, title }) => {
   const [file, setFile] = useState("");
-  const [info,setInfo] = useState("");
+  const [info, setInfo] = useState("");
 
-  const handleChange = e =>{
- setInfo((prev)=>({...prev,[e.target.id]: e.target.value}));
+  const handleChange = (e) => {
+    setInfo((prev) => ({
+      ...prev,
+      [e.target.id]: e.target.value,
+    }));
   };
 
-  const handleClick = async e=>{
-    e.preventDefault()
-    const data = new FormData()
-    data.append("file",file)
-    data.append("upload_preset","upload")
-    try{
-     const uploadRes = await axios.post("https://api.cloudinary.com/v1_1/demvu46na/image/upload",data);
-     const {url} = uploadRes.data;
-     const newUser = {
-      ...info,img:url,
-     };
-     await axios.post("http://localhost:8800/api/auth/register",newUser)
-    }catch(error){
-    console.log(error)
+  const handleClick = async (e) => {
+    e.preventDefault();
+
+    const data = new FormData();
+
+    data.append("file", file);
+    data.append("upload_preset", "upload");
+
+    try {
+      // Upload image to Cloudinary
+      const uploadRes = await axios.post(
+        "https://api.cloudinary.com/v1_1/demvu46na/image/upload",
+        data
+      );
+
+      const { url } = uploadRes.data;
+
+      // Create new user
+      const newUser = {
+        ...info,
+        img: url,
+      };
+
+      await axios.post(
+        `${API_URL}/auth/register`,
+        newUser,
+        {
+          withCredentials: true,
+        }
+      );
+
+      console.log("USER CREATED SUCCESSFULLY");
+
+      // Reset form
+      setInfo("");
+      setFile("");
+    } catch (error) {
+      console.log(
+        "CREATE USER ERROR:",
+        error.response?.data || error.message
+      );
     }
-  }
+  };
 
   return (
     <div className="new">
       <Sidebar />
+
       <div className="newContainer">
         <Navbar />
+
         <div className="top">
           <h1>{title}</h1>
         </div>
+
         <div className="bottom">
+
+          {/* Image */}
           <div className="left">
             <img
               src={
@@ -49,27 +88,49 @@ const New = ({ inputs, title }) => {
               alt=""
             />
           </div>
+
+          {/* Form */}
           <div className="right">
-            <form>
+            <form onSubmit={handleClick}>
+
+              {/* Upload image */}
               <div className="formInput">
                 <label htmlFor="file">
-                  Image: <DriveFolderUploadOutlinedIcon className="icon" />
+                  Image:
+                  <DriveFolderUploadOutlinedIcon className="icon" />
                 </label>
+
                 <input
                   type="file"
                   id="file"
-                  onChange={(e) => setFile(e.target.files[0])}
+                  onChange={(e) =>
+                    setFile(e.target.files[0])
+                  }
                   style={{ display: "none" }}
                 />
               </div>
 
+              {/* Dynamic inputs */}
               {inputs.map((input) => (
-                <div className="formInput" key={input.id}>
+                <div
+                  className="formInput"
+                  key={input.id}
+                >
                   <label>{input.label}</label>
-                  <input onChange={handleChange} type={input.type} placeholder={input.placeholder}id={input.id} />
+
+                  <input
+                    onChange={handleChange}
+                    type={input.type}
+                    placeholder={input.placeholder}
+                    id={input.id}
+                  />
                 </div>
               ))}
-              <button onClick={handleClick}>Send</button>
+
+              <button type="submit">
+                Send
+              </button>
+
             </form>
           </div>
         </div>

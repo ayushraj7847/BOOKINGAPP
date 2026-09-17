@@ -12,45 +12,72 @@ import { useContext } from "react";
 const Navbar = () => {
   const { dispatch } = useContext(DarkModeContext);
 
+  const avatar =
+    "https://images.pexels.com/photos/941693/pexels-photo-941693.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500";
+
   return (
     <div className="navbar">
       <div className="wrapper">
+
+        {/* Search */}
         <div className="search">
-          <input type="text" placeholder="Search..." />
+          <input
+            type="text"
+            placeholder="Search..."
+          />
           <SearchOutlinedIcon />
         </div>
+
+        {/* Navbar items */}
         <div className="items">
+
+          {/* Language */}
           <div className="item">
             <LanguageOutlinedIcon className="icon" />
             English
           </div>
+
+          {/* Dark mode */}
           <div className="item">
             <DarkModeOutlinedIcon
               className="icon"
-              onClick={() => dispatch({ type: "TOGGLE" })}
+              onClick={() =>
+                dispatch({ type: "TOGGLE" })
+              }
             />
           </div>
+
+          {/* Fullscreen */}
           <div className="item">
             <FullscreenExitOutlinedIcon className="icon" />
           </div>
+
+          {/* Notifications */}
           <div className="item">
             <NotificationsNoneOutlinedIcon className="icon" />
             <div className="counter">1</div>
           </div>
+
+          {/* Messages */}
           <div className="item">
             <ChatBubbleOutlineOutlinedIcon className="icon" />
             <div className="counter">2</div>
           </div>
+
+          {/* List */}
           <div className="item">
             <ListOutlinedIcon className="icon" />
           </div>
+
+          {/* Admin avatar */}
           <div className="item">
             <img
-              src="https://images.pexels.com/photos/941693/pexels-photo-941693.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-              alt=""
+              src={avatar}
+              alt="Admin"
               className="avatar"
             />
           </div>
+
         </div>
       </div>
     </div>

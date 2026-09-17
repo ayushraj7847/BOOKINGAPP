@@ -4,6 +4,10 @@ import "./login.scss";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+const API_URL =
+  process.env.REACT_APP_API_URL ||
+  "https://stayvora-backend.onrender.com/api";
+  
 const Login = () => {
   const [credentials, setCredential] = useState({
     username: "",
@@ -27,7 +31,7 @@ const Login = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:8800/api/auth/login",
+        `${API_URL}/auth/login`,
         credentials,
         {
           withCredentials: true,
@@ -55,6 +59,11 @@ const Login = () => {
         });
       }
     } catch (error) {
+      console.log(
+        "LOGIN ERROR:",
+        error.response?.data || error.message
+      );
+
       dispatch({
         type: "LOGIN_FAILURE",
         payload:
@@ -68,9 +77,7 @@ const Login = () => {
   return (
     <div className="login">
       <div className="lContainer">
-
         <form onSubmit={handleClick}>
-
           <input
             type="text"
             placeholder="username"
@@ -93,11 +100,13 @@ const Login = () => {
           >
             LOGIN
           </button>
-
         </form>
 
-        {error && <span>{error.message}</span>}
-
+        {error && (
+          <span>
+            {error.message || "Login failed"}
+          </span>
+        )}
       </div>
     </div>
   );

@@ -20,9 +20,13 @@ const Sidebar = () => {
 
   return (
     <div className="sidebar">
+      {/* Logo */}
       <div className="top">
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <span className="logo">lamadmin</span>
+        <Link
+          to="/"
+          style={{ textDecoration: "none" }}
+        >
+          <span className="logo">Stayvora Admin</span>
         </Link>
       </div>
 
@@ -30,55 +34,87 @@ const Sidebar = () => {
 
       <div className="center">
         <ul>
+
+          {/* Main */}
           <p className="title">MAIN</p>
 
-          <li>
-            <DashboardIcon className="icon" />
-            <span>Dashboard</span>
-          </li>
+          <Link
+            to="/"
+            style={{ textDecoration: "none" }}
+          >
+            <li>
+              <DashboardIcon className="icon" />
+              <span>Dashboard</span>
+            </li>
+          </Link>
 
+          {/* Lists */}
           <p className="title">LISTS</p>
 
-          <Link to="/users" style={{ textDecoration: "none" }}>
+          <Link
+            to="/users"
+            style={{ textDecoration: "none" }}
+          >
             <li>
               <PersonOutlineIcon className="icon" />
               <span>Users</span>
             </li>
           </Link>
 
-          <Link to="/hotels" style={{ textDecoration: "none" }}>
+          <Link
+            to="/hotels"
+            style={{ textDecoration: "none" }}
+          >
             <li>
               <StoreIcon className="icon" />
               <span>Hotels</span>
             </li>
           </Link>
 
-          <Link to="/rooms" style={{ textDecoration: "none" }}>
+          <Link
+            to="/rooms"
+            style={{ textDecoration: "none" }}
+          >
             <li>
               <CreditCardIcon className="icon" />
               <span>Rooms</span>
             </li>
           </Link>
 
-          <Link to="/bookings" style={{ textDecoration: "none" }}>
+          <Link
+            to="/bookings"
+            style={{ textDecoration: "none" }}
+          >
             <li>
               <LocalShippingIcon className="icon" />
               <span>Bookings</span>
             </li>
           </Link>
 
+          {/* Useful */}
           <p className="title">USEFUL</p>
 
-          <li>
-            <InsertChartIcon className="icon" />
-            <span>Stats</span>
-          </li>
+          <Link
+            to="/stats"
+            style={{ textDecoration: "none" }}
+          >
+            <li>
+              <InsertChartIcon className="icon" />
+              <span>Stats</span>
+            </li>
+          </Link>
 
-          <li>
-            <NotificationsNoneIcon className="icon" />
-            <span>Notifications</span>
-          </li>
+          <Link
+            to="/notifications"
+            style={{ textDecoration: "none" }}
+          >
+            <li>
+              <NotificationsNoneIcon className="icon" />
+              <span>Notifications</span>
+            </li>
+          </Link>
 
+          {/* Service */}
           <p className="title">SERVICE</p>
 
           <li>
@@ -91,34 +127,51 @@ const Sidebar = () => {
             <span>Logs</span>
           </li>
 
-          <li>
-            <SettingsApplicationsIcon className="icon" />
-            <span>Settings</span>
-          </li>
+          <Link
+            to="/settings"
+            style={{ textDecoration: "none" }}
+          >
+            <li>
+              <SettingsApplicationsIcon className="icon" />
+              <span>Settings</span>
+            </li>
+          </Link>
 
+          {/* User */}
           <p className="title">USER</p>
 
-          <li>
-            <AccountCircleOutlinedIcon className="icon" />
-            <span>Profile</span>
-          </li>
+          <Link
+            to="/profile"
+            style={{ textDecoration: "none" }}
+          >
+            <li>
+              <AccountCircleOutlinedIcon className="icon" />
+              <span>Profile</span>
+            </li>
+          </Link>
 
           <li>
             <ExitToAppIcon className="icon" />
             <span>Logout</span>
           </li>
+
         </ul>
       </div>
 
+      {/* Theme */}
       <div className="bottom">
         <div
           className="colorOption"
-          onClick={() => dispatch({ type: "LIGHT" })}
+          onClick={() =>
+            dispatch({ type: "LIGHT" })
+          }
         ></div>
 
         <div
           className="colorOption"
-          onClick={() => dispatch({ type: "DARK" })}
+          onClick={() =>
+            dispatch({ type: "DARK" })
+          }
         ></div>
       </div>
     </div>

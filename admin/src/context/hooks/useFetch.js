@@ -1,6 +1,10 @@
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
 
+const API_URL =
+  process.env.REACT_APP_API_URL ||
+  "https://stayvora-backend.onrender.com/api";
+  
 const useFetch = (URL) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -11,7 +15,7 @@ const useFetch = (URL) => {
 
     try {
       const res = await axios.get(
-        `http://localhost:8800/api${URL}`,
+        `${API_URL}${URL}`,
         {
           withCredentials: true,
         }
@@ -24,10 +28,11 @@ const useFetch = (URL) => {
     } catch (error) {
       console.log(
         "FETCH ERROR:",
-        error.response?.data || error
+        error.response?.data || error.message
       );
 
       setError(error);
+      setData([]);
     } finally {
       setLoading(false);
     }

@@ -7,42 +7,113 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
-const data = [
-  { name: "January", Total: 1200 },
-  { name: "February", Total: 2100 },
-  { name: "March", Total: 800 },
-  { name: "April", Total: 1600 },
-  { name: "May", Total: 900 },
-  { name: "June", Total: 1700 },
-];
+const API_URL =
+  process.env.REACT_APP_API_URL ||
+  "https://stayvora-backend.onrender.com/api";
+const Chart = ({ aspect }) => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-const Chart = ({ aspect, title }) => {
+  useEffect(() => {
+    const fetchBookings = async () => {
+      try {
+        const res = await axios.get(`${API_URL}/bookings`, {
+          withCredentials: true,
+        });
+
+        const bookings = Array.isArray(res.data)
+          ? res.data
+          : [];
+
+        const now = new Date();
+
+        const months = [];
+
+        for (let i = 5; i >= 0; i--) {
+          const date = new Date(
+            now.getFullYear(),
+            now.getMonth() - i,
+            1
+          );
+
+          months.push({
+            month: date.toLocaleString("en-US", {
+              month: "short",
+            }),
+            year: date.getFullYear(),
+            monthIndex: date.getMonth(),
+            Total: 0,
+          });
+        }
+
+        bookings.forEach((booking) => {
+          if (booking.status !== "Confirmed") return;
+
+          const bookingDate = new Date(booking.createdAt);
+          const amount = Number(booking.totalPrice || 0);
+
+          const matchingMonth = months.find(
+            (item) =>
+              item.year === bookingDate.getFullYear() &&
+              item.monthIndex === bookingDate.getMonth()
+          );
+
+          if (matchingMonth) {
+            matchingMonth.Total += amount;
+          }
+        });
+
+        setData(months);
+      } catch (error) {
+        console.log(
+          "CHART BOOKING ERROR:",
+          error.response?.data || error.message
+        );
+        setData([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBookings();
+  }, []);
+
+  if (loading) {
+    return <div className="chart">Loading chart...</div>;
+  }
+
   return (
     <div className="chart">
-      <div className="title">{title}</div>
+      <div className="title">Last 6 Months (Revenue)</div>
+
       <ResponsiveContainer width="100%" aspect={aspect}>
         <AreaChart
-          width={730}
-          height={250}
           data={data}
-          margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
+          margin={{
+            top: 10,
+            right: 30,
+            left: 0,
+            bottom: 0,
+          }}
         >
-          <defs>
-            <linearGradient id="total" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
-              <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
-            </linearGradient>
-          </defs>
-          <XAxis dataKey="name" stroke="gray" />
-          <CartesianGrid strokeDasharray="3 3" className="chartGrid" />
-          <Tooltip />
+          <CartesianGrid strokeDasharray="3 3" />
+
+          <XAxis dataKey="month" />
+
+          <Tooltip
+            formatter={(value) => [
+              `₹${Number(value).toLocaleString("en-IN")}`,
+              "Revenue",
+            ]}
+          />
+
           <Area
             type="monotone"
             dataKey="Total"
-            stroke="#8884d8"
-            fillOpacity={1}
-            fill="url(#total)"
+            strokeWidth={2}
           />
         </AreaChart>
       </ResponsiveContainer>

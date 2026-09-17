@@ -7,11 +7,16 @@ import { hotelInputs } from "../../formSource.js";
 import axios from "axios";
 import useFetch from "../../context/hooks/useFetch";
 
+const API_URL =
+  process.env.REACT_APP_API_URL ||
+  "https://stayvora-backend.onrender.com/api";
+  
 const NewHotel = () => {
   const [files, setFiles] = useState("");
   const [info, setInfo] = useState({});
   const [rooms, setRooms] = useState([]);
 
+  // Get rooms from live backend
   const { data, loading } = useFetch("/rooms");
 
   const handleChange = (e) => {
@@ -24,18 +29,17 @@ const NewHotel = () => {
   const handleSelect = (e) => {
     const value = Array.from(
       e.target.selectedOptions,
-      (option) => option.value,
+      (option) => option.value
     );
 
     setRooms(value);
   };
 
-  console.log(files);
-
   const handleClick = async (e) => {
     e.preventDefault();
 
     try {
+      // Upload hotel images to Cloudinary
       const list = await Promise.all(
         Object.values(files).map(async (file) => {
           const data = new FormData();
@@ -45,31 +49,43 @@ const NewHotel = () => {
 
           const uploadRes = await axios.post(
             "https://api.cloudinary.com/v1_1/demvu46na/image/upload",
-            data,
+            data
           );
 
           const { url } = uploadRes.data;
 
           return url;
-        }),
+        })
       );
 
+      // Create hotel data
       const newhotel = {
         ...info,
         rooms,
         photos: list,
       };
 
-      await axios.post(
-        "http://localhost:8800/api/hotels",
-        newhotel
+      // Create hotel using live Render backend
+      const res = await axios.post(
+        `${API_URL}/hotels`,
+        newhotel,
+        {
+          withCredentials: true,
+        }
       );
 
-      console.log("Hotel has been created");
+      console.log("HOTEL CREATED:", res.data);
+
+      alert("Hotel has been created successfully!");
     } catch (error) {
       console.log(
         "HOTEL CREATE ERROR:",
-        error.response?.data || error
+        error.response?.data || error.message
+      );
+
+      alert(
+        error.response?.data?.message ||
+          "Hotel creation failed!"
       );
     }
   };
@@ -87,10 +103,11 @@ const NewHotel = () => {
 
         <div className="bottom">
 
+          {/* Image preview */}
           <div className="left">
             <img
               src={
-                files
+                files && files.length > 0
                   ? URL.createObjectURL(files[0])
                   : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
               }
@@ -102,8 +119,8 @@ const NewHotel = () => {
 
             <form onSubmit={handleClick}>
 
+              {/* Upload images */}
               <div className="formInput">
-
                 <label htmlFor="file">
                   Image:
                   <DriveFolderUploadOutlinedIcon className="icon" />
@@ -113,16 +130,19 @@ const NewHotel = () => {
                   type="file"
                   id="file"
                   multiple
-                  onChange={(e) => setFiles(e.target.files)}
+                  onChange={(e) =>
+                    setFiles(e.target.files)
+                  }
                   style={{ display: "none" }}
                 />
-
               </div>
 
-
+              {/* Hotel information */}
               {hotelInputs.map((input) => (
-                <div className="formInput" key={input.id}>
-
+                <div
+                  className="formInput"
+                  key={input.id}
+                >
                   <label>{input.label}</label>
 
                   <input
@@ -131,13 +151,11 @@ const NewHotel = () => {
                     type={input.type}
                     placeholder={input.placeholder}
                   />
-
                 </div>
               ))}
 
-
+              {/* Featured */}
               <div className="formInput">
-
                 <label>Featured</label>
 
                 <select
@@ -152,12 +170,10 @@ const NewHotel = () => {
                     YES
                   </option>
                 </select>
-
               </div>
 
-
+              {/* Rooms */}
               <div className="selectRooms">
-
                 <label>Rooms</label>
 
                 <select
@@ -177,20 +193,15 @@ const NewHotel = () => {
                         </option>
                       ))}
                 </select>
-
               </div>
-
 
               <button type="submit">
                 Send
               </button>
 
             </form>
-
           </div>
-
         </div>
-
       </div>
     </div>
   );

@@ -113,12 +113,6 @@ export const hotelInputs = [
     type: "number",
     placeholder: "1000",
   },
-
-  {
-    id: "featured",
-    label: "Featured",
-    type: "checkbox",
-  },
 ];
 
 

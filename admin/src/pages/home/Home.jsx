@@ -10,20 +10,30 @@ const Home = () => {
   return (
     <div className="home">
       <Sidebar />
+
       <div className="homeContainer">
         <Navbar />
+
+        {/* Dashboard widgets */}
         <div className="widgets">
           <Widget type="user" />
           <Widget type="order" />
           <Widget type="earning" />
           <Widget type="balance" />
         </div>
+
+        {/* Revenue section */}
         <div className="charts">
           <Featured />
-          <Chart title="Last 6 Months (Revenue)" aspect={2 / 1} />
+          <Chart aspect={2 / 1} />
         </div>
+
+        {/* Latest bookings */}
         <div className="listContainer">
-          <div className="listTitle">Latest Transactions</div>
+          <div className="listTitle">
+            Latest Transactions
+          </div>
+
           <Table />
         </div>
       </div>
