@@ -4,7 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext.jsx";
 import axios from "axios";
 
-const API_URL = import.meta.env.VITE_API_URL || "/api";
+const API_URL =
+  import.meta.env.VITE_API_URL ||
+  "https://stayvora-backend.onrender.com/api";
 
 const Navbar = () => {
   const { user, dispatch } = useContext(AuthContext);
