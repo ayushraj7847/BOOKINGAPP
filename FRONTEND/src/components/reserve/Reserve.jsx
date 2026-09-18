@@ -8,20 +8,24 @@ import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const API_URL =
-  process.env.REACT_APP_API_URL ||
+  import.meta.env.VITE_API_URL ||
   "https://stayvora-backend.onrender.com/api";
 
 const Reserve = ({ setOpen, hotelId }) => {
   const [selectedRooms, setSelectedRooms] = useState([]);
 
-  const { data, loading, error } = useFetch(`/hotels/room/${hotelId}`);
+  const { data, loading, error } = useFetch(
+    `/hotels/room/${hotelId}`
+  );
 
-  const { city, date, options, hasSearched } = useContext(SearchContext);
+  const { city, date, options, hasSearched } =
+    useContext(SearchContext);
 
   const navigate = useNavigate();
   const location = useLocation();
 
-  const fromSearch = location.state?.fromSearch === true;
+  const fromSearch =
+    location.state?.fromSearch === true;
 
   const getDatesInRange = (startDate, endDate) => {
     const start = new Date(startDate);
@@ -42,13 +46,20 @@ const Reserve = ({ setOpen, hotelId }) => {
     date.length > 0 &&
     date[0]?.startDate &&
     date[0]?.endDate
-      ? getDatesInRange(date[0].startDate, date[0].endDate)
+      ? getDatesInRange(
+          date[0].startDate,
+          date[0].endDate
+        )
       : [];
 
   const isAvailable = (roomNumber) => {
-    const isFound = roomNumber.unavailableDates.some((roomDate) =>
-      allDates.includes(new Date(roomDate).getTime())
-    );
+    const isFound =
+      roomNumber.unavailableDates.some(
+        (roomDate) =>
+          allDates.includes(
+            new Date(roomDate).getTime()
+          )
+      );
 
     return !isFound;
   };
@@ -60,7 +71,9 @@ const Reserve = ({ setOpen, hotelId }) => {
     setSelectedRooms(
       checked
         ? [...selectedRooms, value]
-        : selectedRooms.filter((item) => item !== value)
+        : selectedRooms.filter(
+            (item) => item !== value
+          )
     );
   };
 
@@ -97,18 +110,30 @@ const Reserve = ({ setOpen, hotelId }) => {
     }
 
     // Date validation
-    const startDate = new Date(date[0].startDate);
-    const endDate = new Date(date[0].endDate);
+    const startDate = new Date(
+      date[0].startDate
+    );
 
-    if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
-      alert("Please select valid booking dates first.");
+    const endDate = new Date(
+      date[0].endDate
+    );
+
+    if (
+      isNaN(startDate.getTime()) ||
+      isNaN(endDate.getTime())
+    ) {
+      alert(
+        "Please select valid booking dates first."
+      );
       setOpen(false);
       navigate("/");
       return;
     }
 
     if (endDate < startDate) {
-      alert("Check-out date must be after check-in date.");
+      alert(
+        "Check-out date must be after check-in date."
+      );
       setOpen(false);
       navigate("/");
       return;
@@ -131,39 +156,55 @@ const Reserve = ({ setOpen, hotelId }) => {
         selectedRooms.map((roomId) => {
           return axios.put(
             `${API_URL}/rooms/availability/${roomId}`,
-            { dates: allDates },
-            { withCredentials: true }
+            {
+              dates: allDates,
+            },
+            {
+              withCredentials: true,
+            }
           );
         })
       );
 
       // Create booking
-      const bookingResponse = await axios.post(
-        `${API_URL}/bookings`,
-        {
-          hotelId: hotelId,
-          selectedRooms: selectedRooms,
-          dates: allDates,
-        },
-        { withCredentials: true }
+      const bookingResponse =
+        await axios.post(
+          `${API_URL}/bookings`,
+          {
+            hotelId: hotelId,
+            selectedRooms: selectedRooms,
+            dates: allDates,
+          },
+          {
+            withCredentials: true,
+          }
+        );
+
+      console.log(
+        "BOOKING CREATED:",
+        bookingResponse.data
       );
 
-      console.log("BOOKING CREATED:", bookingResponse.data);
-
       alert("Booking successful!");
+
       setOpen(false);
+
       navigate("/");
     } catch (error) {
       console.log(
         "BOOKING ERROR:",
-        error.response?.data || error.message
+        error.response?.data ||
+          error.message
       );
 
       if (error.response?.status === 401) {
-        alert("Please login before booking!");
+        alert(
+          "Please login before booking!"
+        );
       } else {
         alert(
-          error.response?.data?.message || "Booking failed!"
+          error.response?.data?.message ||
+            "Booking failed!"
         );
       }
     }
@@ -174,7 +215,9 @@ const Reserve = ({ setOpen, hotelId }) => {
   }
 
   if (error) {
-    return <h2>Something went wrong!</h2>;
+    return (
+      <h2>Something went wrong!</h2>
+    );
   }
 
   return (
@@ -189,36 +232,61 @@ const Reserve = ({ setOpen, hotelId }) => {
         <span>Select your rooms</span>
 
         {data.map((item) => (
-          <div className="rItem" key={item._id}>
+          <div
+            className="rItem"
+            key={item._id}
+          >
             <div className="rItemInfo">
-              <div className="rTitle">{item.title}</div>
-              <div className="rDesc">{item.desc}</div>
-
-              <div className="rMax">
-                Max People: <b>{item.maxPeople}</b>
+              <div className="rTitle">
+                {item.title}
               </div>
 
-              <div className="rPrice">₹{item.price}</div>
+              <div className="rDesc">
+                {item.desc}
+              </div>
+
+              <div className="rMax">
+                Max People:{" "}
+                <b>{item.maxPeople}</b>
+              </div>
+
+              <div className="rPrice">
+                ₹{item.price}
+              </div>
             </div>
 
             <div className="rSelectRooms">
-              {item.roomNumbers.map((roomNumber) => (
-                <div className="room" key={roomNumber._id}>
-                  <label>{roomNumber.number}</label>
+              {item.roomNumbers.map(
+                (roomNumber) => (
+                  <div
+                    className="room"
+                    key={roomNumber._id}
+                  >
+                    <label>
+                      {roomNumber.number}
+                    </label>
 
-                  <input
-                    type="checkbox"
-                    value={roomNumber._id}
-                    onChange={handleSelect}
-                    disabled={!isAvailable(roomNumber)}
-                  />
-                </div>
-              ))}
+                    <input
+                      type="checkbox"
+                      value={roomNumber._id}
+                      onChange={handleSelect}
+                      disabled={
+                        !isAvailable(
+                          roomNumber
+                        )
+                      }
+                    />
+                  </div>
+                )
+              )}
             </div>
           </div>
         ))}
 
-        <button className="rButton" onClick={handleClick}>
+        <button
+          className="rButton"
+          onClick={handleClick}
+        >
           Reserve Now!
         </button>
       </div>
