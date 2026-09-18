@@ -32,14 +32,21 @@ const allowedOrigins = [
   "http://localhost:3000",
   "http://localhost:3001",
   "http://localhost:5173",
+
+  // Main Stayvora frontend
+  "https://stayvora.vercel.app",
+
+  // Stayvora Admin
+  "https://stayvora-admin.vercel.app",
+
+  // Optional environment URLs
   process.env.FRONTEND_URL,
   process.env.ADMIN_URL,
 ].filter(Boolean);
 
 app.use(
   cors({
-    origin: function (origin, callback) {
-      // Allow requests without origin
+    origin: (origin, callback) => {
       if (!origin) {
         return callback(null, true);
       }
@@ -48,9 +55,7 @@ app.use(
         return callback(null, true);
       }
 
-      return callback(
-        new Error(`CORS blocked for origin: ${origin}`)
-      );
+      return callback(null, false);
     },
 
     credentials: true,
@@ -79,6 +84,7 @@ app.use("/api/rooms", roomsRoute);
 app.use("/api/user", userRoute);
 app.use("/api/bookings", bookingRoute);
 
+// Global error handler
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;
   const errorMessage =
