@@ -17,6 +17,7 @@ const router = express.Router();
 
 
 // AUTH CHECK
+
 router.get(
   "/checkauthentication",
   verifyToken,
@@ -27,6 +28,7 @@ router.get(
 
 
 // USER CHECK
+
 router.get(
   "/checkuser/:id",
   verifyToken,
@@ -38,6 +40,7 @@ router.get(
 
 
 // ADMIN CHECK
+
 router.get(
   "/checkadmin",
   verifyToken,
@@ -49,10 +52,12 @@ router.get(
 
 
 // GET ALL USERS
+
 router.get("/", getAllUsers);
 
 
 // UPDATE USER
+
 router.put(
   "/:id",
   verifyToken,
@@ -62,10 +67,17 @@ router.put(
 
 
 // DELETE USER
-router.delete("/:id", verifyUser, deleteUser);
+
+router.delete(
+  "/:id",
+  verifyToken,
+  verifyAdmin,
+  deleteUser
+);
 
 
 // GET SINGLE USER
+
 router.get(
   "/:id",
   verifyToken,
