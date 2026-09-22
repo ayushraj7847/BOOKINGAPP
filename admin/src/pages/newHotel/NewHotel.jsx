@@ -10,7 +10,7 @@ import useFetch from "../../context/hooks/useFetch";
 const API_URL =
   process.env.REACT_APP_API_URL ||
   "https://stayvora-backend.onrender.com/api";
-  
+
 const NewHotel = () => {
   const [files, setFiles] = useState("");
   const [info, setInfo] = useState({});
@@ -154,6 +154,18 @@ const NewHotel = () => {
                 </div>
               ))}
 
+              {/* Hotel password */}
+              <div className="formInput">
+                <label>Hotel Password</label>
+
+                <input
+                  id="adminPassword"
+                  type="password"
+                  placeholder="Enter hotel admin password"
+                  onChange={handleChange}
+                />
+              </div>
+
               {/* Featured */}
               <div className="formInput">
                 <label>Featured</label>
@@ -161,12 +173,13 @@ const NewHotel = () => {
                 <select
                   id="featured"
                   onChange={handleChange}
+                  defaultValue="false"
                 >
-                  <option value={false}>
+                  <option value="false">
                     NO
                   </option>
 
-                  <option value={true}>
+                  <option value="true">
                     YES
                   </option>
                 </select>
@@ -181,17 +194,24 @@ const NewHotel = () => {
                   multiple
                   onChange={handleSelect}
                 >
-                  {loading
-                    ? "loading"
-                    : data &&
-                      data.map((room) => (
-                        <option
-                          key={room._id}
-                          value={room._id}
-                        >
-                          {room.title}
-                        </option>
-                      ))}
+                  {loading ? (
+                    <option>
+                      Loading...
+                    </option>
+                  ) : data && data.length > 0 ? (
+                    data.map((room) => (
+                      <option
+                        key={room._id}
+                        value={room._id}
+                      >
+                        {room.title}
+                      </option>
+                    ))
+                  ) : (
+                    <option>
+                      No rooms found
+                    </option>
+                  )}
                 </select>
               </div>
 

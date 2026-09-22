@@ -7,10 +7,10 @@ import { useNavigate } from "react-router-dom";
 const API_URL =
   process.env.REACT_APP_API_URL ||
   "https://stayvora-backend.onrender.com/api";
-  
+
 const Login = () => {
   const [credentials, setCredential] = useState({
-    username: "",
+    hotel: "",
     password: "",
   });
 
@@ -31,21 +31,26 @@ const Login = () => {
 
     try {
       const res = await axios.post(
-        `${API_URL}/auth/login`,
+        `${API_URL}/hotels/admin/login`,
         credentials,
         {
           withCredentials: true,
         }
       );
 
-      console.log("LOGIN RESPONSE:", res.data);
+      console.log(
+        "HOTEL ADMIN LOGIN RESPONSE:",
+        res.data
+      );
 
       if (res.data.isAdmin) {
         dispatch({
           type: "LOGIN_SUCCESS",
           payload: {
             ...res.data.details,
-            isAdmin: res.data.isAdmin,
+            isAdmin: true,
+            hotelId: res.data.details.hotelId,
+            hotelName: res.data.details.hotelName,
           },
         });
 
@@ -60,7 +65,7 @@ const Login = () => {
       }
     } catch (error) {
       console.log(
-        "LOGIN ERROR:",
+        "HOTEL ADMIN LOGIN ERROR:",
         error.response?.data || error.message
       );
 
@@ -77,19 +82,31 @@ const Login = () => {
   return (
     <div className="login">
       <div className="lContainer">
+
+        <div className="loginHeader">
+          <h1>Stayvora Admin</h1>
+
+          <p>
+            Login with your hotel credentials
+          </p>
+        </div>
+
         <form onSubmit={handleClick}>
+
           <input
             type="text"
-            placeholder="username"
-            id="username"
+            placeholder="Hotel ID or Hotel Name"
+            id="hotel"
+            value={credentials.hotel}
             onChange={handleChange}
             className="lInput"
           />
 
           <input
             type="password"
-            placeholder="password"
+            placeholder="Hotel Password"
             id="password"
+            value={credentials.password}
             onChange={handleChange}
             className="lInput"
           />
@@ -100,6 +117,7 @@ const Login = () => {
           >
             LOGIN
           </button>
+
         </form>
 
         {error && (
@@ -107,6 +125,23 @@ const Login = () => {
             {error.message || "Login failed"}
           </span>
         )}
+
+        <div className="createAdmin">
+          <p>
+            Don't have a hotel admin account?
+          </p>
+
+          <button
+            type="button"
+            className="createAdminButton"
+            onClick={() =>
+              navigate("/hotels/new")
+            }
+          >
+            CREATE NEW HOTEL ADMIN
+          </button>
+        </div>
+
       </div>
     </div>
   );
