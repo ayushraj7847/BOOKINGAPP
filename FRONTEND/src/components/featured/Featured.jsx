@@ -5,7 +5,11 @@ import { useNavigate } from "react-router-dom";
 export default function Featured() {
   const navigate = useNavigate();
 
-  const { data, loading, error } = useFetch(
+  const {
+    data,
+    loading,
+    error,
+  } = useFetch(
     "/hotels/countByCity?cities=Delhi,Mumbai,Bangalore,Kolkata"
   );
 
@@ -42,6 +46,7 @@ export default function Featured() {
 
   return (
     <div className="featuredSection">
+
       <div className="featuredHeader">
         <h2>⭐ Top Destinations</h2>
 
@@ -54,33 +59,50 @@ export default function Featured() {
       </div>
 
       <div className="featured">
-        {cities.map((item, index) => (
-          <div
-            className="featuredItem"
-            key={item.name}
-            onClick={() =>
-              navigate(`/hotels?city=${encodeURIComponent(item.name)}`)
-            }
-            style={{ cursor: "pointer" }}
-          >
-            <img
-              src={item.image}
-              alt={item.name}
-              className="featuredImg"
-            />
+        {cities.map((item, index) => {
+          const propertyCount =
+            Array.isArray(data) && data[index]
+              ? data[index]
+              : 0;
 
-            <div className="featuredOverlay">
-              <div className="featuredTitles">
-                <h1>{item.name}</h1>
+          return (
+            <div
+              className="featuredItem"
+              key={item.name}
+              onClick={() =>
+                navigate(
+                  `/hotels?city=${encodeURIComponent(
+                    item.name
+                  )}`
+                )
+              }
+              style={{ cursor: "pointer" }}
+            >
+              <img
+                src={item.image}
+                alt={item.name}
+                className="featuredImg"
+              />
 
-                <h2>
-                  📍 {data[index] || 0} Properties
-                </h2>
+              <div className="featuredOverlay">
+                <div className="featuredTitles">
+
+                  <h1>{item.name}</h1>
+
+                  <h2>
+                    📍 {propertyCount}{" "}
+                    {propertyCount === 1
+                      ? "Property"
+                      : "Properties"}
+                  </h2>
+
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
+
     </div>
   );
 }

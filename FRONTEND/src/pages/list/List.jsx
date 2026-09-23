@@ -10,7 +10,11 @@ import { SearchContext } from "../../components/context/searchContext";
 const List = () => {
   const location = useLocation();
 
-  const { date, options } = useContext(SearchContext);
+  const {
+    city,
+    date,
+    options,
+  } = useContext(SearchContext);
 
   const searchParams = new URLSearchParams(
     location.search
@@ -19,19 +23,35 @@ const List = () => {
   const cityFromURL = searchParams.get("city");
   const typeFromURL = searchParams.get("type");
 
-  const destination = cityFromURL || "";
+  // URL city has highest priority
+  // When only property type is selected, ignore old SearchContext city
+  const searchedCity = cityFromURL
+    ? cityFromURL.trim()
+    : typeFromURL
+    ? ""
+    : city?.trim() || "";
 
   let query = `/hotels?min=0&max=99999`;
 
-  if (cityFromURL) {
-    query += `&city=${encodeURIComponent(cityFromURL)}`;
+  // Filter by selected city
+  if (searchedCity) {
+    query += `&city=${encodeURIComponent(
+      searchedCity
+    )}`;
   }
 
+  // Filter by selected property type
   if (typeFromURL) {
-    query += `&type=${encodeURIComponent(typeFromURL)}`;
+    query += `&type=${encodeURIComponent(
+      typeFromURL
+    )}`;
   }
 
-  const { data, loading, error } = useFetch(query);
+  const {
+    data,
+    loading,
+    error,
+  } = useFetch(query);
 
   return (
     <div>
@@ -42,10 +62,14 @@ const List = () => {
       <div className="listContainer">
         <div className="listResult">
 
-          {loading && <h2>Loading...</h2>}
+          {loading && (
+            <h2>Loading...</h2>
+          )}
 
           {error && (
-            <h2>Something went wrong!</h2>
+            <h2>
+              Something went wrong!
+            </h2>
           )}
 
           {!loading &&
@@ -53,8 +77,10 @@ const List = () => {
             data.length === 0 && (
               <h2>
                 No properties found
-                {destination && ` in ${destination}`}
-                {typeFromURL && ` for ${typeFromURL}`}
+                {searchedCity &&
+                  ` in ${searchedCity}`}
+                {typeFromURL &&
+                  ` for ${typeFromURL}`}
               </h2>
             )}
 
