@@ -248,6 +248,7 @@ export const countByCity = async (
 };
 
 
+// COUNT BY TYPE
 export const countByType = async (
   req,
   res,
@@ -295,23 +296,23 @@ export const countByType = async (
         count: hotelCount,
       },
       {
-        type: "apartments",
+        type: "apartment",
         count: apartmentCount,
       },
       {
-        type: "resorts",
+        type: "resort",
         count: resortCount,
       },
       {
-        type: "villas",
+        type: "villa",
         count: villaCount,
       },
       {
-        type: "cabins",
+        type: "cabin",
         count: cabinCount,
       },
       {
-        type: "cottages",
+        type: "cottage",
         count: cottageCount,
       },
       {
@@ -325,6 +326,7 @@ export const countByType = async (
 };
 
 
+// GET HOTEL ROOMS
 export const getHotelRooms = async (
   req,
   res,
