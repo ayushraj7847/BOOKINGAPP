@@ -25,8 +25,8 @@ const PropertyList = () => {
       icon: "🏢",
     },
     {
-      type: "resort",
-      title: "Resorts",
+      type: "flats",
+      title: "Flats",
       image:
         "https://images.pexels.com/photos/261388/pexels-photo-261388.jpeg",
       icon: "🏝️",
@@ -39,8 +39,8 @@ const PropertyList = () => {
       icon: "🏡",
     },
     {
-      type: "cottage",
-      title: "Cottages",
+      type: "resort",
+      title: "Resorts",
       image:
         "https://images.pexels.com/photos/338504/pexels-photo-338504.jpeg",
       icon: "🏕️",

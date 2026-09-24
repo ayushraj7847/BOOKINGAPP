@@ -1,46 +1,44 @@
 import "./maillist.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faEnvelope,
-  faTag,
-  faClock,
-  faShieldHalved,
+  faHandshake,
+  faBuilding,
+  faChartLine,
+  faPlusCircle,
   faArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 const MailList = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="mail">
 
       <div className="mailIcon">
-        <FontAwesomeIcon icon={faEnvelope} />
+        <FontAwesomeIcon icon={faHandshake} />
       </div>
 
       <h1 className="mailTitle">
-        Save <span>time</span>, save <span>money</span>
+        Partner <span>with</span> Stayvora
       </h1>
 
       <p className="mailDesc">
-        Sign up and we'll send the best deals to you
+        List your hotel, villa, apartment or other property
+        and grow your business with Stayvora
       </p>
 
       <div className="mailInputContainer">
 
-        <div className="inputBox">
+        <button
+          className="partnerButton"
+          onClick={() => navigate("/partner")}
+        >
+          Become a Partner
+
           <FontAwesomeIcon
-            icon={faEnvelope}
-            className="inputIcon"
+            icon={faArrowRight}
           />
-
-          <input
-            type="email"
-            placeholder="Your Email"
-          />
-        </div>
-
-        <button>
-          Subscribe
-          <FontAwesomeIcon icon={faArrowRight} />
         </button>
 
       </div>
@@ -48,39 +46,60 @@ const MailList = () => {
       <div className="mailFeatures">
 
         <div className="featureCard">
+
           <div className="featureIcon">
-            <FontAwesomeIcon icon={faTag} />
+            <FontAwesomeIcon
+              icon={faBuilding}
+            />
           </div>
 
-          <h3>Best Price Guarantee</h3>
+          <h3>
+            Add Your Property
+          </h3>
 
           <p>
-            Get the best deals or we match the price
+            Add hotels, villas, apartments
+            and other properties easily.
           </p>
+
         </div>
 
         <div className="featureCard">
+
           <div className="featureIcon">
-            <FontAwesomeIcon icon={faClock} />
+            <FontAwesomeIcon
+              icon={faChartLine}
+            />
           </div>
 
-          <h3>Save Time</h3>
+          <h3>
+            Grow Your Business
+          </h3>
 
           <p>
-            Quick & easy booking in just a few clicks
+            Reach more customers and
+            increase your bookings.
           </p>
+
         </div>
 
         <div className="featureCard">
+
           <div className="featureIcon">
-            <FontAwesomeIcon icon={faShieldHalved} />
+            <FontAwesomeIcon
+              icon={faPlusCircle}
+            />
           </div>
 
-          <h3>Secure Booking</h3>
+          <h3>
+            Manage Your Property
+          </h3>
 
           <p>
-            Your information is safe and always protected
+            Add rooms, prices, photos
+            and manage your listings.
           </p>
+
         </div>
 
       </div>
