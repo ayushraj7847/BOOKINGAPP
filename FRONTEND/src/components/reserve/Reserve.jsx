@@ -14,12 +14,24 @@ const API_URL =
 const Reserve = ({ setOpen, hotelId }) => {
   const [selectedRooms, setSelectedRooms] = useState([]);
 
-  const { data, loading, error } = useFetch(
-    `/hotels/room/${hotelId}`
-  );
+  const {
+    data,
+    loading,
+    error,
+  } = useFetch(`/hotels/room/${hotelId}`);
 
-  const { city, date, options, hasSearched } =
-    useContext(SearchContext);
+  const {
+    data: hotelData,
+    loading: hotelLoading,
+    error: hotelError,
+  } = useFetch(`/hotels/find/${hotelId}`);
+
+  const {
+    city,
+    date,
+    options,
+    hasSearched,
+  } = useContext(SearchContext);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -27,15 +39,78 @@ const Reserve = ({ setOpen, hotelId }) => {
   const fromSearch =
     location.state?.fromSearch === true;
 
-  const getDatesInRange = (startDate, endDate) => {
+  // Get actual property type
+  const propertyType =
+    hotelData?.type
+      ?.toString()
+      .trim()
+      .toLowerCase() || "";
+
+  // Direct booking property types
+  const directTypes = [
+    "apartment",
+    "apartments",
+    "flat",
+    "flats",
+    "villa",
+    "villas",
+    "resort",
+    "resorts",
+    "cottage",
+    "cottages",
+  ];
+
+  // Property has no rooms
+  const hasNoRooms =
+    hotelData &&
+    Array.isArray(hotelData.rooms) &&
+    hotelData.rooms.length === 0;
+
+  // Direct booking
+  const isDirectBooking =
+    directTypes.includes(propertyType) ||
+    (hasNoRooms &&
+      propertyType !== "hotel");
+
+  console.log(
+    "HOTEL DATA:",
+    hotelData
+  );
+
+  console.log(
+    "HOTEL TYPE:",
+    propertyType
+  );
+
+  console.log(
+    "HAS NO ROOMS:",
+    hasNoRooms
+  );
+
+  console.log(
+    "DIRECT BOOKING:",
+    isDirectBooking
+  );
+
+  const getDatesInRange = (
+    startDate,
+    endDate
+  ) => {
     const start = new Date(startDate);
     const end = new Date(endDate);
+
     const list = [];
-    const current = new Date(start.getTime());
+
+    const current = new Date(
+      start.getTime()
+    );
 
     while (current <= end) {
       list.push(current.getTime());
-      current.setDate(current.getDate() + 1);
+
+      current.setDate(
+        current.getDate() + 1
+      );
     }
 
     return list;
@@ -50,6 +125,22 @@ const Reserve = ({ setOpen, hotelId }) => {
           date[0].startDate,
           date[0].endDate
         )
+      : [];
+
+  const bookingDates =
+    allDates.length > 0
+      ? allDates
+      : isDirectBooking
+      ? [
+          new Date(
+            new Date().setHours(
+              0,
+              0,
+              0,
+              0
+            )
+          ).getTime(),
+        ]
       : [];
 
   const isAvailable = (roomNumber) => {
@@ -78,93 +169,117 @@ const Reserve = ({ setOpen, hotelId }) => {
   };
 
   const handleClick = async () => {
-    // Direct hotel access check
-    if (!fromSearch) {
+    // Existing hotel flow
+    if (!isDirectBooking && !fromSearch) {
       alert(
         "Please fill your booking details first. Redirecting to home page..."
       );
+
       setOpen(false);
       navigate("/");
+
       return;
     }
 
-    // Search details check
+    // Existing hotel search validation
     if (
-      !hasSearched ||
-      !city ||
-      !city.trim() ||
-      !date ||
-      date.length === 0 ||
-      !date[0]?.startDate ||
-      !date[0]?.endDate ||
-      !options ||
-      !options.adult ||
-      !options.room
+      !isDirectBooking &&
+      (
+        !hasSearched ||
+        !city ||
+        !city.trim() ||
+        !date ||
+        date.length === 0 ||
+        !date[0]?.startDate ||
+        !date[0]?.endDate ||
+        !options ||
+        !options.adult ||
+        !options.room
+      )
     ) {
       alert(
         "Please fill your booking details first. Redirecting to home page..."
       );
+
       setOpen(false);
       navigate("/");
+
       return;
     }
 
-    // Date validation
-    const startDate = new Date(
-      date[0].startDate
-    );
+    // Validate dates
+    if (allDates.length > 0) {
+      const startDate = new Date(
+        date[0].startDate
+      );
 
-    const endDate = new Date(
-      date[0].endDate
-    );
+      const endDate = new Date(
+        date[0].endDate
+      );
 
+      if (
+        isNaN(startDate.getTime()) ||
+        isNaN(endDate.getTime())
+      ) {
+        alert(
+          "Please select valid booking dates first."
+        );
+
+        setOpen(false);
+        navigate("/");
+
+        return;
+      }
+
+      if (endDate < startDate) {
+        alert(
+          "Check-out date must be after check-in date."
+        );
+
+        setOpen(false);
+        navigate("/");
+
+        return;
+      }
+    }
+
+    // Room check only for normal hotel
     if (
-      isNaN(startDate.getTime()) ||
-      isNaN(endDate.getTime())
+      !isDirectBooking &&
+      selectedRooms.length === 0
     ) {
       alert(
-        "Please select valid booking dates first."
+        "Please select at least one room!"
       );
-      setOpen(false);
-      navigate("/");
+
       return;
     }
 
-    if (endDate < startDate) {
+    if (bookingDates.length === 0) {
       alert(
-        "Check-out date must be after check-in date."
+        "Please select your booking dates!"
       );
-      setOpen(false);
-      navigate("/");
-      return;
-    }
 
-    // Room check
-    if (selectedRooms.length === 0) {
-      alert("Please select at least one room!");
-      return;
-    }
-
-    if (allDates.length === 0) {
-      alert("Please select your booking dates!");
       return;
     }
 
     try {
-      // Update room availability
-      await Promise.all(
-        selectedRooms.map((roomId) => {
-          return axios.put(
-            `${API_URL}/rooms/availability/${roomId}`,
-            {
-              dates: allDates,
-            },
-            {
-              withCredentials: true,
-            }
-          );
-        })
-      );
+      // Update room availability only for hotel
+      if (!isDirectBooking) {
+        await Promise.all(
+          selectedRooms.map((roomId) => {
+            return axios.put(
+              `${API_URL}/rooms/availability/${roomId}`,
+              {
+                dates: bookingDates,
+              },
+              {
+                withCredentials: true,
+              }
+            );
+          })
+        );
+      }
 
       // Create booking
       const bookingResponse =
@@ -172,8 +287,10 @@ const Reserve = ({ setOpen, hotelId }) => {
           `${API_URL}/bookings`,
           {
             hotelId: hotelId,
-            selectedRooms: selectedRooms,
-            dates: allDates,
+            selectedRooms: isDirectBooking
+              ? []
+              : selectedRooms,
+            dates: bookingDates,
           },
           {
             withCredentials: true,
@@ -188,7 +305,6 @@ const Reserve = ({ setOpen, hotelId }) => {
       alert("Booking successful!");
 
       setOpen(false);
-
       navigate("/");
     } catch (error) {
       console.log(
@@ -197,7 +313,9 @@ const Reserve = ({ setOpen, hotelId }) => {
           error.message
       );
 
-      if (error.response?.status === 401) {
+      if (
+        error.response?.status === 401
+      ) {
         alert(
           "Please login before booking!"
         );
@@ -210,78 +328,123 @@ const Reserve = ({ setOpen, hotelId }) => {
     }
   };
 
-  if (loading) {
+  if (
+    loading ||
+    hotelLoading
+  ) {
     return <h2>Loading...</h2>;
   }
 
-  if (error) {
+  if (
+    error ||
+    hotelError
+  ) {
     return (
-      <h2>Something went wrong!</h2>
+      <h2>
+        Something went wrong!
+      </h2>
     );
   }
 
   return (
     <div className="reserve">
       <div className="rContainer">
+
         <FontAwesomeIcon
           icon={faCircleXmark}
           className="rClose"
           onClick={() => setOpen(false)}
         />
 
-        <span>Select your rooms</span>
+        <span>
+          {isDirectBooking
+            ? "Book this property"
+            : "Select your rooms"}
+        </span>
 
-        {data.map((item) => (
-          <div
-            className="rItem"
-            key={item._id}
-          >
-            <div className="rItemInfo">
-              <div className="rTitle">
-                {item.title}
+        {/* Rooms only for normal hotel */}
+        {!isDirectBooking &&
+          data.map((item) => (
+            <div
+              className="rItem"
+              key={item._id}
+            >
+              <div className="rItemInfo">
+
+                <div className="rTitle">
+                  {item.title}
+                </div>
+
+                <div className="rDesc">
+                  {item.desc}
+                </div>
+
+                <div className="rMax">
+                  Max People:{" "}
+                  <b>
+                    {item.maxPeople}
+                  </b>
+                </div>
+
+                <div className="rPrice">
+                  ₹{item.price}
+                </div>
+
               </div>
 
-              <div className="rDesc">
-                {item.desc}
-              </div>
+              <div className="rSelectRooms">
 
-              <div className="rMax">
-                Max People:{" "}
-                <b>{item.maxPeople}</b>
-              </div>
+                {item.roomNumbers.map(
+                  (roomNumber) => (
+                    <div
+                      className="room"
+                      key={roomNumber._id}
+                    >
+                      <label>
+                        {roomNumber.number}
+                      </label>
 
-              <div className="rPrice">
-                ₹{item.price}
+                      <input
+                        type="checkbox"
+                        value={
+                          roomNumber._id
+                        }
+                        onChange={
+                          handleSelect
+                        }
+                        disabled={
+                          !isAvailable(
+                            roomNumber
+                          )
+                        }
+                      />
+                    </div>
+                  )
+                )}
+
               </div>
             </div>
+          ))}
 
-            <div className="rSelectRooms">
-              {item.roomNumbers.map(
-                (roomNumber) => (
-                  <div
-                    className="room"
-                    key={roomNumber._id}
-                  >
-                    <label>
-                      {roomNumber.number}
-                    </label>
+        {/* Direct booking */}
+        {isDirectBooking && (
+          <div className="directBookingInfo">
 
-                    <input
-                      type="checkbox"
-                      value={roomNumber._id}
-                      onChange={handleSelect}
-                      disabled={
-                        !isAvailable(
-                          roomNumber
-                        )
-                      }
-                    />
-                  </div>
-                )
-              )}
-            </div>
+            <h3>
+              {hotelData?.name}
+            </h3>
+
+            <p>
+              This property does not require
+              room selection.
+            </p>
+
+            <p>
+              Click Reserve Now to book directly.
+            </p>
+
           </div>
-        ))}
+        )}
 
         <button
           className="rButton"
@@ -289,6 +452,7 @@ const Reserve = ({ setOpen, hotelId }) => {
         >
           Reserve Now!
         </button>
+
       </div>
     </div>
   );
