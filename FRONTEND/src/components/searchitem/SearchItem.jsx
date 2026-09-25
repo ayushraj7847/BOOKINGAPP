@@ -42,10 +42,10 @@ const SearchItem = ({ item }) => {
       <div className="siDesc">
         <h1 className="siTitle">{item.name}</h1>
 
-        <span className="siLocation">
-          <FontAwesomeIcon icon={faLocationDot} />
-          Delhi, India • 1.2 km from city centre
-        </span>
+          <span className="siLocation">
+             <FontAwesomeIcon icon={faLocationDot} />
+            {item.city || "India"} • {item.distance} from station
+          </span>
 
         <div className="siHighlights">
           <span className="green">✓ Free cancellation</span>
