@@ -39,14 +39,14 @@ const Reserve = ({ setOpen, hotelId }) => {
   const fromSearch =
     location.state?.fromSearch === true;
 
-  // Get actual property type
+  // Property type
   const propertyType =
     hotelData?.type
       ?.toString()
       .trim()
       .toLowerCase() || "";
 
-  // Direct booking property types
+  // Direct booking types
   const directTypes = [
     "apartment",
     "apartments",
@@ -60,37 +60,15 @@ const Reserve = ({ setOpen, hotelId }) => {
     "cottages",
   ];
 
-  // Property has no rooms
-  const hasNoRooms =
-    hotelData &&
-    Array.isArray(hotelData.rooms) &&
-    hotelData.rooms.length === 0;
+  // If no rooms are returned, don't show room booking
+  const hasRoomData =
+    Array.isArray(data) &&
+    data.length > 0;
 
   // Direct booking
   const isDirectBooking =
     directTypes.includes(propertyType) ||
-    (hasNoRooms &&
-      propertyType !== "hotel");
-
-  console.log(
-    "HOTEL DATA:",
-    hotelData
-  );
-
-  console.log(
-    "HOTEL TYPE:",
-    propertyType
-  );
-
-  console.log(
-    "HAS NO ROOMS:",
-    hasNoRooms
-  );
-
-  console.log(
-    "DIRECT BOOKING:",
-    isDirectBooking
-  );
+    !hasRoomData;
 
   const getDatesInRange = (
     startDate,
@@ -100,7 +78,6 @@ const Reserve = ({ setOpen, hotelId }) => {
     const end = new Date(endDate);
 
     const list = [];
-
     const current = new Date(
       start.getTime()
     );
@@ -243,7 +220,7 @@ const Reserve = ({ setOpen, hotelId }) => {
       }
     }
 
-    // Room check only for normal hotel
+    // Room check only for properties with rooms
     if (
       !isDirectBooking &&
       selectedRooms.length === 0
@@ -264,7 +241,7 @@ const Reserve = ({ setOpen, hotelId }) => {
     }
 
     try {
-      // Update room availability only for hotel
+      // Update room availability only for room-based hotel
       if (!isDirectBooking) {
         await Promise.all(
           selectedRooms.map((roomId) => {
@@ -362,7 +339,7 @@ const Reserve = ({ setOpen, hotelId }) => {
             : "Select your rooms"}
         </span>
 
-        {/* Rooms only for normal hotel */}
+        {/* Room section only when rooms exist */}
         {!isDirectBooking &&
           data.map((item) => (
             <div
@@ -429,7 +406,6 @@ const Reserve = ({ setOpen, hotelId }) => {
         {/* Direct booking */}
         {isDirectBooking && (
           <div className="directBookingInfo">
-
             <h3>
               {hotelData?.name}
             </h3>
@@ -442,7 +418,6 @@ const Reserve = ({ setOpen, hotelId }) => {
             <p>
               Click Reserve Now to book directly.
             </p>
-
           </div>
         )}
 
