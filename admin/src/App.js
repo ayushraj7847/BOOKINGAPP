@@ -5,6 +5,7 @@ import Single from "./pages/single/Single";
 import New from "./pages/new/New";
 import NewRoom from "./pages/newRoom/NewRoom";
 import NewHotel from "./pages/newHotel/NewHotel";
+import Profile from "./pages/profile/Profile";
 
 import {
   BrowserRouter,
@@ -165,6 +166,17 @@ function App() {
             element={
               <ProtectedRoute>
                 <List columns={bookingColumns} />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* ================= PROFILE ================= */}
+
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
               </ProtectedRoute>
             }
           />

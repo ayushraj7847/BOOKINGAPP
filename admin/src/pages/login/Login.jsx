@@ -126,11 +126,11 @@ const Login = () => {
           </span>
         )}
 
-        <div className="createAdmin">
+        {/* <div className="createAdmin">
           <p>
             Don't have a hotel admin account?
           </p>
-
+ 
           <button
             type="button"
             className="createAdminButton"
@@ -139,8 +139,8 @@ const Login = () => {
             }
           >
             CREATE NEW HOTEL ADMIN
-          </button>
-        </div>
+          </button> 
+        </div> */}
 
       </div>
     </div>
