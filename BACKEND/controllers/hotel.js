@@ -223,6 +223,7 @@ export const getAllHotel = async (
       min,
       max,
       city,
+      type,
       ...others
     } = req.query;
 
@@ -237,6 +238,35 @@ export const getAllHotel = async (
         $regex: `^${city.trim()}$`,
         $options: "i",
       };
+    }
+
+    // Property type filter
+    if (type) {
+      const typeMap = {
+        hotel: "hotel",
+        hotels: "hotel",
+
+        apartment: "apartment",
+        apartments: "apartment",
+
+        flat: "flat",
+        flats: "flat",
+
+        villa: "villa",
+        villas: "villa",
+
+        resort: "resort",
+        resorts: "resort",
+
+        hostel: "hostel",
+        hostels: "hostel",
+      };
+
+      const normalizedType =
+        typeMap[type.trim().toLowerCase()] ||
+        type.trim().toLowerCase();
+
+      filter.type = normalizedType;
     }
 
     const hotels = await Hotel.find({
@@ -297,9 +327,9 @@ export const countByType = async (
         type: "apartment",
       });
 
-    const resortCount =
+    const flatCount =
       await Hotel.countDocuments({
-        type: "resort",
+        type: "flat",
       });
 
     const villaCount =
@@ -307,14 +337,9 @@ export const countByType = async (
         type: "villa",
       });
 
-    const cabinCount =
+    const resortCount =
       await Hotel.countDocuments({
-        type: "cabin",
-      });
-
-    const cottageCount =
-      await Hotel.countDocuments({
-        type: "cottage",
+        type: "resort",
       });
 
     const hostelCount =
@@ -332,20 +357,16 @@ export const countByType = async (
         count: apartmentCount,
       },
       {
-        type: "resort",
-        count: resortCount,
+        type: "flat",
+        count: flatCount,
       },
       {
         type: "villa",
         count: villaCount,
       },
       {
-        type: "cabin",
-        count: cabinCount,
-      },
-      {
-        type: "cottage",
-        count: cottageCount,
+        type: "resort",
+        count: resortCount,
       },
       {
         type: "hostel",
