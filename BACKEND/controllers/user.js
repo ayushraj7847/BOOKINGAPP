@@ -1,4 +1,5 @@
 import User from "../models/User.js";
+import Booking from "../models/Booking.js";
 
 // ===============================
 // UPDATE USER
@@ -23,8 +24,6 @@ export const updateUser = async (req, res, next) => {
 // DELETE USER
 // ===============================
 
-
-
 export const deleteUser = async (req, res, next) => {
   try {
 
@@ -40,6 +39,7 @@ export const deleteUser = async (req, res, next) => {
     next(err);
   }
 };
+
 
 // ===============================
 // GET SINGLE USER
@@ -63,12 +63,31 @@ export const getUser = async (req, res, next) => {
 export const getAllUsers = async (req, res, next) => {
   try {
 
-    const users = await User.find();
+    // Get logged-in hotel's ID
+    const hotelId = req.user?.hotelId;
 
+    // If hotel admin is not available
+    if (!hotelId) {
+      return res.status(403).json({
+        success: false,
+        message: "Hotel information not found",
+      });
+    }
+
+    // Get users who have bookings in this hotel
+    const userIds = await Booking.distinct("user", {
+      hotel: hotelId,
+    });
+
+    // Get only those users
+    const users = await User.find({
+      _id: { $in: userIds },
+    });
 
     res.status(200).json(users);
+
   } catch (err) {
-    console.log("GET USERS ERROR:", err);
+    console.log("GET HOTEL USERS ERROR:", err);
     next(err);
   }
 };

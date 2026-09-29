@@ -53,7 +53,12 @@ router.get(
 
 // GET ALL USERS
 
-router.get("/", getAllUsers);
+router.get(
+  "/",
+  verifyToken,
+  verifyAdmin,
+  getAllUsers
+);
 
 
 // UPDATE USER

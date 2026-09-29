@@ -14,12 +14,25 @@ import {
 const router = express.Router();
 
 // CREATE BOOKING
-router.post("/", verifyToken, createBooking);
+router.post(
+  "/",
+  verifyToken,
+  createBooking
+);
 
 // GET ALL BOOKINGS - ADMIN
-router.get("/", verifyToken, verifyAdmin, getAllBookings);
+router.get(
+  "/",
+  verifyToken,
+  verifyAdmin,
+  getAllBookings
+);
 
 // GET LOGGED-IN USER BOOKINGS
-router.get("/user", verifyToken, getUserBookings);
+router.get(
+  "/user",
+  verifyToken,
+  getUserBookings
+);
 
 export default router;

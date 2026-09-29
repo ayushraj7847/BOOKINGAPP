@@ -2,23 +2,25 @@ import Room from "../models/Room.js";
 import Hotel from "../models/Hotel.js";
 import { createError } from "../utils/error.js";
 
-export const createRoom = async(req,res, next) =>{
-const hotelId = req.params.hotelId;
-const newRoom = new Room(req.body);
+export const createRoom = async (req, res, next) => {
+  const hotelId = req.params.hotelId;
+  const newRoom = new Room(req.body);
 
-try{
+  try {
     const savedRoom = await newRoom.save();
-    try{
-        await Hotel.findByIdAndUpdate(hotelId,{
-            $push:{rooms:savedRoom._id},
-        });
-    }catch(err){
-        next(err);
+
+    try {
+      await Hotel.findByIdAndUpdate(hotelId, {
+        $push: { rooms: savedRoom._id },
+      });
+    } catch (err) {
+      next(err);
     }
+
     res.status(200).json(savedRoom);
-}catch(err){
+  } catch (err) {
     next(err);
-}
+  }
 };
 
 // UPDATE ROOM
@@ -35,10 +37,11 @@ export const updateRoom = async (req, res, next) => {
     next(err);
   }
 };
+
 // UPDATE ROOM AVAILABILITY
 export const updateRoomAvailablity = async (req, res, next) => {
   try {
-      const updatedRoom = await Room.updateOne(
+    const updatedRoom = await Room.updateOne(
       {
         "roomNumbers._id": req.params.id,
       },
@@ -51,25 +54,27 @@ export const updateRoomAvailablity = async (req, res, next) => {
       }
     );
 
-
-
     res.status(200).json(updatedRoom);
   } catch (err) {
     next(err);
   }
 };
+
 // DELETE ROOM
 export const deleteRoom = async (req, res, next) => {
   const hotelId = req.params.hotelId;
+
   try {
     await Room.findByIdAndDelete(req.params.id);
-try{
-        await Hotel.findByIdAndUpdate(hotelId,{
-            $pull:{rooms:req.params.id},
-        });
-    }catch(err){
-        next(err);
+
+    try {
+      await Hotel.findByIdAndUpdate(hotelId, {
+        $pull: { rooms: req.params.id },
+      });
+    } catch (err) {
+      next(err);
     }
+
     res.status(200).json("Room has been deleted");
   } catch (err) {
     next(err);
@@ -90,10 +95,34 @@ export const getRoom = async (req, res, next) => {
 // GET ALL ROOMS
 export const getAllRooms = async (req, res, next) => {
   try {
-    const rooms = await Room.find();
+    const hotelId = req.user?.hotelId;
+
+    // Hotel ID is required for hotel admin
+    if (!hotelId) {
+      return res.status(403).json({
+        success: false,
+        message: "Hotel information not found",
+      });
+    }
+
+    // Get logged-in hotel's room IDs
+    const hotel = await Hotel.findById(hotelId).select("rooms");
+
+    if (!hotel) {
+      return res.status(404).json({
+        success: false,
+        message: "Hotel not found",
+      });
+    }
+
+    // Get only rooms belonging to this hotel
+    const rooms = await Room.find({
+      _id: { $in: hotel.rooms || [] },
+    });
 
     res.status(200).json(rooms);
   } catch (err) {
+    console.log("GET HOTEL ROOMS ERROR:", err);
     next(err);
   }
 };

@@ -18,26 +18,52 @@ const router = express.Router();
 
 // CREATE ROOM
 
-router.post("/:hotelId", verifyToken, verifyAdmin, createRoom);
+router.post(
+  "/:hotelId",
+  verifyToken,
+  verifyAdmin,
+  createRoom
+);
 
 // UPDATE ROOM
 
-router.put("/:id", verifyToken, verifyAdmin, updateRoom);
+router.put(
+  "/:id",
+  verifyToken,
+  verifyAdmin,
+  updateRoom
+);
 
 // UPDATE ROOM AVAILABILITY
 
-router.put("/availability/:id", updateRoomAvailablity);
+router.put(
+  "/availability/:id",
+  updateRoomAvailablity
+);
 
 // DELETE ROOM
 
-router.delete("/:id/:hotelId", verifyToken, verifyAdmin, deleteRoom);
+router.delete(
+  "/:id/:hotelId",
+  verifyToken,
+  verifyAdmin,
+  deleteRoom
+);
 
 // GET SINGLE ROOM
 
-router.get("/:id", getRoom);
+router.get(
+  "/:id",
+  getRoom
+);
 
 // GET ALL ROOMS
 
-router.get("/", getAllRooms);
+router.get(
+  "/",
+  verifyToken,
+  verifyAdmin,
+  getAllRooms
+);
 
 export default router;

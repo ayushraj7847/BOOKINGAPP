@@ -161,8 +161,22 @@ export const getAllBookings = async (
   next
 ) => {
   try {
+    const hotelId = req.user?.hotelId;
+
+    // Hotel admin must have a hotel ID
+    if (!hotelId) {
+      return res.status(403).json({
+        success: false,
+        message:
+          "Hotel information not found",
+      });
+    }
+
+    // Get only bookings of logged-in hotel
     const bookings =
-      await Booking.find()
+      await Booking.find({
+        hotel: hotelId,
+      })
         .populate(
           "user",
           "username email"
@@ -179,6 +193,10 @@ export const getAllBookings = async (
       bookings
     );
   } catch (err) {
+    console.log(
+      "GET HOTEL BOOKINGS ERROR:",
+      err
+    );
     next(err);
   }
 };

@@ -12,21 +12,24 @@ export const verifyToken = (req, res, next) => {
     );
   }
 
-  jwt.verify(token, process.env.JWT, (err, user) => {
-    if (err) {
-      return next(
-        createError(403, "Token is not valid!")
-      );
+  jwt.verify(
+    token,
+    process.env.JWT_SECRET,
+    (err, user) => {
+      if (err) {
+        return next(
+          createError(403, "Token is not valid!")
+        );
+      }
+
+      req.user = user;
+
+      console.log("USER FROM JWT:", req.user);
+
+      next();
     }
-
-    req.user = user;
-
-    console.log("USER FROM JWT:", req.user);
-
-    next();
-  });
+  );
 };
-
 
 export const verifyUser = (req, res, next) => {
   verifyToken(req, res, () => {
@@ -43,7 +46,6 @@ export const verifyUser = (req, res, next) => {
     );
   });
 };
-
 
 export const verifyAdmin = (req, res, next) => {
   verifyToken(req, res, () => {

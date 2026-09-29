@@ -10,7 +10,13 @@ import {
   countByCity,
   countByType,
   getHotelRooms,
+  getHotelAdminProfile,
 } from "../controllers/hotel.js";
+
+import {
+  verifyToken,
+  verifyAdmin,
+} from "../utils/verifyToken.js";
 
 const router = express.Router();
 
@@ -21,21 +27,42 @@ router.post(
   hotelAdminLogin
 );
 
+// HOTEL ADMIN PROFILE
+
+router.get(
+  "/admin/profile",
+  verifyToken,
+  verifyAdmin,
+  getHotelAdminProfile
+);
+
 // CREATE
 
-router.post("/", createHotel);
+router.post(
+  "/",
+  createHotel
+);
 
 // UPDATE
 
-router.put("/:id", updateHotel);
+router.put(
+  "/:id",
+  updateHotel
+);
 
 // DELETE
 
-router.delete("/:id", deleteHotel);
+router.delete(
+  "/:id",
+  deleteHotel
+);
 
 // GET ONE HOTEL
 
-router.get("/find/:id", getHotel);
+router.get(
+  "/find/:id",
+  getHotel
+);
 
 // COUNT BY CITY
 
@@ -53,7 +80,10 @@ router.get(
 
 // GET ALL HOTELS
 
-router.get("/", getAllHotel);
+router.get(
+  "/",
+  getAllHotel
+);
 
 // GET ROOMS
 

@@ -39,20 +39,20 @@ export const hotelAdminLogin = async (
     if (!hotel || !password) {
       return res.status(400).json({
         message:
-          "Hotel ID/Name and password are required",
+          "Property ID/Name and password are required",
       });
     }
 
     let foundHotel;
 
-    // Login using Hotel ID
+    // Login using Property ID
     if (mongoose.isValidObjectId(hotel)) {
       foundHotel = await Hotel.findById(hotel).select(
         "+adminPassword"
       );
     }
 
-    // Login using Hotel Name
+    // Login using Property Name
     if (!foundHotel) {
       foundHotel = await Hotel.findOne({
         name: {
@@ -62,10 +62,10 @@ export const hotelAdminLogin = async (
       }).select("+adminPassword");
     }
 
-    // Hotel not found
+    // Property not found
     if (!foundHotel) {
       return res.status(404).json({
-        message: "Hotel not found",
+        message: "Property not found",
       });
     }
 
@@ -78,7 +78,7 @@ export const hotelAdminLogin = async (
 
     if (!isPasswordCorrect) {
       return res.status(400).json({
-        message: "Incorrect hotel password",
+        message: "Incorrect property password",
       });
     }
 
@@ -113,6 +113,38 @@ export const hotelAdminLogin = async (
         },
         isAdmin: true,
       });
+  } catch (err) {
+    next(err);
+  }
+};
+
+
+// GET LOGGED-IN HOTEL ADMIN PROFILE
+export const getHotelAdminProfile = async (
+  req,
+  res,
+  next
+) => {
+  try {
+    const hotelId = req.user?.hotelId;
+
+    if (!hotelId) {
+      return res.status(403).json({
+        success: false,
+        message: "Hotel information not found",
+      });
+    }
+
+    const hotel = await Hotel.findById(hotelId);
+
+    if (!hotel) {
+      return res.status(404).json({
+        success: false,
+        message: "Hotel not found",
+      });
+    }
+
+    res.status(200).json(hotel);
   } catch (err) {
     next(err);
   }
