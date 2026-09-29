@@ -11,6 +11,7 @@ import {
   verifyAdmin,
   verifyToken,
   verifyUser,
+  verifyHotelAdmin,
 } from "../utils/verifyToken.js";
 
 const router = express.Router();
@@ -55,8 +56,7 @@ router.get(
 
 router.get(
   "/",
-  verifyToken,
-  verifyAdmin,
+  verifyHotelAdmin,
   getAllUsers
 );
 

@@ -14,8 +14,7 @@ import {
 } from "../controllers/hotel.js";
 
 import {
-  verifyToken,
-  verifyAdmin,
+  verifyHotelAdmin,
 } from "../utils/verifyToken.js";
 
 const router = express.Router();
@@ -31,8 +30,7 @@ router.post(
 
 router.get(
   "/admin/profile",
-  verifyToken,
-  verifyAdmin,
+  verifyHotelAdmin,
   getHotelAdminProfile
 );
 

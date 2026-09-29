@@ -1,6 +1,10 @@
 import jwt from "jsonwebtoken";
 import { createError } from "../utils/error.js";
 
+// ===============================
+// VERIFY NORMAL USER TOKEN
+// ===============================
+
 export const verifyToken = (req, res, next) => {
   const token = req.cookies.access_token;
 
@@ -14,7 +18,7 @@ export const verifyToken = (req, res, next) => {
 
   jwt.verify(
     token,
-    process.env.JWT_SECRET,
+    process.env.JWT,
     (err, user) => {
       if (err) {
         return next(
@@ -24,12 +28,20 @@ export const verifyToken = (req, res, next) => {
 
       req.user = user;
 
-      console.log("USER FROM JWT:", req.user);
+      console.log(
+        "USER FROM JWT:",
+        req.user
+      );
 
       next();
     }
   );
 };
+
+
+// ===============================
+// VERIFY USER
+// ===============================
 
 export const verifyUser = (req, res, next) => {
   verifyToken(req, res, () => {
@@ -42,10 +54,18 @@ export const verifyUser = (req, res, next) => {
     }
 
     return next(
-      createError(403, "You are not authorized!")
+      createError(
+        403,
+        "You are not authorized!"
+      )
     );
   });
 };
+
+
+// ===============================
+// VERIFY NORMAL ADMIN
+// ===============================
 
 export const verifyAdmin = (req, res, next) => {
   verifyToken(req, res, () => {
@@ -55,7 +75,75 @@ export const verifyAdmin = (req, res, next) => {
     }
 
     return next(
-      createError(403, "You are not authorized!")
+      createError(
+        403,
+        "You are not authorized!"
+      )
     );
   });
+};
+
+
+// ===============================
+// VERIFY HOTEL ADMIN
+// ===============================
+
+export const verifyHotelAdmin = (
+  req,
+  res,
+  next
+) => {
+  const token =
+    req.cookies.hotel_admin_token;
+
+  console.log(
+    "HOTEL ADMIN TOKEN:",
+    token
+  );
+
+  if (!token) {
+    return next(
+      createError(
+        401,
+        "Hotel admin is not authenticated!"
+      )
+    );
+  }
+
+  jwt.verify(
+    token,
+    process.env.JWT,
+    (err, user) => {
+      if (err) {
+        return next(
+          createError(
+            403,
+            "Hotel admin token is not valid!"
+          )
+        );
+      }
+
+      if (
+        user.role !== "hotelAdmin" ||
+        !user.hotelId ||
+        user.isAdmin !== true
+      ) {
+        return next(
+          createError(
+            403,
+            "Hotel admin access required!"
+          )
+        );
+      }
+
+      req.user = user;
+
+      console.log(
+        "HOTEL ADMIN FROM JWT:",
+        req.user
+      );
+
+      next();
+    }
+  );
 };

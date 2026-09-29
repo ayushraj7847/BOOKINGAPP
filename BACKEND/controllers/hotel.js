@@ -95,9 +95,9 @@ export const hotelAdminLogin = async (
     const isProduction =
       process.env.NODE_ENV === "production";
 
-    // Login cookie
+    // Hotel admin login cookie
     res
-      .cookie("access_token", token, {
+      .cookie("hotel_admin_token", token, {
         httpOnly: true,
         secure: isProduction,
         sameSite: isProduction
