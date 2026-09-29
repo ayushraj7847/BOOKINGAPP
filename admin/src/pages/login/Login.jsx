@@ -87,7 +87,7 @@ const Login = () => {
           <h1>Stayvora Admin</h1>
 
           <p>
-            Login with your hotel credentials
+            Login with your property credentials
           </p>
         </div>
 
@@ -95,7 +95,7 @@ const Login = () => {
 
           <input
             type="text"
-            placeholder="Hotel ID or Hotel Name"
+            placeholder="Property ID or Property Name"
             id="hotel"
             value={credentials.hotel}
             onChange={handleChange}
@@ -104,7 +104,7 @@ const Login = () => {
 
           <input
             type="password"
-            placeholder="Hotel Password"
+            placeholder="Property Password"
             id="password"
             value={credentials.password}
             onChange={handleChange}
@@ -128,9 +128,9 @@ const Login = () => {
 
         {/* <div className="createAdmin">
           <p>
-            Don't have a hotel admin account?
+            Don't have a property admin account?
           </p>
- 
+
           <button
             type="button"
             className="createAdminButton"
@@ -138,8 +138,8 @@ const Login = () => {
               navigate("/hotels/new")
             }
           >
-            CREATE NEW HOTEL ADMIN
-          </button> 
+            CREATE NEW PROPERTY ADMIN
+          </button>
         </div> */}
 
       </div>

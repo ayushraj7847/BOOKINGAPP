@@ -18,7 +18,11 @@ import { userInputs } from "./formSource";
 
 import "./style/dark.scss";
 
-import { useContext } from "react";
+import {
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 import { AuthContext } from "./context/AuthContext";
 import { DarkModeContext } from "./context/darkModeContext";
@@ -32,6 +36,34 @@ import {
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
+
+  const { dispatch: authDispatch } = useContext(AuthContext);
+
+  // Check login session when app starts
+  const [sessionChecked, setSessionChecked] = useState(false);
+
+  useEffect(() => {
+    const sessionStarted = sessionStorage.getItem(
+      "stayvora_admin_session"
+    );
+
+    if (!sessionStarted) {
+      // Clear old login from previous browser session
+      localStorage.removeItem("user");
+
+      // Clear auth state
+      authDispatch({
+        type: "LOGOUT",
+      });
+
+      sessionStorage.setItem(
+        "stayvora_admin_session",
+        "true"
+      );
+    }
+
+    setSessionChecked(true);
+  }, [authDispatch]);
 
   // Protect admin pages
   const ProtectedRoute = ({ children }) => {
@@ -47,6 +79,11 @@ function App() {
 
     return children;
   };
+
+  // Wait until login session is checked
+  if (!sessionChecked) {
+    return null;
+  }
 
   return (
     <div className={darkMode ? "app dark" : "app"}>

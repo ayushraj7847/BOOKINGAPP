@@ -23,7 +23,7 @@ const Profile = () => {
         }
 
         const res = await axios.get(
-          `${API_URL}/hotels/find/${user.hotelId}`,
+          `${API_URL}/hotels/admin/profile`,
           {
             withCredentials: true,
           }
