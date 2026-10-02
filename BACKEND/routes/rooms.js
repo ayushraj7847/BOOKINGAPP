@@ -11,7 +11,6 @@ import {
 
 import {
   verifyToken,
-  verifyAdmin,
   verifyHotelAdmin,
 } from "../utils/verifyToken.js";
 
@@ -21,8 +20,7 @@ const router = express.Router();
 
 router.post(
   "/:hotelId",
-  verifyToken,
-  verifyAdmin,
+  verifyHotelAdmin,
   createRoom
 );
 
@@ -30,8 +28,7 @@ router.post(
 
 router.put(
   "/:id",
-  verifyToken,
-  verifyAdmin,
+  verifyHotelAdmin,
   updateRoom
 );
 
@@ -46,8 +43,7 @@ router.put(
 
 router.delete(
   "/:id/:hotelId",
-  verifyToken,
-  verifyAdmin,
+  verifyHotelAdmin,
   deleteRoom
 );
 
