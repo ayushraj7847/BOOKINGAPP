@@ -9,7 +9,7 @@ import useFetch from "../../hooks/useFetch";
 
 const FeaturedPropeties = () => {
   const { data, loading, error } = useFetch(
-    "/hotels?featured=true&limit=4"
+    "/hotels?featured=true"
   );
 
   if (loading) {
@@ -20,13 +20,25 @@ const FeaturedPropeties = () => {
     return <div className="fp">Something went wrong!</div>;
   }
 
+  // Highest rated properties first
+  const sortedProperties = [...data]
+    .sort(
+      (a, b) =>
+        Number(b.rating || 0) -
+        Number(a.rating || 0)
+    )
+    .slice(0, 4);
+
   return (
     <div className="fp">
-      {data.map((item) => (
+      {sortedProperties.map((item) => (
         <Link
           to={`/hotels/${item._id}`}
           key={item._id}
-          style={{ textDecoration: "none", color: "inherit" }}
+          style={{
+            textDecoration: "none",
+            color: "inherit",
+          }}
         >
           <div className="fpItem">
             <img
@@ -36,28 +48,41 @@ const FeaturedPropeties = () => {
             />
 
             <div className="fpContent">
-              {item.rating && (
-                <div className="fpRating">
-                  <button>{item.rating}</button>
-                  <span>Excellent</span>
-                </div>
-              )}
+              {item.rating !== undefined &&
+                item.rating !== null && (
+                  <div className="fpRating">
+                    <button>
+                      {item.rating}
+                    </button>
 
-              <h2 className="fpName">{item.name}</h2>
+                    <span>Excellent</span>
+                  </div>
+                )}
+
+              <h2 className="fpName">
+                {item.name}
+              </h2>
 
               <span className="fpCity">
-                <FontAwesomeIcon icon={faLocationDot} />
+                <FontAwesomeIcon
+                  icon={faLocationDot}
+                />
                 {item.city}
               </span>
 
               <div className="fpBottom">
                 <div>
-                  <h3>₹{item.cheapestPrice}</h3>
+                  <h3>
+                    ₹{item.cheapestPrice}
+                  </h3>
+
                   <small>/ night</small>
                 </div>
 
                 <div className="fpDiscount">
-                  <FontAwesomeIcon icon={faStar} />
+                  <FontAwesomeIcon
+                    icon={faStar}
+                  />
                   10% Genius Discount
                 </div>
               </div>
