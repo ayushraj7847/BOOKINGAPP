@@ -9,7 +9,7 @@ import useFetch from "../../hooks/useFetch";
 
 const FeaturedPropeties = () => {
   const { data, loading, error } = useFetch(
-    "/hotels?featured=true"
+    "/hotels?limit=50"
   );
 
   if (loading) {
@@ -20,8 +20,10 @@ const FeaturedPropeties = () => {
     return <div className="fp">Something went wrong!</div>;
   }
 
+  const properties = Array.isArray(data) ? data : [];
+
   // Highest rated properties first
-  const sortedProperties = [...data]
+  const sortedProperties = [...properties]
     .sort(
       (a, b) =>
         Number(b.rating || 0) -
